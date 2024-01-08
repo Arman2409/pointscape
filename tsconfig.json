@@ -8,6 +8,6 @@
     "skipLibCheck": true,
     "moduleResolution": "NodeNext",
     "rootDir": "./",
-    "outDir": "./dist",
+    "outDir": "./dist/tsc",
   }
 }

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const lodash_1 = require("lodash");
 const getRandomNumber_1 = __importDefault(require("./getRandomNumber"));
-const generateWithoutCollisions = (others, width, height, distance) => {
+const generatePointWithoutCollisions = (others, width, height, distance) => {
     try {
         const x = (0, getRandomNumber_1.default)(distance, width - distance);
         const y = (0, getRandomNumber_1.default)(distance, height - distance);
@@ -17,14 +17,14 @@ const generateWithoutCollisions = (others, width, height, distance) => {
             }
         });
         if (hasCollides) {
-            return generateWithoutCollisions(others, width, height, distance);
+            return generatePointWithoutCollisions(others, width, height, distance);
         }
         else {
             return { x, y };
         }
     }
     catch (e) {
-        return generateWithoutCollisions(others, width, height, distance);
+        return generatePointWithoutCollisions(others, width, height, distance);
     }
 };
-exports.default = generateWithoutCollisions;
+exports.default = generatePointWithoutCollisions;
