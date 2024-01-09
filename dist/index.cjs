@@ -1,3 +1,41 @@
+"use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// index.ts
+var D_exports = {};
+__export(D_exports, {
+  angle: () => angle_default,
+  collision: () => collision_default,
+  collisionInArray: () => collisionInArray_default,
+  distance: () => distance_default,
+  generatePointWithoutCollisions: () => pointWithoutCollision_default,
+  inRange: () => inRange_default,
+  middlePoint: () => middlePoint_default,
+  pointWithoutCollision: () => pointWithoutCollision_default,
+  randomBoolean: () => randomBoolean_default,
+  randomNumber: () => randomNumber_default,
+  randomPoint: () => randomPoint_default,
+  randomPoints: () => randomPoints_default,
+  uniqueId: () => uniqueId_default
+});
+module.exports = __toCommonJS(D_exports);
+
 // core/uniqueId.ts
 var uniqueId = (others) => {
   const newId = crypto.randomUUID();
@@ -165,18 +203,19 @@ var randomPoints = (xLimitsMin, xLimitsMax, yLimitsMin, yLimitsMax, count) => {
   return points;
 };
 var randomPoints_default = randomPoints;
-export {
-  angle_default as angle,
-  collision_default as collision,
-  collisionInArray_default as collisionInArray,
-  distance_default as distance,
-  pointWithoutCollision_default as generatePointWithoutCollisions,
-  inRange_default as inRange,
-  middlePoint_default as middlePoint,
-  pointWithoutCollision_default as pointWithoutCollision,
-  randomBoolean_default as randomBoolean,
-  randomNumber_default as randomNumber,
-  randomPoint_default as randomPoint,
-  randomPoints_default as randomPoints,
-  uniqueId_default as uniqueId
-};
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  angle,
+  collision,
+  collisionInArray,
+  distance,
+  generatePointWithoutCollisions,
+  inRange,
+  middlePoint,
+  pointWithoutCollision,
+  randomBoolean,
+  randomNumber,
+  randomPoint,
+  randomPoints,
+  uniqueId
+});

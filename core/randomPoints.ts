@@ -1,7 +1,7 @@
-import getRandomNumber from "./getRandomNumber";
+import getRandomNumber from "./randomNumber";
 import type { Point } from "../types/globals";
 
-const generateRandomPoints = (
+const randomPoints = (
     xLimitsMin: number,
     xLimitsMax: number,
     yLimitsMin: number,
@@ -17,4 +17,4 @@ const generateRandomPoints = (
     return points;
 }
 
-export default generateRandomPoints;
+export default randomPoints;

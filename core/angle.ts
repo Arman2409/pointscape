@@ -1,9 +1,15 @@
+import type { Quarter } from "../types/globals";
+
 const pi = Math.PI;
 
-const getAngle = (startX: number, startY: number, endX: number, endY: number) => {
+const angle = (
+  startX: number, 
+  startY: number, 
+  endX: number, 
+  endY: number):number => {
   const xDifference = endX - startX;
   const yDifference = endY - startY;
-  let toQuarter: 1 | 2 | 3 | 4;
+  let toQuarter:Quarter;
   if (xDifference >= 0) {
     if (yDifference >= 0) {
       toQuarter = 2;
@@ -24,4 +30,4 @@ const getAngle = (startX: number, startY: number, endX: number, endY: number) =>
   return angle_in_radians;
 }
 
-export default getAngle;
+export default angle;
