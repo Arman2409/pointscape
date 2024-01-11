@@ -13,3 +13,6 @@ export {default as randomPoints} from "./core/randomPoints";
 export {default as area} from "./core/area";
 export {default as randomPointInDistance} from "./core/randomPointInDistance";
 export {default as roundToPrecision} from "./core/roundToPrecision";
+export {default as nearest} from "./core/nearest";
+export {default as degreesToRadians} from "./core/degreesToRadians";
+export {default as radiansToDegrees} from "./core/radiansToDegrees";
