@@ -1,5 +1,4 @@
-import getRandomNumber from "./randomNumber";
-import inRange from "./inRange";
+import { distance as calculateDistance, randomNumber} from "../index";
 import type { Point } from "../types/globals";
 
 const pointWithoutCollision = (
@@ -10,14 +9,11 @@ const pointWithoutCollision = (
     distance: number,
     others: Point[],
 ): Point => {
-    const x = getRandomNumber(minX, maxX);
-    const y = getRandomNumber(minY, maxY);
+    const x = randomNumber(minX, maxX);
+    const y = randomNumber(minY, maxY);
     let hasCollides = false;
     others.forEach(({ x: otherX, y: otherY }) => {
-        if (inRange(x, otherX - distance, otherX + distance)
-            && inRange(y, otherY - distance, otherY + distance)) {
-            hasCollides = true;
-        }
+        if (calculateDistance(x, y, otherX, otherY) < distance) hasCollides = true;
     })
     if (hasCollides) {
         return pointWithoutCollision(

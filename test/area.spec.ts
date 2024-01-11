@@ -1,6 +1,7 @@
 import { area } from "../index";
 import type { Point } from "../types/globals";
 
+// rectangle with area 1
 const rectanglePoints = [
     { x: 2, y: 0 },
     { x: 1, y: 1 },

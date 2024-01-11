@@ -1,6 +1,6 @@
 import {inRange, randomNumber} from "../index";
 
-describe("distance", () => {
+describe("inRange", () => {
     it("should check if the number is in the range", () => {
         const number = randomNumber(0, 10);
         

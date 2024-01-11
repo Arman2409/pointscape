@@ -16,3 +16,7 @@ export {default as roundToPrecision} from "./core/roundToPrecision";
 export {default as nearest} from "./core/nearest";
 export {default as degreesToRadians} from "./core/degreesToRadians";
 export {default as radiansToDegrees} from "./core/radiansToDegrees";
+export {default as perimeter} from "./core/perimeter";
+export {default as positionInCircle} from "./core/positionInCircle";
+
+
