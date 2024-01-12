@@ -14,20 +14,21 @@ on the system.
 
 1. <b>distance(x1, y1, x2, y2) </b> 
    returns distance beetween two points
-   <br />
+
 2.  <b>area(points) </b>
    returns the area inside the given points
-   takes argument an array of points, which represent objects with x and y properties
-   <br />
+   takes argument an array of points, which represent 
+   objects with x and y properties
+   
 3. <b>collision(x1, y1, x2, y2,collisionDistance, [callback])</b>
    returns boolean depending if the two points are near to each other more than the given distance
-   <br />
+   
 4. <b>collisionInArray(x1, y1, radius, points, [callback])</b>
    returns the point which is nearer more than the radius to the given point, or false if ther is no collision
-   <br/>
+
 5. <b>degreesToRadians(degrees)</b>
    returns degrees converted to radians
-   <br />
+
 6. <b>angle(x1, y1, x2, y2)</b>
    <br />
    returns the angle mad by the connection of two points
