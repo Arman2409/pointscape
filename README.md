@@ -1,5 +1,3 @@
-# 2D
-
 Simplify point manipulation and interactions in your 2D projects with this versatile toolkit.Effortlessly calculate distances, areas, collision detection, and more with this collection of handy functions.
 
 ## How to use
