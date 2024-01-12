@@ -1,6 +1,6 @@
 # 2D
 
-###### Utility functions for different actions with points in 2D coordinate system and not only.It focuses on interactions between different points in the coordinate system.
+Utility functions for different actions with points in 2D coordinate system and not only.It focuses on interactions between different points in the coordinate system.
 
 ## How to use
 
