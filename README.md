@@ -2,19 +2,25 @@
 
 Utility functions for different actions with points in 2D coordinate
 system and not only.It focuses on interactions between different points
-on the system.
+in the coordinate system.
 
-## Installation
+## How to use
 
+1. Installation
 >>>
   npm install 2D
+>>>
+
+2. Usage
+>>>
+  import 2d from "2D";
 >>>
 
 ## Functions
 
 This section explains the usage of the functions
 
-### Actions with points
+### Actions with points in xy coordinate system
 
 1. <b>distance(x1, y1, x2, y2)</b>
 
@@ -34,9 +40,9 @@ This section explains the usage of the functions
 
    returns the point which is nearer more than the radius to the given point, or false if ther is no collision
 
-5. <b>degreesToRadians(degrees)</b>
+5. <b>positionInCircle(centerX, centerY, radius, angleInRadians)</b>
 
-   returns degrees converted to radians
+    returns the xy coordinates for the current point in circle by giving it the coordinates for the center, the radius and the angle
 
 6. <b>angle(x1, y1, x2, y2)</b>
 
@@ -59,42 +65,46 @@ This section explains the usage of the functions
    returns the point which doesn't collide with any of given points 
    in given distance if there is such point, takes the dimseions where the point can be, the distance between points and the other points
 
-11. <b>positionInCircle(centerX, centerY, radius, angleInRadians)</b>
-
-    returns the xy coordinates for the current point in circle by giving it the coordinates for the center, the radius and the angle
-
-12. <b>radiansToDegrees(radians)</b>
-
-    returns radians converted to degrees
-
-13. <b>randomBoolean()</b>
-   
-    returns random boolean
-
-14. <b>randomNumber()</b>
-
-    returns random number
-
-15. <b>randomPoint([xMin], [xMax], [yMin], [yMax])</b>
+11. <b>randomPoint([xMin], [xMax], [yMin], [yMax])</b>
    
     returns a point in given dimesions if they are given
 
-16. <b>inRange(number, min, max)
-   
-    returns true if the given number is in given range
-
-17. <b>randomPointInDistance(x, y, distance)</b>
+12. <b>randomPointInDistance(x, y, distance)</b>
    
     returns a random point in given distance from the given point
 
-18. <b>roundToPrecision(number, precision)</b>
-   
-    returns the rounded number to the given precision
-
-19. <b>randomPoints([xMin], [xMax], [yMin], [yMax], quantity)</b>
+13. <b>randomPoints([xMin], [xMax], [yMin], [yMax], quantity)</b>
    
     returns points of given quantity in given dimesions if they are given
 
-20. <b>uniqueId([other ids])</b>
+### Math
+
+1. <b>degreesToRadians(degrees)</b>
+
+    returns degrees converted to radians
+
+2. <b>radiansToDegrees(radians)</b>
+
+    returns radians converted to degrees
+
+3. <b>inRange(number, min, max)</b>
+   
+    returns true if the given number is in given range
+
+4. <b>roundToPrecision(number, precision)</b>
+   
+    returns the rounded number to the given precision
+
+### Randomization
+
+1. <b>randomNumber()</b>
+
+    returns random number
+
+2. <b>randomBoolean()</b>
+   
+    returns random boolean
+
+3. <b>uniqueId([other ids])</b>
    
     returns a different id from other given ids or just a random id if other ids aren't given
