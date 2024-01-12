@@ -13,38 +13,48 @@ on the system.
 ## Functions
 
 1. <b>distance(x1, y1, x2, y2) </b> 
+
    returns distance beetween two points
 
 2.  <b>area(points) </b>
+
    returns the area inside the given points
    takes argument an array of points, which represent 
    objects with x and y properties
    
 3. <b>collision(x1, y1, x2, y2,collisionDistance, [callback])</b>
+
    returns boolean depending if the two points are near to each other more than the given distance
    
 4. <b>collisionInArray(x1, y1, radius, points, [callback])</b>
+
    returns the point which is nearer more than the radius to the given point, or false if ther is no collision
 
 5. <b>degreesToRadians(degrees)</b>
+
    returns degrees converted to radians
 
 6. <b>angle(x1, y1, x2, y2)</b>
-   <br />
+
    returns the angle mad by the connection of two points
+
 7. <b>middlePoint(x1, y1, x2, y2)</b>
-   <br />
+
    returns the middle point of two points
+
 8. <b>nearest(x, y, points)</b>
-   <br />
+
    returns the nearest point to the given point from the array
+
 9. <b>perimeter(points)</b>
-   <br />
+
    returns the perimeter of the figure made by the given points
+
 10. <b>pointWithoutCollision(minX, maxX, minY, maxY, distance, points)</b>
-   <br />
+
    returns the point which doesn't collide with any of given points 
    in given distance if there is such point, takes the dimseions where the point can be, the distance between points and the other points
+   
 11. <b>positionInCircle(centerX, centerY, radius, angleInRadians)</b>
    <br />
     returns the xy coordinates for the current point in circle by giving it the coordinates for the center, the radius and the angle 
