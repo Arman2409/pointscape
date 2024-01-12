@@ -1,6 +1,6 @@
 # 2D
 
-Utility functions for different actions with points in 2D coordinate system and not only.It focuses on interactions between different points in the coordinate system.
+Simplify point manipulation and interactions in your 2D projects with this versatile toolkit.Effortlessly calculate distances, areas, collision detection, and more with this collection of handy functions.
 
 ## How to use
 
