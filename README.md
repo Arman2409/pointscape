@@ -16,12 +16,11 @@ This section explains the usage of the functions
 
 ### Actions with points
 
-1.  distance(x1, y1, x2, y2)
-
+1.   <b>distance(x1, y1, x2, y2)</b>
 
    returns distance beetween two points
 
-2.  <b>area(points) </b>
+2.  <b>area(points)</b>
 
    returns the area inside the given points
    takes argument an array of points, which represent 
