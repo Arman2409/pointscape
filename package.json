@@ -1,5 +1,5 @@
 {
-  "name": "xy-points",
+  "name": "2d-utils",
   "version": "1.2.1",
   "description": "",
   "main": "/dist/index.js",
@@ -14,7 +14,6 @@
   "author": "Arman Ghazaryan",
   "license": "ISC",
   "dependencies": {
-    "2d-test": "^1.1.0",
     "@babel/preset-env": "^7.23.8",
     "babel-jest": "^29.7.0",
     "ts-jest": "^29.1.1",
