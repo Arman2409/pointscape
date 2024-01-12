@@ -17,7 +17,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 ## Functions
 
-This section explains the usage of the utility functions
+This section explains the usage of the utility functions.
 
 ### Actions with points in XY coordinate system
 
