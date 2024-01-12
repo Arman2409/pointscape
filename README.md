@@ -16,9 +16,7 @@ This section explains the usage of the functions
 
 ### Actions with points
 
-1. ```javascript
-distance(x1, y1, x2, y2)
-``` 
+1.  distance(x1, y1, x2, y2)
 
 
    returns distance beetween two points
