@@ -7,18 +7,19 @@ in the coordinate system.
 ## How to use
 
 1. Installation
->>>
-  npm install 2D
->>>
+```javascript
+ npm install 2D
+```
 
 2. Usage
->>>
-  import 2d from "2D";
->>>
+```javascript
+ import 2d from "2D";
+```
+
 
 ## Functions
 
-This section explains the usage of the functions
+This section explains the usage of the utility functions
 
 ### Actions with points in xy coordinate system
 
@@ -97,9 +98,9 @@ This section explains the usage of the functions
 
 ### Randomization
 
-1. <b>randomNumber()</b>
+1. <b>randomNumber(min, max)</b>
 
-    returns random number
+    returns random number in the given range
 
 2. <b>randomBoolean()</b>
    
