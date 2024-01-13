@@ -67,7 +67,7 @@ This section explains the usage of the utility functions.
 
 12. <b>randomPointInDistance(x, y, distance)</b>
    
-   Returns a random point within the given distance from the specified point.
+    Returns a random point within the given distance from the specified point.
 
 13. <b>randomPoints([xMin], [xMax], [yMin], [yMax], quantity)</b>
    
