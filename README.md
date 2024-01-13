@@ -4,7 +4,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 1. Installation
 ```javascript
- npm install 2D
+ npm install 2d-utils
 ```
 
 2. Usage
