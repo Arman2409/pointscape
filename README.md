@@ -59,7 +59,7 @@ This section explains the usage of the utility functions.
 
 10. <b>pointWithoutCollision(minX, maxX, minY, maxY, distance, points)</b>
 
-   Returns a point that doesn't collide with any of the given points within the specified distance, if such a point exists, otherwise returns false.
+    Returns a point that doesn't collide with any of the given points within the specified distance, if such a point exists, otherwise returns false.
 
 11. <b>randomPoint([xMin], [xMax], [yMin], [yMax])</b>
    
