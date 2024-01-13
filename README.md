@@ -9,7 +9,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 2. Usage
 ```javascript
- import 2d from "2D";
+ import 2d from "2d-utils";
 ```
 
 

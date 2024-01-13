@@ -1,6 +1,6 @@
 {
   "name": "2d-utils",
-  "version": "1.2.3",
+  "version": "1.2.7",
   "description": "Points manipulation and more in XY coordinate system",
   "main": "/dist/index.js",
   "module": "/dist/index.mjs",
