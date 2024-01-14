@@ -4,12 +4,12 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 1. Installation
 ```javascript
- npm install 2d-utils
+ npm install pointify
 ```
 
 2. Usage
 ```javascript
- import 2d from "2d-utils";
+ import pointify from "pointify";
 ```
 
 
