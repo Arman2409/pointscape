@@ -1,4 +1,3 @@
-"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -21,17 +20,25 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var D_exports = {};
 __export(D_exports, {
   angle: () => angle_default,
+  area: () => area_default,
   collision: () => collision_default,
   collisionInArray: () => collisionInArray_default,
+  default: () => D_default,
+  degreesToRadians: () => degreesToRadians_default,
   distance: () => distance_default,
-  generatePointWithoutCollisions: () => pointWithoutCollision_default,
   inRange: () => inRange_default,
   middlePoint: () => middlePoint_default,
+  nearest: () => nearest_default,
+  perimeter: () => perimeter_default,
   pointWithoutCollision: () => pointWithoutCollision_default,
+  positionInCircle: () => positionInCircle_default,
+  radiansToDegrees: () => radiansToDegrees_default,
   randomBoolean: () => randomBoolean_default,
   randomNumber: () => randomNumber_default,
   randomPoint: () => randomPoint_default,
+  randomPointInDistance: () => randomPointInDistance_default,
   randomPoints: () => randomPoints_default,
+  roundToPrecision: () => roundToPrecision_default,
   uniqueId: () => uniqueId_default
 });
 module.exports = __toCommonJS(D_exports);
@@ -52,39 +59,6 @@ var uniqueId = (others) => {
   return newId;
 };
 var uniqueId_default = uniqueId;
-
-// core/randomNumber.ts
-var randomNumber = (min, max) => Math.random() * (max - min) + min;
-var randomNumber_default = randomNumber;
-
-// core/inRange.ts
-var inRange = (number, minLimit, maxLimit) => number >= minLimit && number <= maxLimit;
-var inRange_default = inRange;
-
-// core/pointWithoutCollision.ts
-var pointWithoutCollision = (minX, maxX, minY, maxY, distance2, others) => {
-  const x = randomNumber_default(minX, maxX);
-  const y = randomNumber_default(minY, maxY);
-  let hasCollides = false;
-  others.forEach(({ x: otherX, y: otherY }) => {
-    if (inRange_default(x, otherX - distance2, otherX + distance2) && inRange_default(y, otherY - distance2, otherY + distance2)) {
-      hasCollides = true;
-    }
-  });
-  if (hasCollides) {
-    return pointWithoutCollision(
-      minX,
-      maxX,
-      minY,
-      maxY,
-      distance2,
-      others
-    );
-  } else {
-    return { x, y };
-  }
-};
-var pointWithoutCollision_default = pointWithoutCollision;
 
 // core/distance.ts
 var distance = (x1, y1, x2, y2) => {
@@ -107,6 +81,10 @@ var getMiddlePoint = (x1, y1, x2, y2) => {
 };
 var middlePoint_default = getMiddlePoint;
 
+// core/inRange.ts
+var inRange = (number, minLimit, maxLimit) => number >= minLimit && number <= maxLimit;
+var inRange_default = inRange;
+
 // core/collision.ts
 var collision = (x1, y1, x2, y2, collisionDistance, callback) => {
   if ((inRange_default(x1, x2 - collisionDistance, x2) || inRange_default(x1, x2, x2 + collisionDistance)) && (inRange_default(y1, y2 - collisionDistance, y2) || inRange_default(y1, y2, y2 + collisionDistance))) {
@@ -117,6 +95,30 @@ var collision = (x1, y1, x2, y2, collisionDistance, callback) => {
   return false;
 };
 var collision_default = collision;
+
+// core/pointWithoutCollision.ts
+var pointWithoutCollision = (minX, maxX, minY, maxY, distance2, others) => {
+  const x = randomNumber_default(minX, maxX);
+  const y = randomNumber_default(minY, maxY);
+  let hasCollides = false;
+  others.forEach(({ x: otherX, y: otherY }) => {
+    if (distance_default(x, y, otherX, otherY) < distance2)
+      hasCollides = true;
+  });
+  if (hasCollides) {
+    return pointWithoutCollision(
+      minX,
+      maxX,
+      minY,
+      maxY,
+      distance2,
+      others
+    );
+  } else {
+    return { x, y };
+  }
+};
+var pointWithoutCollision_default = pointWithoutCollision;
 
 // core/collisionInArray.ts
 var collisionInArray = (x, y, radius, arr, callback, repeated) => {
@@ -192,6 +194,10 @@ var randomPoint = (xMin, xMax, yMin, yMax) => ({
 });
 var randomPoint_default = randomPoint;
 
+// core/randomNumber.ts
+var randomNumber = (min, max) => Math.random() * (max - min) + min;
+var randomNumber_default = randomNumber;
+
 // core/randomPoints.ts
 var randomPoints = (xLimitsMin, xLimitsMax, yLimitsMin, yLimitsMax, count) => {
   const points = [];
@@ -203,19 +209,139 @@ var randomPoints = (xLimitsMin, xLimitsMax, yLimitsMin, yLimitsMax, count) => {
   return points;
 };
 var randomPoints_default = randomPoints;
+
+// utils/triangleArea.ts
+var triangleArea = ({ x: x1, y: y1 }, { x: x2, y: y2 }, { x: x3, y: y3 }) => Math.abs(
+  (x1 * y2 - x2 * y1 + x2 * y3 - x3 * y2 + x3 * y1 - x1 * y3) / 2
+);
+var triangleArea_default = triangleArea;
+
+// core/area.ts
+var area = (points) => {
+  let area2 = 0;
+  for (let i = 2; i < points.length; i++) {
+    area2 += triangleArea_default(points[0], points[i - 1], points[i]);
+  }
+  return area2;
+};
+var area_default = area;
+
+// core/randomPointInDistance.ts
+var randomPointInDistance = (x, y, distance2) => {
+  const angle2 = Math.random() * 2 * Math.PI;
+  const dx = distance2 * Math.cos(angle2);
+  const dy = distance2 * Math.sin(angle2);
+  return { x: x + dx, y: y + dy };
+};
+var randomPointInDistance_default = randomPointInDistance;
+
+// core/roundToPrecision.ts
+var roundToPrecision = (number, precision) => {
+  const multiplier = 10 ** precision;
+  return Math.round(number * multiplier) / multiplier;
+};
+var roundToPrecision_default = roundToPrecision;
+
+// core/nearest.ts
+var nearest = (x, y, points) => {
+  let minDistance = Infinity;
+  let nearestPoint = null;
+  for (const point of points) {
+    const { x: pointX, y: pointY } = point;
+    const distanceBetween = distance_default(x, y, pointX, pointY);
+    if (distanceBetween < minDistance) {
+      minDistance = distanceBetween;
+      nearestPoint = point;
+    }
+  }
+  return nearestPoint;
+};
+var nearest_default = nearest;
+
+// core/degreesToRadians.ts
+var degreesToRadians = (degrees) => degrees * Math.PI / 180;
+var degreesToRadians_default = degreesToRadians;
+
+// core/radiansToDegrees.ts
+var radiansToDegrees = (radians) => radians * 180 / Math.PI;
+var radiansToDegrees_default = radiansToDegrees;
+
+// core/perimeter.ts
+var perimeter = (points) => {
+  let overallDistance = 0;
+  let lastPoint = {};
+  let i = 0;
+  for (const point of points) {
+    i += 1;
+    if (i === 1) {
+      lastPoint = point;
+      continue;
+    }
+    const { x: prevX, y: prevY } = { ...lastPoint };
+    const { x, y } = { ...point };
+    lastPoint = point;
+    if (i === points.length) {
+      const { x: x2, y: y2 } = { ...point };
+      const { x: firstX, y: firstY } = { ...points[0] };
+      overallDistance += distance_default(x2, y2, firstX, firstY);
+    }
+    overallDistance += distance_default(prevX, prevY, x, y);
+  }
+  return overallDistance;
+};
+var perimeter_default = perimeter;
+
+// core/positionInCircle.ts
+var positionInCircle = (centerX, centerY, radius, angleInRadians) => {
+  const x = centerX + radius * Math.cos(angleInRadians);
+  const y = centerY + radius * Math.sin(angleInRadians);
+  return { x, y };
+};
+var positionInCircle_default = positionInCircle;
+
+// index.ts
+var D_default = {
+  uniqueId: uniqueId_default,
+  distance: distance_default,
+  middlePoint: middlePoint_default,
+  collision: collision_default,
+  pointWithoutCollision: pointWithoutCollision_default,
+  collisionInArray: collisionInArray_default,
+  angle: angle_default,
+  inRange: inRange_default,
+  randomBoolean: randomBoolean_default,
+  randomPoint: randomPoint_default,
+  randomNumber: randomNumber_default,
+  randomPoints: randomPoints_default,
+  area: area_default,
+  randomPointInDistance: randomPointInDistance_default,
+  roundToPrecision: roundToPrecision_default,
+  nearest: nearest_default,
+  degreesToRadians: degreesToRadians_default,
+  radiansToDegrees: radiansToDegrees_default,
+  perimeter: perimeter_default,
+  positionInCircle: positionInCircle_default
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   angle,
+  area,
   collision,
   collisionInArray,
+  degreesToRadians,
   distance,
-  generatePointWithoutCollisions,
   inRange,
   middlePoint,
+  nearest,
+  perimeter,
   pointWithoutCollision,
+  positionInCircle,
+  radiansToDegrees,
   randomBoolean,
   randomNumber,
   randomPoint,
+  randomPointInDistance,
   randomPoints,
+  roundToPrecision,
   uniqueId
 });
