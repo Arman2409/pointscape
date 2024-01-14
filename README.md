@@ -4,12 +4,12 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 1. Installation
 ```javascript
- npm install pointify
+ npm install pointscape
 ```
 
 2. Usage
 ```javascript
- import pointify from "pointify";
+ import pointscape from "pointscape";
 ```
 
 
