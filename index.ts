@@ -19,6 +19,9 @@ import radiansToDegrees from "./core/radiansToDegrees";
 import perimeter from "./core/perimeter";
 import positionInCircle from "./core/positionInCircle";
 
+export type {Point} from "./types/globals";
+export type {Quarter} from "./types/globals";
+
 export {
     uniqueId,
     distance,
