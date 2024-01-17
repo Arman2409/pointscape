@@ -8,7 +8,7 @@
   },
   "keywords": ["2d", "points", "coordinates", "xy", "distance", "area", "perimeter", "collision", "angle", "random"],
   "author": "Arman Ghazaryan",
-  "license": "ISC",
+  "license": "MIT",
   "exports": {
     "import": "./dist/index.js",
     "require": "./dist/index.cjs"

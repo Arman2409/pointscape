@@ -254,8 +254,16 @@ var positionInCircle = (centerX, centerY, radius, angleInRadians) => {
 };
 var positionInCircle_default = positionInCircle;
 
+// core/possibleConnections.ts
+var possibleConnections = (pointsCount) => pointsCount * (pointsCount - 1) / 2;
+var possibleConnections_default = possibleConnections;
+
+// core/circleArea.ts
+var circleArea = (radius) => Math.PI * radius ** 2;
+var circleArea_default = circleArea;
+
 // index.ts
-var D_default = {
+var pointscape_default = {
   uniqueId: uniqueId_default,
   distance: distance_default,
   middlePoint: middlePoint_default,
@@ -269,20 +277,23 @@ var D_default = {
   randomNumber: randomNumber_default,
   randomPoints: randomPoints_default,
   area: area_default,
+  circleArea: circleArea_default,
   randomPointInDistance: randomPointInDistance_default,
   roundToPrecision: roundToPrecision_default,
   nearest: nearest_default,
   degreesToRadians: degreesToRadians_default,
   radiansToDegrees: radiansToDegrees_default,
   perimeter: perimeter_default,
-  positionInCircle: positionInCircle_default
+  positionInCircle: positionInCircle_default,
+  possibleConnections: possibleConnections_default
 };
 export {
   angle_default as angle,
   area_default as area,
+  circleArea_default as circleArea,
   collision_default as collision,
   collisionInArray_default as collisionInArray,
-  D_default as default,
+  pointscape_default as default,
   degreesToRadians_default as degreesToRadians,
   distance_default as distance,
   inRange_default as inRange,
@@ -291,6 +302,7 @@ export {
   perimeter_default as perimeter,
   pointWithoutCollision_default as pointWithoutCollision,
   positionInCircle_default as positionInCircle,
+  possibleConnections_default as possibleConnections,
   radiansToDegrees_default as radiansToDegrees,
   randomBoolean_default as randomBoolean,
   randomNumber_default as randomNumber,

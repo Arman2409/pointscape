@@ -18,6 +18,8 @@ import degreesToRadians from "./core/degreesToRadians";
 import radiansToDegrees from "./core/radiansToDegrees";
 import perimeter from "./core/perimeter";
 import positionInCircle from "./core/positionInCircle";
+import possibleConnections from "./core/possibleConnections";
+import circleArea from "./core/circleArea";
 
 export type {Point} from "./types/globals";
 export type {Quarter} from "./types/globals";
@@ -36,13 +38,15 @@ export {
     randomNumber,
     randomPoints,
     area,
+    circleArea,
     randomPointInDistance,
     roundToPrecision,
     nearest,
     degreesToRadians,
     radiansToDegrees,
     perimeter,
-    positionInCircle
+    positionInCircle,
+    possibleConnections
 }
 
 export default {
@@ -59,13 +63,15 @@ export default {
     randomNumber,
     randomPoints,
     area,
+    circleArea,
     randomPointInDistance,
     roundToPrecision,
     nearest,
     degreesToRadians,
     radiansToDegrees,
     perimeter,
-    positionInCircle
+    positionInCircle,
+    possibleConnections
 }
 
 

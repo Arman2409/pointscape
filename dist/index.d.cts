@@ -1,3 +1,4 @@
+type Quarter = 1 | 2 | 3 | 4;
 interface Point {
     x: number;
     y: number;
@@ -46,6 +47,10 @@ declare const perimeter: (points: Point[]) => number;
 
 declare const positionInCircle: (centerX: number, centerY: number, radius: number, angleInRadians: number) => Point;
 
+declare const possibleConnections: (pointsCount: number) => number;
+
+declare const circleArea: (radius: number) => number;
+
 declare const _default: {
     uniqueId: (others?: string[]) => string;
     distance: (x1: number, y1: number, x2: number, y2: number) => number;
@@ -63,6 +68,7 @@ declare const _default: {
     randomNumber: (min: number, max: number) => number;
     randomPoints: (xLimitsMin: number, xLimitsMax: number, yLimitsMin: number, yLimitsMax: number, count: number) => Point[];
     area: (points: Point[]) => number;
+    circleArea: (radius: number) => number;
     randomPointInDistance: (x: number, y: number, distance: number) => Point;
     roundToPrecision: (number: number, precision: number) => number;
     nearest: (x: number, y: number, points: Point[]) => any;
@@ -70,6 +76,7 @@ declare const _default: {
     radiansToDegrees: (radians: number) => number;
     perimeter: (points: Point[]) => number;
     positionInCircle: (centerX: number, centerY: number, radius: number, angleInRadians: number) => Point;
+    possibleConnections: (pointsCount: number) => number;
 };
 
-export { angle, area, collision, collisionInArray, _default as default, degreesToRadians, distance, inRange, getMiddlePoint as middlePoint, nearest, perimeter, pointWithoutCollision, positionInCircle, radiansToDegrees, randomBoolean, randomNumber, randomPoint, randomPointInDistance, randomPoints, roundToPrecision, uniqueId };
+export { type Point, type Quarter, angle, area, circleArea, collision, collisionInArray, _default as default, degreesToRadians, distance, inRange, getMiddlePoint as middlePoint, nearest, perimeter, pointWithoutCollision, positionInCircle, possibleConnections, radiansToDegrees, randomBoolean, randomNumber, randomPoint, randomPointInDistance, randomPoints, roundToPrecision, uniqueId };
