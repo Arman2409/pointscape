@@ -17,13 +17,14 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // index.ts
-var D_exports = {};
-__export(D_exports, {
+var pointscape_exports = {};
+__export(pointscape_exports, {
   angle: () => angle_default,
   area: () => area_default,
+  circleArea: () => circleArea_default,
   collision: () => collision_default,
   collisionInArray: () => collisionInArray_default,
-  default: () => D_default,
+  default: () => pointscape_default,
   degreesToRadians: () => degreesToRadians_default,
   distance: () => distance_default,
   inRange: () => inRange_default,
@@ -32,6 +33,7 @@ __export(D_exports, {
   perimeter: () => perimeter_default,
   pointWithoutCollision: () => pointWithoutCollision_default,
   positionInCircle: () => positionInCircle_default,
+  possibleConnections: () => possibleConnections_default,
   radiansToDegrees: () => radiansToDegrees_default,
   randomBoolean: () => randomBoolean_default,
   randomNumber: () => randomNumber_default,
@@ -41,7 +43,7 @@ __export(D_exports, {
   roundToPrecision: () => roundToPrecision_default,
   uniqueId: () => uniqueId_default
 });
-module.exports = __toCommonJS(D_exports);
+module.exports = __toCommonJS(pointscape_exports);
 
 // core/uniqueId.ts
 var uniqueId = (others) => {
@@ -299,8 +301,16 @@ var positionInCircle = (centerX, centerY, radius, angleInRadians) => {
 };
 var positionInCircle_default = positionInCircle;
 
+// core/possibleConnections.ts
+var possibleConnections = (pointsCount) => pointsCount * (pointsCount - 1) / 2;
+var possibleConnections_default = possibleConnections;
+
+// core/circleArea.ts
+var circleArea = (radius) => Math.PI * radius ** 2;
+var circleArea_default = circleArea;
+
 // index.ts
-var D_default = {
+var pointscape_default = {
   uniqueId: uniqueId_default,
   distance: distance_default,
   middlePoint: middlePoint_default,
@@ -314,18 +324,21 @@ var D_default = {
   randomNumber: randomNumber_default,
   randomPoints: randomPoints_default,
   area: area_default,
+  circleArea: circleArea_default,
   randomPointInDistance: randomPointInDistance_default,
   roundToPrecision: roundToPrecision_default,
   nearest: nearest_default,
   degreesToRadians: degreesToRadians_default,
   radiansToDegrees: radiansToDegrees_default,
   perimeter: perimeter_default,
-  positionInCircle: positionInCircle_default
+  positionInCircle: positionInCircle_default,
+  possibleConnections: possibleConnections_default
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   angle,
   area,
+  circleArea,
   collision,
   collisionInArray,
   degreesToRadians,
@@ -336,6 +349,7 @@ var D_default = {
   perimeter,
   pointWithoutCollision,
   positionInCircle,
+  possibleConnections,
   radiansToDegrees,
   randomBoolean,
   randomNumber,

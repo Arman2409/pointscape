@@ -17,6 +17,7 @@ describe("nearest", () => {
             points.push(randomPoint(randomPointsMin, randomPointsMax, randomPointsMin, randomPointsMax));
         }
         const foundPoint = nearest(x, y, points);
+        
         expect(foundPoint).toBe(nearestPoint);
     })
 })

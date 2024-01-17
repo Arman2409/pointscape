@@ -28,7 +28,6 @@ This section explains the usage of the utility functions.
    Returns the area enclosed by the given points.
    Takes an array of points as argument, where each point is an object with x and y properties.
 
-   
 3. <b>collision(x1, y1, x2, y2,collisionDistance, [callback])</b>
 
    Returns a boolean indicating if the two points are closer than the given distance.
@@ -73,6 +72,14 @@ This section explains the usage of the utility functions.
    
     Returns a specified quantity of random points within the given dimensions, if dimensions are provided.
 
+14. <b>possibleConnections(pointsCount)</b>
+   
+    Returns the quantity of possible connections among given quantity of points.
+
+15. <b>circleArea(radius)</b>
+
+    Returns the area of the circle.
+    
 ### Math
 
 1. <b>degreesToRadians(degrees)</b>
