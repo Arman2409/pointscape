@@ -1,7 +1,7 @@
 const uniqueId = (others?: string[]): string => {
   const newId = crypto.randomUUID();
   if (others) {
-    let isTaken;
+    let isTaken:boolean = false;
     others.forEach((id) => {
       if (newId === id) isTaken = true;
     })

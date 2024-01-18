@@ -20,6 +20,10 @@ import perimeter from "./core/perimeter";
 import positionInCircle from "./core/positionInCircle";
 import possibleConnections from "./core/possibleConnections";
 import circleArea from "./core/circleArea";
+import center from "./core/center";
+import farest from "./core/farest";
+import intersection from "./core/intersection";
+import difference from "./core/difference";
 
 export type {Point} from "./types/globals";
 export type {Quarter} from "./types/globals";
@@ -42,11 +46,15 @@ export {
     randomPointInDistance,
     roundToPrecision,
     nearest,
+    farest,
     degreesToRadians,
     radiansToDegrees,
     perimeter,
     positionInCircle,
-    possibleConnections
+    possibleConnections,
+    center,
+    intersection,
+    difference
 }
 
 export default {
@@ -67,11 +75,15 @@ export default {
     randomPointInDistance,
     roundToPrecision,
     nearest,
+    farest,
     degreesToRadians,
     radiansToDegrees,
     perimeter,
     positionInCircle,
-    possibleConnections
+    possibleConnections,
+    center,
+    intersection,
+    difference
 }
 
 
