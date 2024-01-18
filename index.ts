@@ -1,33 +1,42 @@
-import uniqueId from "./core/uniqueId";
-import distance from "./core/distance";
-import middlePoint from "./core/middlePoint";
-import collision from "./core/collision";
-import pointWithoutCollision from "./core/pointWithoutCollision";
-import collisionInArray from "./core/collisionInArray";
-import angle from "./core/angle";
-import inRange from "./core/inRange";
-import randomBoolean from "./core/randomBoolean";
-import randomPoint from "./core/randomPoint";
-import randomNumber from "./core/randomNumber";
-import randomPoints from "./core/randomPoints";
-import area from "./core/area";
-import randomPointInDistance from "./core/randomPointInDistance";
-import roundToPrecision from "./core/roundToPrecision";
-import nearest from "./core/nearest";
-import degreesToRadians from "./core/degreesToRadians";
-import radiansToDegrees from "./core/radiansToDegrees";
-import perimeter from "./core/perimeter";
-import positionInCircle from "./core/positionInCircle";
-import possibleConnections from "./core/possibleConnections";
-import circleArea from "./core/circleArea";
-import center from "./core/center";
-import farest from "./core/farest";
-import intersection from "./core/intersection";
-import difference from "./core/difference";
+// points 
+import distance from "./core/points/distance";
+import collision from "./core/points/collision";
+import middlePoint from "./core/points/middlePoint";
+import pointWithoutCollision from "./core/points/pointWithoutCollision";
+import collisionInArray from "./core/points/collisionInArray";
+import angle from "./core/points/angle";
+import randomPoints from "./core/points/randomPoints";
+import area from "./core/points/area";
+import randomPointInDistance from "./core/points/randomPointInDistance";
+import nearest from "./core/points/nearest";
+import perimeter from "./core/points/perimeter";
+import positionInCircle from "./core/points/positionInCircle";
+import possibleConnections from "./core/points/possibleConnections";
+import circleArea from "./core/points/circleArea";
+import center from "./core/points/center";
+import farest from "./core/points/farest";
+import randomPoint from "./core/points/randomPoint";
 
+// math 
+import inRange from "./core/math/inRange";
+import roundToPrecision from "./core/math/roundToPrecision";
+import degreesToRadians from "./core/math/degreesToRadians";
+import radiansToDegrees from "./core/math/radiansToDegrees";
+
+// randomization 
+import uniqueId from "./core/randomization/uniqueId";
+import randomBoolean from "./core/randomization/randomBoolean";
+import randomNumber from "./core/randomization/randomNumber";
+
+// arrays 
+import intersection from "./core/arrays/intersection";
+import difference from "./core/arrays/difference";
+
+// types 
 export type {Point} from "./types/globals";
 export type {Quarter} from "./types/globals";
 
+// named exports 
 export {
     uniqueId,
     distance,
@@ -57,6 +66,7 @@ export {
     difference
 }
 
+// default export 
 export default {
     uniqueId,
     distance,
