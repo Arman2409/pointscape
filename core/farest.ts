@@ -1,22 +1,22 @@
 import distance from "./distance";
 import type { Point } from "../types/globals";
 
-const nearest = (
+const farest = (
     x: number,
     y: number,
     points: Point[]) => {
-    let minDistance = Infinity;
-    let nearestPoint:Point|null = null;
+    let maxDistance = 0;
+    let farestPoint:Point|null = null;
     for (const point of points) {
         const { x: pointX, y: pointY } = point;
         const distanceBetween = distance(x, y, pointX, pointY);
-        if (distanceBetween < minDistance) {
-            minDistance = distanceBetween;
-            nearestPoint = point;
+        if (distanceBetween > maxDistance) {
+            maxDistance = distanceBetween;
+            farestPoint = point;
         }
     }
 
-    return nearestPoint;
+    return farestPoint;
 }
 
-export default nearest;
+export default farest;
