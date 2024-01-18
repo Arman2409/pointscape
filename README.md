@@ -79,6 +79,15 @@ This section explains the usage of the utility functions.
 15. <b>circleArea(radius)</b>
 
     Returns the area of the circle.
+
+16. <b>center</b>
+
+    Returns the center of given points.
+
+16. <b>farest(x, y, points)</b>
+
+    Returns the farest point to the given point from the array.
+
     
 ### Math
 
@@ -111,3 +120,15 @@ This section explains the usage of the utility functions.
 3. <b>uniqueId([other ids])</b>
    
    Returns a unique ID that's different from the provided IDs, or a random ID if no other IDs are given.
+
+### Arrays
+
+1. <b>intersection(arr1, arr2)</b>
+
+    Returns the array of intersection of two arrays.
+
+2. <b>difference(arr1, arr2)</b>
+
+    Returns the array of difference of two arrays.
+   
+    
