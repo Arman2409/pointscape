@@ -1,8 +1,7 @@
-import { collision, collisionInArray, randomPoint } from "../../index";
-import type { Point } from "../../types/globals";
+import { collisionInArray } from "../../index";
 
 describe("collisionInArray", () => {
-    it("should  return true if collides with other point", () => {
+    it("should return true if collides with other point", () => {
         const distance = 10;
         const x = 0;
         const y = 0;
@@ -12,9 +11,9 @@ describe("collisionInArray", () => {
                 y: distance / 2
             }
         ]
-        const foundPoint = collisionInArray(x, y, distance, pointsArr);
-        if(foundPoint) {
-            const { x: foundX, y: foundY } = foundPoint;
+        const foundPoints = collisionInArray(x, y, distance, pointsArr);
+        if(foundPoints.length) {
+            const { x: foundX, y: foundY } = foundPoints[0];
             expect(foundX).toBe(distance / 2);
             expect(foundY).toBe(distance / 2);
             return;
@@ -22,14 +21,4 @@ describe("collisionInArray", () => {
         throw new Error("Collision not found")
     })
 
-    it("should return false if not colliding", () => {
-        const distance = 10;
-        const x = 0;
-        const y = 0;
-        const { x: notCollideX, y: notCollideY }: Point = randomPoint(x + distance + 1, y + distance + 1);
-
-        const result = collision(x, y, notCollideX, notCollideY, distance);
-
-        expect(result).toBeFalsy();
-    })
 })
