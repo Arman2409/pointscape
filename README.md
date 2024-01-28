@@ -80,14 +80,25 @@ This section explains the usage of the utility functions.
 
     Returns the area of the circle.
 
-16. <b>center</b>
+16. <b>center(points)</b>
 
     Returns the center of given points.
 
-16. <b>farest(x, y, points)</b>
+17. <b>farest(x, y, points)</b>
 
     Returns the farest point to the given point from the array.
 
+18. <b>inLine(x, y, point1, point2)</b>
+
+    Returns boolean  value indicating whether or not the given coordinates are on line defined by two other points.
+
+19. <b>cross(line1Start, line1End, line2Start, line2End)</b>
+
+    Returns boolean value indicating if two lines each defined  by two points intersect.
+
+20. <b>movingPoint( x, y, xStep, yStep, count)</b>
+
+    Returns an array of points  representing a moving point over time. The number of elements in the array is equal to "count". Each element contains coordinates of the point.
     
 ### Math
 
@@ -106,6 +117,10 @@ This section explains the usage of the utility functions.
 4. <b>roundToPrecision(number, precision)</b>
    
     Rounds the number to the given precision.
+
+4. <b>average(numbers)</b>
+   
+    Returns the average of all numbers in an array.
 
 ### Randomization
 

@@ -2,6 +2,8 @@ const inRange = (
     number: number,
     minLimit: number,
     maxLimit: number
-) => number >= minLimit && number <= maxLimit;
+):boolean => {
+   return number >= minLimit && number <= maxLimit;
+}
 
 export default inRange;

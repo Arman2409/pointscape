@@ -4,9 +4,9 @@ import type { Point } from "../../types/globals";
 const nearest = (
     x: number,
     y: number,
-    points: Point[]) => {
+    points: Point[]):Point => {
     let minDistance = Infinity;
-    let nearestPoint:Point|null = null;
+    let nearestPoint:Point = {} as Point;
     for (const point of points) {
         const { x: pointX, y: pointY } = point;
         const distanceBetween = distance(x, y, pointX, pointY);
@@ -15,7 +15,6 @@ const nearest = (
             nearestPoint = point;
         }
     }
-
     return nearestPoint;
 }
 
