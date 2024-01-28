@@ -1,7 +1,7 @@
 import { distance } from "../../index";
 import type { Point } from "../../types/globals";
 
-const perimeter = (points: Point[]) => {
+const perimeter = (points: Point[]):number => {
     let overallDistance = 0;
     let lastPoint: Point = {} as Point;
     let i = 0;

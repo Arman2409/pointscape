@@ -1,8 +1,10 @@
+import type { Point } from "../../types/globals";
+
 const getMiddlePoint = (
     x1: number,
     y1: number,
     x2: number,
-    y2: number) => {
+    y2: number):Point => {
     const xDistance = Math.abs(x1 - x2);
     const yDistance = Math.abs(y1 - y2);
     const middleX = x2 >= x1 ? xDistance / 2 : -xDistance / 2;
