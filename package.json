@@ -4,7 +4,7 @@
   "description": "Points manipulation,distance and angle calculation and more with 2D coordinate system",
   "scripts": {
     "build": "npx tsup  index.ts --outDir dist --format cjs,esm --dts",
-    "release": "нпм рун буилд && rm .babelrc index.ts jest.config.js tsconfig.json; rm -rf core test types utils",
+    "release": "npm run build && rm .babelrc index.ts jest.config.js tsconfig.json; rm -rf core test types utils",
     "test": "npx jest"
   },
   "keywords": ["2d", "points", "algebra", "canvas", "html-game", "coordinates", "xy", "distance", "area", "perimeter", "collision", "angle", "random"],
