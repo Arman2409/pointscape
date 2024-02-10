@@ -96,10 +96,15 @@ This section explains the usage of the utility functions.
 
     Returns boolean value indicating if two lines each defined  by two points intersect.
 
-20. <b>movingPoint( x, y, xStep, yStep, count)</b>
+20. <b>move( x, y, xStep, yStep, count)</b>
 
     Returns an array of points  representing a moving point over time. The number of elements in the array is equal to "count". Each element contains coordinates of the point.
-    
+
+21. <b>square( x, y, size, direction)</b>
+
+    Returns an array of points  representing a shape of rectangle.Takes  four parameters: starting coordinates (x and y), size of square side, and direction which should be one of the values "left", "right", "up",
+    "down".
+
 ### Math
 
 1. <b>degreesToRadians(degrees)</b>
@@ -146,4 +151,6 @@ This section explains the usage of the utility functions.
 
     Returns the array of difference of two arrays.
    
-    
+3. <b>chunk(arr, perArr)</b>
+
+    Returns an array splited into chunks based on elements count per chunk.

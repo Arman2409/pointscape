@@ -1,6 +1,6 @@
 import type { Point } from "../../types/globals";
 
-const getMiddlePoint = (
+const middle = (
     x1: number,
     y1: number,
     x2: number,
@@ -15,4 +15,4 @@ const getMiddlePoint = (
     }
 }
 
-export default getMiddlePoint;
+export default middle;

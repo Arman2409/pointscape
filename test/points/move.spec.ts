@@ -1,4 +1,4 @@
-import { movingPoint } from "../../index";
+import { move } from "../../index";
 
 const x = 0;
 const y = 0;
@@ -8,9 +8,9 @@ const count = 3;
 const lastX = 3;
 const lastY = 3;
 
-describe("movingPoint", () => {
+describe("move", () => {
     it("should return the points' array for each position", () => {
-        const pointsArr = movingPoint(x, y, xChange, yChange, count);
+        const pointsArr = move(x, y, xChange, yChange, count);
         console.log(pointsArr);
         
         const {x: finalX, y: finalY} = pointsArr[pointsArr.length - 1];

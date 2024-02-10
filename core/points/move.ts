@@ -1,6 +1,6 @@
 import type { Point } from "../../types/globals"
 
-const movingPoint = (
+const move = (
     x: number,
     y: number,
     xStep: number,
@@ -19,4 +19,4 @@ const movingPoint = (
     return pointsArr;
 }
 
-export default movingPoint;
+export default move;
