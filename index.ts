@@ -1,7 +1,7 @@
 // points 
 import distance from "./core/points/distance";
 import collision from "./core/points/collision";
-import middlePoint from "./core/points/middlePoint";
+import middle from "./core/points/middle";
 import pointWithoutCollision from "./core/points/pointWithoutCollision";
 import collisionInArray from "./core/points/collisionInArray";
 import angle from "./core/points/angle";
@@ -16,9 +16,10 @@ import circleArea from "./core/points/circleArea";
 import center from "./core/points/center";
 import farest from "./core/points/farest";
 import randomPoint from "./core/points/randomPoint";
-import movingPoint from "./core/points/movingPoint";
+import move from "./core/points/move";
 import inLine from "./core/points/inLine";
 import cross from "./core/points/cross";
+import square from "./core/points/square";
 
 // math 
 import inRange from "./core/math/inRange";
@@ -35,16 +36,16 @@ import randomNumber from "./core/randomization/randomNumber";
 // arrays 
 import intersection from "./core/arrays/intersection";
 import difference from "./core/arrays/difference";
+import chunk from "./core/arrays/chunk";
 
 // types 
-export type { Point } from "./types/globals";
-export type { Quarter } from "./types/globals";
+export type { Point, Direction } from "./types/globals";
 
 // named exports 
 export {
     // points 
     distance,
-    middlePoint,
+    middle,
     collision,
     pointWithoutCollision,
     collisionInArray,
@@ -61,8 +62,9 @@ export {
     possibleConnections,
     center,
     inLine,
-    movingPoint,
+    move,
     cross,
+    square,
 
     // randomization 
     uniqueId,
@@ -79,47 +81,50 @@ export {
     // arrays 
     intersection,
     difference,
+    chunk
 }
 
 // default export 
 export default {
-     // points 
-     distance,
-     middlePoint,
-     collision,
-     pointWithoutCollision,
-     collisionInArray,
-     angle,
-     randomPoint,
-     randomPoints,
-     area,
-     circleArea,
-     randomPointInDistance,
-     nearest,
-     farest,
-     perimeter,
-     positionInCircle,
-     possibleConnections,
-     center,
-     inLine,
-     movingPoint,
-     cross,
- 
-     // randomization 
-     uniqueId,
-     randomNumber,
-     randomBoolean,
- 
-     // math 
-     average,
-     inRange,
-     degreesToRadians,
-     radiansToDegrees,
-     roundToPrecision,
- 
-     // arrays 
-     intersection,
-     difference,
+    // points 
+    distance,
+    middle,
+    collision,
+    pointWithoutCollision,
+    collisionInArray,
+    angle,
+    randomPoint,
+    randomPoints,
+    area,
+    circleArea,
+    randomPointInDistance,
+    nearest,
+    farest,
+    perimeter,
+    positionInCircle,
+    possibleConnections,
+    center,
+    inLine,
+    move,
+    cross,
+    square,
+
+    // randomization 
+    uniqueId,
+    randomNumber,
+    randomBoolean,
+
+    // math 
+    average,
+    inRange,
+    degreesToRadians,
+    radiansToDegrees,
+    roundToPrecision,
+
+    // arrays 
+    intersection,
+    difference,
+    chunk
 }
 
 

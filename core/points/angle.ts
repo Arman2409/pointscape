@@ -1,5 +1,3 @@
-import type { Quarter } from "../../types/globals";
-
 const pi = Math.PI;
 
 const angle = (
@@ -7,27 +5,19 @@ const angle = (
   startY: number, 
   endX: number, 
   endY: number):number => {
-  const xDifference = endX - startX;
-  const yDifference = endY - startY;
-  let toQuarter:Quarter;
-  if (xDifference >= 0) {
-    if (yDifference >= 0) {
-      toQuarter = 2;
-    } else {
-      toQuarter = 1;
-    }
-  } else {
-    if (yDifference >= 0) {
-      toQuarter = 3;
-    } else {
-      toQuarter = 4;
-    }
+   // Check for coincident points to avoid division by zero
+   if (startX === endX && startY === endY) {
+    return 0;
   }
-  const xChange = Math.abs(endX - startX);
-  const yChange = Math.abs(endY - startY);
-  const tan = toQuarter === 1 || toQuarter === 3 ? xChange / yChange : yChange / xChange;
-  const angle_in_radians = (toQuarter - 1) * pi / 2 + Math.atan(tan);
-  return angle_in_radians;
+
+  // Use Math.atan2 for efficient and accurate angle calculation
+  const angleInRadians = Math.atan2(endY - startY, endX - startX);
+
+  // Adjust angle to correct quadrant if necessary
+  const quadrant = Math.ceil((Math.atan2(startY, startX) + 2 * pi) / pi / 2);
+  const adjustedAngle = angleInRadians + (quadrant - 1) * pi / 2;
+
+  return adjustedAngle;
 }
 
 export default angle;
