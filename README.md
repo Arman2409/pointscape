@@ -15,11 +15,52 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 ## Functions
 
+Actions with points in XY coordinate system:
+
+distance(x1, y1, x2, y2): Link to description: #distance
+area(points): Link to description: #area
+collision(x1, y1, x2, y2, collisionDistance, [callback]): Link to description: #collision
+collisionInArray(x1, y1, radius, points, [callback]): Link to description: #collisionInArray
+positionInCircle(centerX, centerY, radius, angleInRadians): Link to description: #positionInCircle
+angle(x1, y1, x2, y2): Link to description: #angle
+middlePoint(x1, y1, x2, y2): Link to description: #middlePoint
+nearest(x, y, points): Link to description: #nearest
+perimeter(points): Link to description: #perimeter
+pointWithoutCollision(minX, maxX, minY, maxY, distance, points): Link to description: #pointWithoutCollision
+randomPoint([xMin], [xMax], [yMin], [yMax]): Link to description: #randomPoint
+randomPointInDistance(x, y, distance): Link to description: #randomPointInDistance
+randomPoints([xMin], [xMax], [yMin], [yMax], quantity): Link to description: #randomPoints
+possibleConnections(pointsCount): Link to description: #possibleConnections
+circleArea(radius): Link to description: #circleArea
+center(points): Link to description: #center
+farest(x, y, points): Link to description: #farest
+inLine(x, y, point1, point2): Link to description: #inLine
+cross(line1Start, line1End, line2Start, line2End): Link to description: #cross
+move( x, y, xStep, yStep, count): Link to description: #move
+square( x, y, size, direction): Link to description: #square
+Math:
+
+degreesToRadians(degrees): Link to description: #degreesToRadians
+radiansToDegrees(radians): Link to description: #radiansToDegrees
+inRange(number, min, max): Link to description: #inRange
+roundToPrecision(number, precision): Link to description: #roundToPrecision
+average(numbers): Link to description: #average
+Randomization:
+
+randomNumber(min, max): Link to description: #randomNumber
+randomBoolean(): Link to description: #randomBoolean
+uniqueId([other ids]): Link to description: #uniqueId
+Arrays:
+
+intersection(arr1, arr2): Link to description: #intersection
+difference(arr1, arr2): Link to description: #difference
+chunk(arr, perArr): Link to description: #chunk
+
 This section explains the usage of the utility functions.
 
 ### Actions with points in XY coordinate system
 
-1. <b>distance(x1, y1, x2, y2)</b>
+1. <b id="distance">distance(x1, y1, x2, y2)</b>
 
    Returns the distance beetween two points.
 
@@ -153,4 +194,8 @@ This section explains the usage of the utility functions.
    
 3. <b>chunk(arr, perArr)</b>
 
+<<<<<<< HEAD
     Returns an array splited into chunks based on elements count per chunk.
+=======
+    Returns an array splited into chunks based on elements count per chunk.
+>>>>>>> d7bc879 (function names added)
