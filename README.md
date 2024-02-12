@@ -17,7 +17,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 Actions with points in XY coordinate system:
 
-[distance]: (#distance)
+[distance](#distance)
 area(points): Link to description: #area
 collision(x1, y1, x2, y2, collisionDistance, [callback]): Link to description: #collision
 collisionInArray(x1, y1, radius, points, [callback]): Link to description: #collisionInArray
