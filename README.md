@@ -17,42 +17,70 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 #### Actions with points in XY coordinate system
 [distance](#distance)
-[area](#distance)
+
+[area](#area)
+
 [collision](#collision)
+
 [collisionInArray](#collisionInArray)
+
 [positionInCircle](#positionInCircle)
+
 [angle](#angle)
+
 [middlePoint](#middlePoint)
+
 [nearest](#nearest)
+
 [perimeter](#perimeter)
+
 [pointWithoutCollision](#pointWithoutCollision)
+
 [randomPoint](#randomPoint)
+
 [randomPointInDistance](#randomPointInDistance)
+
 [randomPoints](#randomPoints)
+
 [possibleConnections](#possibleConnections)
+
 [circleArea](#circleArea)
+
 [center](#center)
+
 [farest](#farest)
+
 [inLine](#inLine)
+
 [cross](#cross)
+
 [move](#move)
+
 [square](#square)
 
-#### Math:
+#### Math
 [degreesToRadians](#degreesToRadians)
+
 [radiansToDegrees](#radiansToDegrees)
+
 [inRange](#inRange)
+
 [roundToPrecision](#roundToPrecision)
+
 [average](#average)
 
-#### Arrays:
+#### Arrays
 [intersection](#intersection)
+
 [difference](#difference)
+
 [chunk](#chunk)
 
-#### Randomization:
+#### Randomization
 [randomNumber](#randomNumber)
+
 [randomBoolean](#randomBoolean)
+
 [uniqueId](#uniqueId)
 
 
