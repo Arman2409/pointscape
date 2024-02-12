@@ -95,7 +95,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 * <b id="collision">collision(x1, y1, x2, y2,collisionDistance, [callback])</b>
 
    Returns a boolean indicating if the two points are closer than the given distance.
-   * <b id="collisionInArray">collisionInArray(x1, y1, radius, points, [callback])</b>
+* <b id="collisionInArray">collisionInArray(x1, y1, radius, points, [callback])</b>
 
    Returns the point that is closer than the radius to the given point, or false if there's no collision.
 * <b id="positionInCircle">positionInCircle(centerX, centerY, radius, angleInRadians)</b>
