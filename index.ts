@@ -17,9 +17,14 @@ import center from "./core/points/center";
 import farest from "./core/points/farest";
 import randomPoint from "./core/points/randomPoint";
 import move from "./core/points/move";
+import scale from "./core/points/scale";
 import inLine from "./core/points/inLine";
 import cross from "./core/points/cross";
+import rotate from "./core/points/rotate";
 import square from "./core/points/square";
+import rectangle from "./core/points/rectangle";
+import triangle from "./core/points/triangle";
+import pentagon from "./core/points/pentagon";
 
 // math 
 import inRange from "./core/math/inRange";
@@ -62,9 +67,14 @@ export {
     possibleConnections,
     center,
     inLine,
+    rotate,
     move,
+    scale,
     cross,
     square,
+    rectangle,
+    triangle,
+    pentagon,
 
     // randomization 
     uniqueId,
@@ -105,9 +115,14 @@ export default {
     possibleConnections,
     center,
     inLine,
+    rotate,
     move,
+    scale,
     cross,
     square,
+    rectangle,
+    triangle,
+    pentagon,
 
     // randomization 
     uniqueId,

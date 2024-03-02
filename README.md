@@ -50,6 +50,10 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 [farest](#farest)
 
+[rotate](#rotate)
+
+[scale](#scale)
+
 [inLine](#inline)
 
 [cross](#cross)
@@ -57,6 +61,12 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 [move](#move)
 
 [square](#square)
+
+[rectangle](#rectangle)
+
+[pentagon](#pentagon)
+
+[triangle](#triangle)
 
 #### Math
 [degreesToRadians](#degreestodadians)
@@ -146,6 +156,14 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
     Returns the farest point to the given point from the array.
 
+* <b id="rotate">rotate(centerX, centerY, angleInRadians)</b>
+
+    Returns the points rotated around  the given point. The angle is in radians.
+
+* <b id="scale">scale(scaleFactorX, scaleFactorY, points)</b>
+
+    Returns the scaled points.
+
 * <b id="inline">inLine(x, y, point1, point2)</b>
 
     Returns boolean  value indicating whether or not the given coordinates are on line defined by two other points.
@@ -160,8 +178,21 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 * <b id="square">square( x, y, size, direction)</b>
 
-    Returns an array of points  representing a shape of rectangle.Takes  four parameters: starting coordinates (x and y), size of square side, and direction which should be one of the values "left", "right", "up",
+    Returns an array of points  representing a shape of square.Takes  four parameters: starting coordinates (x and y), size of square side, and direction which should be one of the values "left", "right", "up",
     "down".
+
+* <b id="rectangle">rectangle( x, y, size, direction)</b>
+
+    Returns an array of points  representing a shape of rectangle.Takes  same parameters as [square](#square) function.
+
+* <b id="triangle">triangle( x, y, size, direction)</b>
+
+    Returns an array of points  representing a shape of triangle.Takes  same parameters as [square](#square) function.
+
+
+* <b id="pentagon">pentagon( x, y, size, direction)</b>
+
+    Returns an array of points  representing a shape of pentagon.Takes  four parameters: starting coordinates (x and y), size of pentagon side, and the angle of pentagon's rotation.
 
 ### Math
 
