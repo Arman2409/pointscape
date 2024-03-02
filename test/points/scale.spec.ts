@@ -20,7 +20,7 @@ const expectedScaledPoints = [
 test('scale function correctly scales points', () => {
 
     // Apply scaling
-    const scaledPoints = scale(points, scaleFactorX, scaleFactorY);
+    const scaledPoints = scale(scaleFactorX, scaleFactorY, points);
 
     // Assertions
     expect(scaledPoints.length).toBe(points.length);

@@ -1,9 +1,9 @@
 import type { Point } from "../../types/globals";
 
 const scale = (
-    points: Point[],
     scaleFactorX: number,
-    scaleFactorY: number) => {
+    scaleFactorY: number,
+    points: Point[]) => {
     return points.map(({x, y}) => ({
         x: x * scaleFactorX,
         y: y * scaleFactorY,

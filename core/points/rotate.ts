@@ -1,9 +1,9 @@
 import type { Point } from "../../types/globals";
 
 const rotate = (
-    points: Point[],
     centerX: number,
     centerY: number,
+    points: Point[],
     angleInRadians: number) => {
     return points.map(point => {
         const x = centerX + (point.x - centerX) * Math.cos(angleInRadians) - (point.y - centerY) * Math.sin(angleInRadians);
