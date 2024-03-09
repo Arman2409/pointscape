@@ -139,7 +139,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 
 ### Actions with points in XY coordinate system
-* <b id="distance">```diff - distance(point1, point2)```</b>
+* <b id="distance">distance(point1, point2)</b>
 
    Returns the distance beetween two points, each point is an object with x and y properties.
 
