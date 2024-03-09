@@ -24,12 +24,12 @@ Simplify point manipulation and interactions in your 2D projects with this versa
     randomBoolean } from "pointscape";
 
 
- const distanceBetweenPoints = distance(0, 0, 10, 10);
+ const distanceBetweenPoints = distance({x: 0, y: 0}, {x: 10, y: 10});
  console.log(distanceBetweenPoints); 
  // output: 14.142135623730951
 
 
- const pointsForTriangle = triangle(0, 0, 10);
+ const pointsForTriangle = triangle({x: 0, y: 0}, 10);
  console.log(pointsForTriangle); 
  // output: [ { x: 0, y: 0 }, { x: -10, y: 0 }, { x: -5, y: 8.660254037844386 } ]
 
@@ -72,7 +72,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 [angle](#angle)
 
-[middlePoint](#middlepoint)
+[middle](#middle)
 
 [nearest](#nearest)
 
@@ -158,7 +158,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 * <b id="angle">angle(x1, y1, x2, y2)</b>
 
    Returns the angle formed by the connection of two points.
-* <b id="middlepoint">middlePoint(x1, y1, x2, y2)</b>
+* <b id="middle">middlePoint(x1, y1, x2, y2)</b>
 
    Returns the midpoint between two points.
 * <b id="nearest">nearest(x, y, points)</b>
