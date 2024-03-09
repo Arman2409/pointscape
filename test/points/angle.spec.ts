@@ -6,9 +6,7 @@ const startY = 0;
 
 describe("angle", () => {
     it("should return the angle in radians", () => {
-
-        const { x, y } = randomPoint();
-        const angleInRadians = angle(startX, startY, x, y);
+        const angleInRadians = angle({x: startX, y: startY}, randomPoint());
 
         expect(angleInRadians).toBeGreaterThanOrEqual(0);
         expect(angleInRadians).toBeLessThanOrEqual(pi);

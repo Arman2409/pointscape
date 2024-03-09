@@ -9,7 +9,8 @@ const rectanglePoints =  [
 
 describe("rectangle", () => {
     it("should return points for a rectangle", () => {
-        const points = rectangle(0, 0, 10, 5);
+        const initialPoint = {x: 0, y: 0}
+        const points = rectangle(initialPoint, 10, 5);
 
         expect(points).toStrictEqual(rectanglePoints);  
     })

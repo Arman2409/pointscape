@@ -2,20 +2,15 @@ import { collision } from "../../index";
 import type { Point } from "../../types/globals";
 
 const collisionInArray = (
-    x: number,
-    y: number,
+    initialPoint: Point,
+    arr: Point[],
     radius: number,
-    arr: Point[]
     ): Point[] => {
-    let collisionX = 0;
-    let collisionY = 0;
     const collisionsArr:Point[] = [];
     // Check for collision for every point in the array. If a collision is found store it to be used later.
-    arr.forEach(({ x: pointX, y: pointY }: Point) => {
-        collision(x, y, pointX, pointY, radius, () => {
-            collisionsArr.push({x: pointX, y: pointY})
-            collisionX = pointX;
-            collisionY = pointY;
+    arr.forEach((point: Point) => {
+        collision(initialPoint, point, radius, () => {
+            collisionsArr.push(point);
         });
     });
     return collisionsArr;

@@ -23,13 +23,16 @@ Simplify point manipulation and interactions in your 2D projects with this versa
     chunk, 
     randomBoolean } from "pointscape";
 
+
  const distanceBetweenPoints = distance(0, 0, 10, 10);
  console.log(distanceBetweenPoints); 
  // output: 14.142135623730951
 
+
  const pointsForTriangle = triangle(0, 0, 10);
  console.log(pointsForTriangle); 
  // output: [ { x: 0, y: 0 }, { x: -10, y: 0 }, { x: -5, y: 8.660254037844386 } ]
+
 
  const centralPoint = center(
    [{x:0, y: 0}, {x:0, y:10}, {x:10, y:10}, {x:10, y:0}]
@@ -37,17 +40,21 @@ Simplify point manipulation and interactions in your 2D projects with this versa
  console.log(centralPoint);
  // output: { x: 5, y: 5 }
 
+
  const isInTheRange = inRange(1, 0, 10);
  console.log(isInTheRange);
  // output: true
+
 
  const chunks = chunk([1, 1, 1, 1], 2);
  console.log(chunks);
  // output: [[1, 1], [1, 1]]
 
+
  const randomBool = randomBoolean();
  console.log(randomBool)
  // output: true or false
+
 ```
 
 ## Functions

@@ -8,10 +8,7 @@ const points = [
 ];
 
 // Center of rotation
-const centerX = 2;
-const centerY = 2;
-
-
+const centerPoint = { x: 2, y: 2 };
 
 // Expected rotated points
 const expectedRotatedPoints = [
@@ -25,13 +22,13 @@ test('rotate function correctly rotates points around the center', () => {
     const angleInRadians = Math.PI / 2;
 
     // Apply rotation
-    const rotatedPoints = rotate(centerX, centerY, points,  angleInRadians);
+    const rotatedPoints = rotate(centerPoint, points, angleInRadians);
 
     // Assertions
     expect(rotatedPoints.length).toBe(points.length);
 
-    rotatedPoints.forEach((point, index) => {
-        expect(point.x).toBeCloseTo(expectedRotatedPoints[index].x);
-        expect(point.y).toBeCloseTo(expectedRotatedPoints[index].y);
+    rotatedPoints.forEach(({x, y}, index) => {
+        expect(x).toBeCloseTo(expectedRotatedPoints[index].x);
+        expect(y).toBeCloseTo(expectedRotatedPoints[index].y);
     });
 });

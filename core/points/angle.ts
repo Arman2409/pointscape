@@ -1,10 +1,13 @@
+import type { Point } from "../../types/globals";
+
 const pi = Math.PI;
 
 const angle = (
-  startX: number, 
-  startY: number, 
-  endX: number, 
-  endY: number):number => {
+  point1: Point,
+  point2: Point):number => {
+    const {x: startX, y: startY} = {...point1};
+    const {x: endX, y: endY} = {...point2};
+
    // Check for coincident points to avoid division by zero
    if (startX === endX && startY === endY) {
     return 0;
