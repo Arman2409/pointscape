@@ -12,6 +12,43 @@ Simplify point manipulation and interactions in your 2D projects with this versa
  import pointscape from "pointscape";
 ```
 
+## Examples
+
+```javascript
+ import { 
+    distance,
+    triangle,
+    center, 
+    inRange,
+    chunk, 
+    randomBoolean } from "pointscape";
+
+ const distanceBetweenPoints = distance(0, 0, 10, 10);
+ console.log(distanceBetweenPoints); 
+ // output: 14.142135623730951
+
+ const pointsForTriangle = triangle(0, 0, 10);
+ console.log(pointsForTriangle); 
+ // output: [ { x: 0, y: 0 }, { x: -10, y: 0 }, { x: -5, y: 8.660254037844386 } ]
+
+ const centralPoint = center(
+   [{x:0, y: 0}, {x:0, y:10}, {x:10, y:10}, {x:10, y:0}]
+ );
+ console.log(centralPoint);
+ // output: { x: 5, y: 5 }
+
+ const isInTheRange = inRange(1, 0, 10);
+ console.log(isInTheRange);
+ // output: true
+
+ const chunks = chunk([1, 1, 1, 1], 2);
+ console.log(chunks);
+ // output: [[1, 1], [1, 1]]
+
+ const randomBool = randomBoolean();
+ console.log(randomBool)
+ // output: true or false
+```
 
 ## Functions
 
@@ -176,21 +213,21 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
     Returns an array of points  representing a moving point over time. The number of elements in the array is equal to "count". Each element contains coordinates of the point.
 
-* <b id="square">square( x, y, size, direction)</b>
+* <b id="square">square( x, y, size, [direction])</b>
 
     Returns an array of points  representing a shape of square.Takes  four parameters: starting coordinates (x and y), size of square side, and direction which should be one of the values "left", "right", "up",
     "down".
 
-* <b id="rectangle">rectangle( x, y, size, direction)</b>
+* <b id="rectangle">rectangle( x, y, size, [direction])</b>
 
     Returns an array of points  representing a shape of rectangle.Takes  same parameters as [square](#square) function.
 
-* <b id="triangle">triangle( x, y, size, direction)</b>
+* <b id="triangle">triangle(x, y, size, [direction])</b>
 
     Returns an array of points  representing a shape of triangle.Takes  same parameters as [square](#square) function.
 
 
-* <b id="pentagon">pentagon( x, y, size, direction)</b>
+* <b id="pentagon">pentagon( x, y, size, [direction])</b>
 
     Returns an array of points  representing a shape of pentagon.Takes  four parameters: starting coordinates (x and y), size of pentagon side, and the angle of pentagon's rotation.
 
