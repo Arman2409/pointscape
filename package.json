@@ -1,6 +1,6 @@
 {
   "name": "pointscape",
-  "version": "1.5.5",
+  "version": "1.6.0",
   "description": "Points manipulation,distance and angle calculation and more with 2D coordinate system",
   "scripts": {
     "build": "npx tsup  index.ts --outDir dist --format cjs,esm --dts",
