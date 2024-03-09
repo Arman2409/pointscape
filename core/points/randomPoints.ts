@@ -2,11 +2,11 @@ import getRandomNumber from "../randomization/randomNumber";
 import type { Point } from "../../types/globals";
 
 const randomPoints = (
-    xLimitsMin: number,
-    xLimitsMax: number,
-    yLimitsMin: number,
-    yLimitsMax: number,
-    count: number
+    count: number,
+    xLimitsMin: number = 100,
+    xLimitsMax: number = 100,
+    yLimitsMin: number = 100,
+    yLimitsMax: number = 100
 ): Point[] => {
     const points: Point[] = [];
     for (let i = 0; i < count; i++) {

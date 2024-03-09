@@ -141,29 +141,37 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 ### Actions with points in XY coordinate system
 * <b id="distance">```diff - distance(point1, point2)```</b>
 
-   Returns the distance beetween two points.
-* <p style="color: #3498db; font-size: 18px;" id="area">area(points)</p>
+   Returns the distance beetween two points, each point is an object with x and y properties.
+
+* <b id="area">area(points)</b>
 
    Returns the area enclosed by the given points.
    Takes an array of points as argument, where each point is an object with x and y properties.
+
 * <b id="collision">collision(point1, point2, collisionDistance, [callback])</b>
 
    Returns a boolean indicating if the two points are closer than the given distance.
+
 * <b id="collisioninarray">collisionInArray(point, radius, points, [callback])</b>
 
    Returns the point that is closer than the radius to the given point, or false if there's no collision.
+
 * <b id="positionincircle">positionInCircle(point, radius, angleInRadians)</b>
 
-    Returns the XY coordinates for the current point in the circle, given its center point, radius, and angle.
+    Returns the x and y coordinates for the current point in the circle, given its center point, radius, and angle.
+
 * <b id="angle">angle(point1, point2)</b>
 
    Returns the angle formed by the connection of two points.
+
 * <b id="middle">middle(point1, point2)</b>
 
    Returns the midpoint between two points.
+
 * <b id="nearest">nearest(point, points)</b>
 
    Returns the nearest point to the given point from the array.
+
 * <b id="perimeter">perimeter(points)</b>
 
    Returns the perimeter of the figure formed by the given points.
@@ -174,15 +182,15 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 * <b id="randompoint">randomPoint([xMin], [xMax], [yMin], [yMax])</b>
    
-    Returns a random point within the given dimensions, if provided.
+    Returns a random point within the given dimensions, if provided, otherwise in 100  units on both axes.
 
 * <b id="randompointindistance">randomPointInDistance(point, distance)</b>
    
     Returns a random point within the given distance from the specified point.
 
-* <b id="randompoints">randomPoints([xMin], [xMax], [yMin], [yMax], quantity)</b>
+* <b id="randompoints">randomPoints(quantity, [xMin], [xMax], [yMin], [yMax], )</b>
    
-    Returns a specified quantity of random points within the given dimensions, if dimensions are provided.
+    Returns a specified quantity of random points within the given dimensions, if dimensions are provided, otherwise in the range of 100.
 
 * <b id="possibleconnections">possibleConnections(pointsCount)</b>
    
@@ -200,9 +208,9 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
     Returns the farest point to the given point from the array.
 
-* <b id="rotate">rotate(point, angleInRadians)</b>
+* <b id="rotate">rotate(point, points, angleInRadians)</b>
 
-    Returns the points rotated around the given point. The angle is in radians.
+    Returns the points rotated around the given point.
 
 * <b id="scale">scale(scaleFactorX, scaleFactorY, points)</b>
 
