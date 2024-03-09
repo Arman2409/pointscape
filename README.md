@@ -139,7 +139,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 
 ### Actions with points in XY coordinate system
-* <p style="color: #3498db; font-size: 18px;" id="distance">distance(point1, point2)</p>
+* <p style="color: red; font-size: 18px;" id="distance">distance(point1, point2)</p>
 
    Returns the distance beetween two points.
 * <p style="color: #3498db; font-size: 18px;" id="area">area(points)</p>
