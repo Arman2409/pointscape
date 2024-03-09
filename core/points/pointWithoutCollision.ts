@@ -1,4 +1,4 @@
-import { distance as calculateDistance, randomNumber} from "../../index";
+import { distance, randomPoint} from "../../index";
 import type { Point } from "../../types/globals";
 
 const pointWithoutCollision = (
@@ -6,14 +6,15 @@ const pointWithoutCollision = (
     maxX: number,
     minY: number,
     maxY: number,
-    distance: number,
+    distanceBetweenPoints: number,
     others: Point[],
 ): Point => {
-    const x = randomNumber(minX, maxX);
-    const y = randomNumber(minY, maxY);
+    const initialPoint = randomPoint(minX, maxX, minY, maxY);
     let hasCollides = false;
-    others.forEach(({ x: otherX, y: otherY }) => {
-        if (calculateDistance(x, y, otherX, otherY) < distance) hasCollides = true;
+    others.forEach(point => {
+        if (distance(initialPoint, point) < distanceBetweenPoints) {
+            hasCollides = true;
+        }
     })
     if (hasCollides) {
         return pointWithoutCollision(
@@ -21,10 +22,10 @@ const pointWithoutCollision = (
             maxX,
             minY,
             maxY,
-            distance,
+            distanceBetweenPoints,
             others);
     } else {
-        return { x, y };
+        return initialPoint;
     }
 }
 

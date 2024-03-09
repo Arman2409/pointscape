@@ -8,7 +8,8 @@ const squarePoints =  [
 ]
 describe("square", () => {
     it("should return points for a square", () => {
-        const points = square(0, 0, 1, "left");
+        const initialPoint = {x: 0, y: 0};
+        const points = square(initialPoint, 1, "left");
 
         expect(points).toStrictEqual(squarePoints);  
     })

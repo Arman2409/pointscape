@@ -8,16 +8,16 @@ const steps = {
 }
 
 const triangle = (
-    x: number,
-    y: number,
+    initialPoint: Point,
     size: number,
     direction: Direction = "left"
 ): Point[] => {
     const height = (Math.sqrt(3) / 2) * size;
     const nextStep = steps[direction];
 
-    const points: Point[] = [{ x, y }];
-
+    const points: Point[] = [initialPoint];
+    let {x, y} = {...initialPoint};
+    
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
             x += nextStep[0] * size;

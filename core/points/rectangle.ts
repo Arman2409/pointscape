@@ -9,20 +9,20 @@ const steps = {
 }
 
 const rectangle = (
-    x: number,
-    y: number,
+    initialPoint: Point,
     width: number,
     height: number,
     direction: Direction = "right") => {
     console.log({ width, height });
 
-    const points: Point[] = [{ x, y }];
+    const points: Point[] = [initialPoint];
+    let { x, y } = { ...initialPoint };
 
     for (let i = 0; i < 3; i++) {
         const nextStep = steps[direction];
-        x += nextStep[0] *  width ;
-        y += nextStep[1] *  height;
-        points.push({ x, y });
+        x += nextStep[0] * width;
+        y += nextStep[1] * height;
+        points.push({x, y});
 
         const nextDirectionIndex = sequence.indexOf(direction) + 1 < sequence.length ? sequence.indexOf(direction) + 1 : 0;
         direction = sequence[nextDirectionIndex]; // cyclic rotation

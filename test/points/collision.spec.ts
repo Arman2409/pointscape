@@ -6,8 +6,8 @@ describe("collision", () => {
         const distance = 10;
         const x = 0;
         const y = 0;
-        const { x: collideX, y: collideY }:Point = randomPoint(x, x + distance/2,y, y + distance/2);        
-        const result = collision(x, y, collideX, collideY, distance);
+        const collidePoint: Point = randomPoint(x, x + distance / 2, y, y + distance / 2);
+        const result = collision({ x, y }, collidePoint, distance);
         expect(result).toBeTruthy();
     })
 
@@ -15,10 +15,10 @@ describe("collision", () => {
         const distance = 10;
         const x = 0;
         const y = 0;
-        const { x: notCollideX, y: notCollideY }:Point = randomPoint(x + distance + 1, y + distance + 1);
-        
-        const result = collision(x, y, notCollideX, notCollideY, distance);
+        const collidePoint: Point = randomPoint(x + distance + 1, y + distance + 1);
 
-        expect(result).toBeFalsy();   
+        const result = collision({ x, y }, collidePoint, distance);
+
+        expect(result).toBeFalsy();
     })
 })

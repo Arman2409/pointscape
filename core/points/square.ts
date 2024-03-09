@@ -8,8 +8,12 @@ const steps = {
     down: [0, -1]
 }
 
-const square = (x:number, y: number, size:number,  direction: Direction = "right") => {
-    const points:Point[] = [{x, y}];
+const square = (
+    initialPoint: Point,
+    size:number, 
+    direction: Direction = "right") => {
+    const points:Point[] = [initialPoint];
+    let {x, y} = {...initialPoint}
     for(let i = 0; i < 3; i++) {
         const nextStep = steps[direction];
         x += nextStep[0] * size;

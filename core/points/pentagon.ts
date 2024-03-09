@@ -1,11 +1,13 @@
+import type { Point } from "../../types/globals";
+
 const pentagon = (
-    centerX: number, 
-    centerY: number, 
+    centerPoint: Point,
     radius: number,
     angle: number = 0
     ) => {
     const points = [];
     const numberOfSides = 5;
+    const {x: centerX, y: centerY} = {...centerPoint};
     angle = angle % 360;
 
     for (let i = 0; i < numberOfSides; i++) {
