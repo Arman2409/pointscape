@@ -96,6 +96,8 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 [rotate](#rotate)
 
+[sort](#sort)
+
 [scale](#scale)
 
 [inLine](#inline)
@@ -130,12 +132,18 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 [chunk](#chunk)
 
+[removeDuplicate](#removeDuplicates)
+
+[sample](#sample)
+
+
 #### Randomization
 [randomNumber](#randomnumber)
 
 [randomBoolean](#randomboolean)
 
 [uniqueId](#uniqueid)
+
 
 
 ### Actions with points in XY coordinate system
@@ -212,6 +220,10 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
     Returns the points rotated around the given point.
 
+* <b id="sort">sort(points, [coordinate])</b>
+
+    Returns sorted array of the points.The coordinate parameter can be "x", "y", or none for sorting both for "x" and "y".
+
 * <b id="scale">scale(scaleFactorX, scaleFactorY, points)</b>
 
     Returns the scaled points.
@@ -267,20 +279,6 @@ Simplify point manipulation and interactions in your 2D projects with this versa
    
     Returns the average of all numbers in an array.
 
-### Randomization
-
-* <b id="randomnumber">randomNumber(min, max)</b>
-
-    Returns a random number within the given range.
-
-* <b id="randomboolean">randomBoolean()</b>
-   
-    Returns a random boolean value.
-
-* <b id="uniqueid">uniqueId([other ids])</b>
-   
-   Returns a unique ID that's different from the provided IDs, or a random ID if no other IDs are given.
-
 ### Arrays
 
 * <b id="intersection">intersection(arr1, arr2)</b>
@@ -294,3 +292,25 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 * <b id="chunk">chunk(arr, perArr)</b>
 
     Returns an array splited into chunks based on elements count per chunk.
+
+* <b id="removeDuplicates">removeDuplicates(arr)</b>
+
+    Returns the array without duplicates.
+
+* <b id="sample">sample(arr, [size])</b>
+
+    Returns a random  sample from an array with optional size argument for sampling length. If not specified, it returns only one element.
+
+### Randomization
+
+* <b id="randomnumber">randomNumber(min, max)</b>
+
+    Returns a random number within the given range.
+
+* <b id="randomboolean">randomBoolean()</b>
+   
+    Returns a random boolean value.
+
+* <b id="uniqueid">uniqueId([other ids])</b>
+   
+   Returns a unique ID that's different from the provided IDs, or a random ID if no other IDs are given.
