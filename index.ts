@@ -21,6 +21,7 @@ import scale from "./core/points/scale";
 import inLine from "./core/points/inLine";
 import cross from "./core/points/cross";
 import rotate from "./core/points/rotate";
+import sort from "./core/points/sort";
 import square from "./core/points/square";
 import rectangle from "./core/points/rectangle";
 import triangle from "./core/points/triangle";
@@ -42,6 +43,8 @@ import randomNumber from "./core/randomization/randomNumber";
 import intersection from "./core/arrays/intersection";
 import difference from "./core/arrays/difference";
 import chunk from "./core/arrays/chunk";
+import removeDuplicates from "./core/arrays/removeDuplicates";
+import sample from "./core/arrays/sample";
 
 // types 
 export type { Point, Direction } from "./types/globals";
@@ -68,6 +71,7 @@ export {
     center,
     inLine,
     rotate,
+    sort,
     move,
     scale,
     cross,
@@ -91,7 +95,9 @@ export {
     // arrays 
     intersection,
     difference,
-    chunk
+    chunk,
+    removeDuplicates,
+    sample
 }
 
 // default export 
@@ -116,6 +122,7 @@ export default {
     center,
     inLine,
     rotate,
+    sort,
     move,
     scale,
     cross,
@@ -139,7 +146,9 @@ export default {
     // arrays 
     intersection,
     difference,
-    chunk
+    chunk,
+    removeDuplicates,
+    sample
 }
 
 
