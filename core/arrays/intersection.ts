@@ -1,4 +1,6 @@
-const intersection = (arr1: any[], arr2: any[]) => {
+const intersection = (
+    arr1: unknown[],
+     arr2: unknown[]) => {
     return arr1.filter(value => arr2.includes(value));
 }
 

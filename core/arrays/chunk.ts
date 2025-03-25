@@ -1,5 +1,5 @@
 const chunk = (
-    array: any[],
+    array: unknown[],
     perChunk: number
 ) => {
     const chunks = [];

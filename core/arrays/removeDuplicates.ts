@@ -1,4 +1,6 @@
-const removeDuplicates = (arr:any[]) => {
+const removeDuplicates = (
+    arr: unknown[]
+) => {
     return [...new Set(arr)];
 }
 

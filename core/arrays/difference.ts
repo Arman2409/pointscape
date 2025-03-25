@@ -1,6 +1,6 @@
 const difference = (
-    arr1: any[],
-    arr2: any[]): any[] => {
+    arr1: unknown[],
+    arr2: unknown[]): unknown[] => {
     return arr1.filter(value => !arr2.includes(value));
 }
 
