@@ -1,5 +1,5 @@
 import { scale } from "../../index";
-import type { Point } from '../../types/globals';
+import type { Point } from '../../types/global';
 
 // Sample points for testing
 const points = [

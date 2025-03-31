@@ -1,5 +1,5 @@
 import { area } from "../../index";
-import type { Point } from "../../types/globals";
+import type { Point } from "../../types/global";
 
 // rectangle with area 1
 const rectanglePoints = [

@@ -149,6 +149,11 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 ### Actions with points in XY coordinate system
 * <b id="distance">distance</b>
 ```typescript
+  interface Point {
+    x: number
+    y: number
+  }
+
   (point1: Point, point2: Point) => number
 ```
 
@@ -213,14 +218,19 @@ Returns the perimeter of the figure formed by the given points.
 
 * <b id="pointwithoutcollision">pointWithoutCollision(minX, maxX, minY, maxY, distance, points)</b>
 ```typescript
-  (minX: number, maxX: number, minY: number, maxY: number, distance: number, points: Point[]) => Point | false
+  interface Bounds {
+    min: number
+    max: number
+  }
+
+  (xBounds: Bounds, yBounds: Bounds, distance: number, points: Point[]) => Point | string
 ```
 
-Returns a point that doesn't collide with any of the given points within the specified distance, if such a point exists, otherwise returns false.
+Returns a point that doesn't collide with any of the given points within the specified distance, if such a point exists, otherwise returns error string.
 
 * <b id="randompoint">randomPoint</b>
 ```typescript
-  ([xMin]: number, [xMax]: number, [yMin]: number, [yMax]: number) => Point
+  ([xBounds]: Bounds, [yBounds]: Bounds) => Point
 ```
 Returns a random point within the given dimensions, if provided, otherwise in 100  units on both axes.
 
@@ -233,7 +243,7 @@ Returns a random point within the given distance from the specified point.
 
 * <b id="randompoints">randomPoints</b>
 ```typescript
-  (quantity: number, [xMin]: number, [xMax]: number, [yMin]: number, [yMax]: number) => Point[]
+   ([xBounds]: Bounds, [yBounds]: Bounds, quantity: number,) => Point[]
 ```  
 
 Returns a specified quantity of random points within the given dimensions, if dimensions are provided, otherwise in the range of 100.
@@ -289,14 +299,19 @@ Returns the scaled points.
 
 * <b id="inline">inLine</b>
 ```typescript
-  ([point1, point2, point3]: Point[]) => boolean
+  interface Line {
+    start: Point
+    end: Point
+  }
+
+  (point: Point, line: Line) => boolean
 ```
 
 Returns boolean  value indicating whether or not the given coordinates are on line defined by two other points.
 
 * <b id="cross">cross</b>
 ```typescript
- (line1Start: Point, line1End: Point, line2Start: Point, line2End: Point) => boolean
+ (line1: Line, line2: Line) => boolean
 ```
 
 Returns boolean value indicating if two lines each defined  by two points intersect.

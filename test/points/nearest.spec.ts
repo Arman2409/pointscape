@@ -1,5 +1,5 @@
 import { nearest, randomPoint } from "../../index";
-import type { Point } from "../../types/globals";
+import type { Point } from "../../types/global";
 
 describe("nearest", () => {
     it("should return the nearest point", () => {
@@ -13,7 +13,10 @@ describe("nearest", () => {
         const randomPointsMax = 200;
         points.push(nearestPoint)
         for (let i = 0; i < 5; i++) {
-            points.push(randomPoint(randomPointsMin, randomPointsMax, randomPointsMin, randomPointsMax));
+            points.push(randomPoint(
+                {min: randomPointsMin, max:randomPointsMax}, 
+                {min: randomPointsMin, max: randomPointsMax}
+            ));
         }
         const foundPoint = nearest(point, points);
         

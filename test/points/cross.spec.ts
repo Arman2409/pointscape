@@ -1,17 +1,24 @@
 import { cross } from "../../index";
 
-const crossingLines = [{x: 1, y: 0}, {x: 1, y: 4}, {x: 0, y: 1}, {x: 4, y: 1}]
-const notCrossingLines = [{x: 1, y: 1}, {x: 1, y: 4}, {x: 2, y: 1}, {x: 2, y: 4}]
+const crossingLines = [
+    { start: { x: 1, y: 0 }, end: { x: 1, y: 4 } },
+    { start: { x: 0, y: 1 }, end: { x: 4, y: 1 } }
+];
+
+const notCrossingLines = [
+    { start: { x: 1, y: 1 }, end: { x: 1, y: 4 } },
+    { start: { x: 2, y: 1 }, end: { x: 2, y: 4 } }
+]
 
 describe("cross", () => {
     it("should return true if lines are crossing", () => {
-        const areCrossing = cross(crossingLines[0], crossingLines[1], crossingLines[2], crossingLines[3]);
+        const areCrossing = cross(crossingLines[0], crossingLines[1]);
         expect(areCrossing).toBeTruthy();
     })
 
     it("should return false if lines are not crossing", () => {
-        const areCrossing = cross(notCrossingLines[0], notCrossingLines[1], notCrossingLines[2], notCrossingLines[3]);
-        
+        const areCrossing = cross(notCrossingLines[0], notCrossingLines[1]);
+
         expect(areCrossing).toBeFalsy();
     })
 })

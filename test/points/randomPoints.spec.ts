@@ -6,9 +6,11 @@ describe("randomPoints", () => {
         const xMax = 500;
         const yMin = 0;
         const yMax = 500;
-        const points = randomPoints(10, xMin, xMax, yMin, yMax);
-        const outerPoint = points.find(({x, y}) => x < xMin || x > xMax || y < yMin || y > yMax);
-        
-        expect(outerPoint).toBe(undefined);  
+
+        const points = randomPoints({ min: xMin, max: xMax }, { min: yMin, max: yMax }, 10);
+
+        const outerPoint = points.find(({ x, y }) => x < xMin || x > xMax || y < yMin || y > yMax);
+
+        expect(outerPoint).toBe(undefined);
     })
 })
