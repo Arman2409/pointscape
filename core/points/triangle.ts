@@ -1,4 +1,4 @@
-import type { Direction, Point } from "../../types/globals";
+import type { Direction, Point } from "../../types/global";
 
 const steps = {
     left: [-1, 0],

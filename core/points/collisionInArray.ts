@@ -1,5 +1,5 @@
 import { collision } from "../../index";
-import type { Point } from "../../types/globals";
+import type { Point } from "../../types/global";
 
 const collisionInArray = (
     initialPoint: Point,

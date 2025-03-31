@@ -1,14 +1,17 @@
 import { randomNumber } from "../../index";
-import type { Point } from "../../types/globals";
+import type { Bounds, Point } from "../../types/global";
 
 const randomPoint = (
-    xMin?: number,
-    xMax?: number,
-    yMin?: number,
-    yMax?: number): Point => {
+    xBounds?: Bounds,
+    yBounds?: Bounds,
+): Point => {
+
+    const { min: minX, max: maxX } = { ...xBounds };
+    const { min: minY, max: maxY } = { ...yBounds };
+
     return {
-        x: xMax ? randomNumber(xMin || 0, xMax) : Math.random() * 100,
-        y: yMax ? randomNumber(yMin || 0, yMax) : Math.random() * 100,
+        x: maxX ? randomNumber(minX || 0, maxX) : Math.random() * 100,
+        y: maxY ? randomNumber(minY || 0, maxY) : Math.random() * 100,
     }
 }
 

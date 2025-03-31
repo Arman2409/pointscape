@@ -1,6 +1,8 @@
-import type { Point } from "../../types/globals";
+import type { Point } from "../../types/global";
 
-const center = (points:Point[]):Point => {
+const center = (
+  points:Point[]
+):Point => {
   let sumX = 0;
   let sumY = 0;
   let numPoints = points.length;

@@ -47,7 +47,7 @@ import removeDuplicates from "./core/arrays/removeDuplicates";
 import sample from "./core/arrays/sample";
 
 // types 
-export type { Point, Direction } from "./types/globals";
+export type { Point, Direction } from "./types/global";
 
 // named exports 
 export {

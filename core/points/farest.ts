@@ -1,5 +1,5 @@
 import distance from "./distance";
-import type { Point } from "../../types/globals";
+import type { Point } from "../../types/global";
 
 const farest = (
     initialPoint: Point,

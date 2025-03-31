@@ -1,12 +1,16 @@
-import type { Point } from "../../types/globals";
+import type { Line, Point } from "../../types/global";
 
 const inLine = (
-    points: Point[],
+    point: Point,
+    line: Line
 ): boolean => {
-    const { x, y } = { ...points[0] };
-    const slope = (points[2].y - points[1].y) / (points[2].x - points[1].x);
+    const { x, y } = { ...point };
+    const startPoint = line.start;
+    const endPoint = line.end;
 
-    return (y - points[1].y) === slope * (x - points[1].x);
+    const slope = (endPoint.y - startPoint.y) / (endPoint.x - startPoint.x);
+
+    return (y - startPoint.y) === slope * (x - startPoint.x);
 }
 
 export default inLine;

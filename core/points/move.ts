@@ -1,4 +1,4 @@
-import type { Point } from "../../types/globals"
+import type { Point } from "../../types/global"
 
 const move = (
     initialPoint: Point,

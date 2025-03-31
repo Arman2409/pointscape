@@ -1,4 +1,4 @@
-import type { Direction, Point } from "../../types/globals";
+import type { Direction, Point } from "../../types/global";
 
 const sequence:Direction[] = ["right", "down", "left", "up"];
 const steps = {

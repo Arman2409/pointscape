@@ -7,3 +7,12 @@ export interface Point {
     y: number
 }
 
+export interface Bounds {
+    min: number
+    max: number
+}
+
+export interface Line {
+    start: Point
+    end: Point
+}

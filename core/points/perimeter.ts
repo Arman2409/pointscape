@@ -1,5 +1,5 @@
 import { distance } from "../../index";
-import type { Point } from "../../types/globals";
+import type { Point } from "../../types/global";
 
 const perimeter = (points: Point[]):number => {
     let overallDistance = 0;

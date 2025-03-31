@@ -1,11 +1,14 @@
-import type { Point } from "../../types/globals";
+import type { Line, Point } from "../../types/global";
 
 const cross = (
-    line1Start: Point,
-    line1End: Point,
-    line2Start: Point,
-    line2End: Point,
+    line1: Line,
+    line2: Line,
 ):boolean => {
+    const line1Start = line1.start;
+    const line1End = line1.end;
+    const line2Start = line2.start;
+    const line2End = line2.end;
+
     // Calculate the direction vectors for both lines
     const line1Dir = {
         x: line1End.x - line1Start.x,

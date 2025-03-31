@@ -1,19 +1,25 @@
 import getRandomNumber from "../randomization/randomNumber";
-import type { Point } from "../../types/globals";
+import type { Bounds, Point } from "../../types/global";
 
 const randomPoints = (
-    count: number,
-    xLimitsMin: number = 100,
-    xLimitsMax: number = 100,
-    yLimitsMin: number = 100,
-    yLimitsMax: number = 100
+    xBounds: Bounds,
+    yBounds: Bounds,
+    quantity: number,
 ): Point[] => {
+
+    const { min: minX, max: maxX } = { ...xBounds };
+    const { min: minY, max: maxY } = { ...yBounds };
+
     const points: Point[] = [];
-    for (let i = 0; i < count; i++) {
-        const x = getRandomNumber(xLimitsMin, xLimitsMax);
-        const y = getRandomNumber(yLimitsMin, yLimitsMax);
-        points.push({x, y})
+    
+    for (let i = 0; i < quantity; i++) {
+
+        const x = getRandomNumber(minX, maxX);
+        const y = getRandomNumber(minY, maxY);
+
+        points.push({x, y});
     }
+
     return points;
 }
 

@@ -1,4 +1,4 @@
-import type { Point, Coordinate } from "../../types/globals";
+import type { Point, Coordinate } from "../../types/global";
 
 // Helper function to compare points based on the given coordinate
 const compareFunction = (

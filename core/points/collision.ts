@@ -1,5 +1,5 @@
 import inRange from "../math/inRange";
-import type { Point } from "../../types/globals";
+import type { Point } from "../../types/global";
 
 const collision = (
     point1: Point,
