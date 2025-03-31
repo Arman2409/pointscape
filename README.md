@@ -152,15 +152,15 @@ Simplify point manipulation and interactions in your 2D projects with this versa
   (point1: Point, point2: Point) => number
 ```
 
-    Returns the distance beetween two points, each point is an object with x and y properties.
+Returns the distance beetween two points, each point is an object with x and y properties.
 
 * <b id="area">area</b>
 ```typescript
   (points: Point[]) => number
 ```
 
-    Returns the area enclosed by the given points.
-    Takes an array of points as argument, where each point is an object with x and y properties.
+Returns the area enclosed by the given points.
+Takes an array of points as argument, where each point is an object with x and y properties.
 
 * <b id="collision">collision</b>
 ```typescript
@@ -229,14 +229,14 @@ Simplify point manipulation and interactions in your 2D projects with this versa
   (point: Point, distance: number) => Point
 ``` 
    
-    Returns a random point within the given distance from the specified point.
+Returns a random point within the given distance from the specified point.
 
 * <b id="randompoints">randomPoints</b>
 ```typescript
   (quantity: number, [xMin]: number, [xMax]: number, [yMin]: number, [yMax]: number) => Point[]
 ```  
 
-    Returns a specified quantity of random points within the given dimensions, if dimensions are provided, otherwise in the range of 100.
+Returns a specified quantity of random points within the given dimensions, if dimensions are provided, otherwise in the range of 100.
 
 * <b id="possibleconnections">possibleConnections</b>
 ```typescript
