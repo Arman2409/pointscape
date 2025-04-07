@@ -1,11 +1,10 @@
-export type Coordinate = 'x' | "y" | undefined;
+import type Point from "../utils/Point";
+
+export type { Point }
+
+export type Coordinate = 'x' | "y";
 
 export type Direction = "left" | "right" | "up" | "down";
-
-export interface Point {
-    x: number
-    y: number
-}
 
 export interface Bounds {
     min: number

@@ -1,4 +1,4 @@
-import type { Line, Point } from "../../types/global";
+import type { Line } from "../../types/global";
 
 const cross = (
     line1: Line,

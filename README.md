@@ -14,7 +14,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 ## Examples
 
-```javascript
+```typescript
  import { 
     distance,
     triangle,
@@ -22,20 +22,24 @@ Simplify point manipulation and interactions in your 2D projects with this versa
     inRange,
     chunk, 
     randomBoolean } from "pointscape";
+ import type { Point } from "pointscape";  
+ 
+ const point1: Point = {x: 0, y: 0}, point2: Point = {x: 10, y: 10};
 
-
- const distanceBetweenPoints = distance({x: 0, y: 0}, {x: 10, y: 10});
+ const distanceBetweenPoints = distance(point1, point2);
  console.log(distanceBetweenPoints); 
  // output: 14.142135623730951
 
 
- const pointsForTriangle = triangle({x: 0, y: 0}, 10);
+ const pointsForTriangle = triangle(point1, 10);
  console.log(pointsForTriangle); 
  // output: [ { x: 0, y: 0 }, { x: -10, y: 0 }, { x: -5, y: 8.660254037844386 } ]
 
+ 
+ const point3: Point = {x:0, y:10}, point4: Point = {x:10, y:0};
 
  const centralPoint = center(
-   [{x:0, y: 0}, {x:0, y:10}, {x:10, y:10}, {x:10, y:0}]
+   [point1, point2, point3, point4 ]
  );
  console.log(centralPoint);
  // output: { x: 5, y: 5 }
@@ -318,10 +322,10 @@ Returns boolean value indicating if two lines each defined  by two points inters
 
 * <b id="move">move</b>
 ```typescript
- (point: Point, xStep: number, yStep: number, count: number) => Point[]
+ (point: Point, xStep: number, yStep: number) => Point
 ```
 
-Returns an array of points  representing a moving point over time. The number of elements in the array is equal to "count". Each element contains coordinates of the point.
+Returns a point of with the new coordinates.
 
 * <b id="square">square</b>
 ```typescript

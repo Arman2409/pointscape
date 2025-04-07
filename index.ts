@@ -46,12 +46,17 @@ import chunk from "./core/arrays/chunk";
 import removeDuplicates from "./core/arrays/removeDuplicates";
 import sample from "./core/arrays/sample";
 
-// types 
-export type { Point, Direction } from "./types/global";
+// utils 
+import Point from "./utils/Point";
+
+// types
+export type { Point as PointType }; // ✅ class instance type
+export type { Coordinate, Direction, Line, Bounds } from "./types/global";
 
 // named exports 
 export {
     // points 
+    Point,
     distance,
     middle,
     collision,
@@ -103,6 +108,7 @@ export {
 // default export 
 export default {
     // points 
+    Point,
     distance,
     middle,
     collision,
