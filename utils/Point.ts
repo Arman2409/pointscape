@@ -7,7 +7,9 @@ import farest from '../core/points/farest';
 import nearest from '../core/points/nearest';
 import collisionInArray from '../core/points/collisionInArray';
 import inLine from '../core/points/inLine';
+import getLine from '../core/points/getLine';
 import type { Line } from '../types/global';
+
 
 export class Point {
     constructor(public x: number, public y: number) { }
@@ -47,6 +49,10 @@ export class Point {
 
     isInLine?(line: Line): ReturnType<typeof inLine> {
         return inLine(this, line);
+    }
+
+    buildLineWith?(point: Point): ReturnType<typeof getLine> {
+        return getLine(this, point);
     }
 }
 

@@ -19,6 +19,7 @@ import randomPoint from "./core/points/randomPoint";
 import move from "./core/points/move";
 import scale from "./core/points/scale";
 import inLine from "./core/points/inLine";
+import getLine from "./core/points/getLine";
 import cross from "./core/points/cross";
 import rotate from "./core/points/rotate";
 import sort from "./core/points/sort";
@@ -75,6 +76,7 @@ export {
     possibleConnections,
     center,
     inLine,
+    getLine,
     rotate,
     sort,
     move,
@@ -127,6 +129,7 @@ export default {
     possibleConnections,
     center,
     inLine,
+    getLine,
     rotate,
     sort,
     move,
