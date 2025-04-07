@@ -29,8 +29,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://npm.pkg.github.com/
+          registry-url: https://npm.pkg.github.com/Arman2409
         env:
           NODE_AUTH_TOKEN: ${{secrets.REGISTRY_TOKEN}}
+      - name: Check npm registry
+        run: npm config get registry
+      - name: Print NODE_AUTH_TOKEN (FOR DEBUGGING ONLY - REMOVE LATER)**
+        run: echo "NODE_AUTH_TOKEN is: $NODE_AUTH_TOKEN"
       - name: Publish to GitHub Packages
         run: npm publish
