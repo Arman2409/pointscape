@@ -46,8 +46,14 @@ var middle = (point1, point2) => {
 var middle_default = middle;
 
 // core/points/pointWithoutCollision.ts
-var pointWithoutCollision = (minX, maxX, minY, maxY, distanceBetweenPoints, others) => {
-  const initialPoint = randomPoint_default(minX, maxX, minY, maxY);
+var maxTryCount = 100;
+var pointWithoutCollision = (xBounds, yBounds, distanceBetweenPoints, others, currentTryCount = maxTryCount) => {
+  if (currentTryCount <= 1) {
+    return "Couldn't get the point";
+  }
+  const { min: minX, max: maxX } = { ...xBounds };
+  const { min: minY, max: maxY } = { ...yBounds };
+  const initialPoint = randomPoint_default({ min: minX, max: maxX }, { min: minY, max: maxY });
   let hasCollides = false;
   others.forEach((point) => {
     if (distance_default(initialPoint, point) < distanceBetweenPoints) {
@@ -56,12 +62,17 @@ var pointWithoutCollision = (minX, maxX, minY, maxY, distanceBetweenPoints, othe
   });
   if (hasCollides) {
     return pointWithoutCollision(
-      minX,
-      maxX,
-      minY,
-      maxY,
+      {
+        min: minX,
+        max: maxX
+      },
+      {
+        min: minY,
+        max: maxY
+      },
       distanceBetweenPoints,
-      others
+      others,
+      currentTryCount - 1
     );
   } else {
     return initialPoint;
@@ -103,11 +114,13 @@ var randomNumber = (min, max) => {
 var randomNumber_default = randomNumber;
 
 // core/points/randomPoints.ts
-var randomPoints = (count, xLimitsMin = 100, xLimitsMax = 100, yLimitsMin = 100, yLimitsMax = 100) => {
+var randomPoints = (xBounds, yBounds, quantity) => {
+  const { min: minX, max: maxX } = { ...xBounds };
+  const { min: minY, max: maxY } = { ...yBounds };
   const points = [];
-  for (let i = 0; i < count; i++) {
-    const x = randomNumber_default(xLimitsMin, xLimitsMax);
-    const y = randomNumber_default(yLimitsMin, yLimitsMax);
+  for (let i = 0; i < quantity; i++) {
+    const x = randomNumber_default(minX, maxX);
+    const y = randomNumber_default(minY, maxY);
     points.push({ x, y });
   }
   return points;
@@ -229,26 +242,23 @@ var farest = (initialPoint, points) => {
 var farest_default = farest;
 
 // core/points/randomPoint.ts
-var randomPoint = (xMin, xMax, yMin, yMax) => {
+var randomPoint = (xBounds, yBounds) => {
+  const { min: minX, max: maxX } = { ...xBounds };
+  const { min: minY, max: maxY } = { ...yBounds };
   return {
-    x: xMax ? randomNumber_default(xMin || 0, xMax) : Math.random() * 100,
-    y: yMax ? randomNumber_default(yMin || 0, yMax) : Math.random() * 100
+    x: maxX ? randomNumber_default(minX || 0, maxX) : Math.random() * 100,
+    y: maxY ? randomNumber_default(minY || 0, maxY) : Math.random() * 100
   };
 };
 var randomPoint_default = randomPoint;
 
 // core/points/move.ts
-var move = (initialPoint, xStep, yStep, count) => {
-  const pointsArr = [];
-  const { x, y } = { ...initialPoint };
-  for (let i = 0; i <= count; i++) {
-    const newPoint = {
-      x: x + xStep * i,
-      y: y + yStep * i
-    };
-    pointsArr.push(newPoint);
-  }
-  return pointsArr;
+var move = (initialPoint, xStep, yStep) => {
+  const { x, y } = initialPoint;
+  return {
+    x: x + xStep,
+    y: y + yStep
+  };
 };
 var move_default = move;
 
@@ -262,15 +272,30 @@ var scale = (scaleFactorX, scaleFactorY, points) => {
 var scale_default = scale;
 
 // core/points/inLine.ts
-var inLine = (points) => {
-  const { x, y } = { ...points[0] };
-  const slope = (points[2].y - points[1].y) / (points[2].x - points[1].x);
-  return y - points[1].y === slope * (x - points[1].x);
+var inLine = (point, line) => {
+  const { x, y } = { ...point };
+  const startPoint = line.start;
+  const endPoint = line.end;
+  const slope = (endPoint.y - startPoint.y) / (endPoint.x - startPoint.x);
+  return y - startPoint.y === slope * (x - startPoint.x);
 };
 var inLine_default = inLine;
 
+// core/points/getLine.ts
+var getLine = (point1, point2) => {
+  return {
+    start: point1,
+    end: point2
+  };
+};
+var getLine_default = getLine;
+
 // core/points/cross.ts
-var cross = (line1Start, line1End, line2Start, line2End) => {
+var cross = (line1, line2) => {
+  const line1Start = line1.start;
+  const line1End = line1.end;
+  const line2Start = line2.start;
+  const line2End = line2.end;
   const line1Dir = {
     x: line1End.x - line1Start.x,
     y: line1End.y - line1Start.y
@@ -501,9 +526,50 @@ var sample = (arr, size = 1) => {
 };
 var sample_default = sample;
 
+// utils/Point.ts
+var Point = class _Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  distanceTo(other) {
+    return distance_default(this, other);
+  }
+  isCollidingWith(other, collisionDistance) {
+    return collision_default(this, other, collisionDistance);
+  }
+  isCollidingWithAny(points, collisionDistance) {
+    return collisionInArray_default(this, points, collisionDistance);
+  }
+  middleTo(other) {
+    const mid = middle_default(this, other);
+    return new _Point(mid.x, mid.y);
+  }
+  angleTo(other) {
+    return angle_default(this, other);
+  }
+  move(x, y) {
+    return move_default(this, x, y);
+  }
+  nearestFromPoints(points) {
+    return nearest_default(this, points);
+  }
+  farestFromPoints(points) {
+    return farest_default(this, points);
+  }
+  isInLine(line) {
+    return inLine_default(this, line);
+  }
+  buildLineWith(point) {
+    return getLine_default(this, point);
+  }
+};
+var Point_default = Point;
+
 // index.ts
 var index_default = {
   // points 
+  Point: Point_default,
   distance: distance_default,
   middle: middle_default,
   collision: collision_default,
@@ -522,6 +588,7 @@ var index_default = {
   possibleConnections: possibleConnections_default,
   center: center_default,
   inLine: inLine_default,
+  getLine: getLine_default,
   rotate: rotate_default,
   sort: sort_default,
   move: move_default,
@@ -549,6 +616,7 @@ var index_default = {
   sample: sample_default
 };
 export {
+  Point_default as Point,
   angle_default as angle,
   area_default as area,
   average_default as average,
@@ -563,6 +631,7 @@ export {
   difference_default as difference,
   distance_default as distance,
   farest_default as farest,
+  getLine_default as getLine,
   inLine_default as inLine,
   inRange_default as inRange,
   intersection_default as intersection,
