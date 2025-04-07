@@ -4,3 +4,15 @@
 # Git
 .gitignore
 .github
+
+# Core files
+index.ts 
+core
+utils
+test
+types
+
+# Configs  
+.babelrc
+jest.config.js 
+tsconfig.json

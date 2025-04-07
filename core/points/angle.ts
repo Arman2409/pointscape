@@ -5,6 +5,7 @@ const pi = Math.PI;
 const angle = (
   point1: Point,
   point2: Point):number => {
+    
     const {x: startX, y: startY} = {...point1};
     const {x: endX, y: endY} = {...point2};
 

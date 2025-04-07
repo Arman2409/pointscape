@@ -4,6 +4,7 @@ const inLine = (
     point: Point,
     line: Line
 ): boolean => {
+    
     const { x, y } = { ...point };
     const startPoint = line.start;
     const endPoint = line.end;

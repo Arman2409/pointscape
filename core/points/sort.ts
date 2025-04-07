@@ -4,13 +4,16 @@ import type { Point, Coordinate } from "../../types/global";
 const compareFunction = (
     point1: Point,
     point2: Point,
-    coordinate?: Coordinate) => {
+    coordinate?: Coordinate
+) => {
+
     const { x: x1, y: y1 } = { ...point1 };
     const { x: x2, y: y2 } = { ...point2 };
+
     if (coordinate === 'x' || !coordinate) {
         return x1 - x2;
     }
-    if(coordinate === "y" || !coordinate) {
+    if (coordinate === "y" || !coordinate) {
         return y1 - y2;
     }
     return 0;

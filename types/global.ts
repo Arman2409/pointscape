@@ -1,6 +1,7 @@
-import type Point from "../utils/Point";
-
-export type { Point }
+export interface Point {
+    x: number
+    y: number
+}
 
 export type Coordinate = 'x' | "y";
 

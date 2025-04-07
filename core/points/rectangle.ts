@@ -13,7 +13,6 @@ const rectangle = (
     width: number,
     height: number,
     direction: Direction = "right") => {
-    console.log({ width, height });
 
     const points: Point[] = [initialPoint];
     let { x, y } = { ...initialPoint };

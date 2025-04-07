@@ -5,6 +5,7 @@ const move = (
     xStep: number,
     yStep: number,
 ): Point => {
+    
     const { x, y } = initialPoint;
 
     return {
