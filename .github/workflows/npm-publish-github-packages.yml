@@ -35,6 +35,6 @@ jobs:
       - name: Check npm registry
         run: npm config get registry
       - name: Print NODE_AUTH_TOKEN (FOR DEBUGGING ONLY - REMOVE LATER)**
-        run: echo "NODE_AUTH_TOKEN is: $NODE_AUTH_TOKEN"
+        run: echo $NODE_AUTH_TOKEN
       - name: Publish to GitHub Packages
         run: npm publish
