@@ -17,11 +17,17 @@ export class Point implements PointType {
         return distance(this, other);
     }
 
-    isCollidingWith(other: Point, collisionDistance: number): ReturnType<typeof collision> {
+    isCollidingWith(
+        other: Point, 
+        collisionDistance: number
+    ): ReturnType<typeof collision> {
         return collision(this, other, collisionDistance);
     }
 
-    isCollidingWithAny(points: Point[], collisionDistance: number): ReturnType<typeof collisionInArray> {
+    isCollidingWithAny(
+        points: Point[], 
+        collisionDistance: number
+    ): ReturnType<typeof collisionInArray> {
         return collisionInArray(this, points, collisionDistance);
     }
 
@@ -34,7 +40,10 @@ export class Point implements PointType {
         return angle(this, other);
     }
 
-    move(x: number, y: number): ReturnType<typeof move> {
+    move(
+        x: number, 
+        y: number
+    ): ReturnType<typeof move> {
         return move(this, x, y);
     }
 

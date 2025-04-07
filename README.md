@@ -24,16 +24,15 @@ Simplify point manipulation and interactions in your 2D projects with this versa
     randomBoolean } from "pointscape";
  import type { Point } from "pointscape";  
  
+ // Working with points
  const point1: Point = {x: 0, y: 0}, point2: Point = {x: 10, y: 10};
 
- const distanceBetweenPoints = distance(point1, point2);
- console.log(distanceBetweenPoints); 
- // output: 14.142135623730951
+ const distanceBetweenPoints = distance(point1, point2); 
+ // result: 14.142135623730951
 
 
  const pointsForTriangle = triangle(point1, 10);
- console.log(pointsForTriangle); 
- // output: [ { x: 0, y: 0 }, { x: -10, y: 0 }, { x: -5, y: 8.660254037844386 } ]
+ // result: [ { x: 0, y: 0 }, { x: -10, y: 0 }, { x: -5, y: 8.660254037844386 } ]
 
  
  const point3: Point = {x:0, y:10}, point4: Point = {x:10, y:0};
@@ -41,25 +40,42 @@ Simplify point manipulation and interactions in your 2D projects with this versa
  const centralPoint = center(
    [point1, point2, point3, point4 ]
  );
- console.log(centralPoint);
- // output: { x: 5, y: 5 }
+ // result: { x: 5, y: 5 }
 
+
+ //  Helper functions for math 
 
  const isInTheRange = inRange(1, 0, 10);
- console.log(isInTheRange);
- // output: true
+ // result: true
 
+
+ // Helper functions for arrays 
 
  const chunks = chunk([1, 1, 1, 1], 2);
- console.log(chunks);
- // output: [[1, 1], [1, 1]]
+ // result: [[1, 1], [1, 1]]
 
+
+ // Helper functions for randomization 
 
  const randomBool = randomBoolean();
- console.log(randomBool)
- // output: true or false
+ // result: true or false
 
 ```
+
+#### You can also use the Point class for working with the points
+```typescript
+ import { Point } from "pointscape";
+
+ const point1 = new Point(0, 0);
+ const point2 = new Point(1, 1);
+
+ const distance = point1.distanceTo(point2);
+ // result:  1.4142135623730951
+
+ const angle = point1.angleTo(point2);
+ // result:  0.7853981633974483
+ 
+``` 
 
 ## Functions
 
