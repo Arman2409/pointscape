@@ -77,11 +77,11 @@ Simplify point manipulation and interactions in your 2D projects with this versa
  
 ``` 
 
-## Functions
+## The list of available functions
 
 ### Categories
 
-- [Points](#points)
+- [Points]
     - [Geometry](#geometry)
     - [Positioning](#positioning)
     - [Relationships](#relationships)
@@ -90,9 +90,9 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 - [Randomization](#randomization)
 
 
-#### Points {: #points}
+#### Points
 
-##### Geometry {: #geometry}
+##### Geometry
 
 [area](#area)
 
@@ -113,7 +113,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 [middle](#middle)
 
 
-##### Positioning {: #positioning}
+##### Positioning
 
 [distance](#distance)
 
@@ -140,7 +140,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 [move](#move)
 
 
-##### Relationships {: #relationships}
+##### Relationships
 
 [collision](#collision)
 
@@ -155,7 +155,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 [pointWithoutCollision](#pointwithoutcollision)
 
 
-#### Math {: #math}
+#### Math
 
 [degreesToRadians](#degreestodadians)
 
@@ -168,7 +168,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 [average](#average)
 
 
-#### Arrays {: #arrays}
+#### Arrays
 
 [intersection](#intersection)
 
@@ -181,7 +181,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 [sample](#sample)
 
 
-#### Randomization {: #randomization}
+#### Randomization
 
 [randomNumber](#randomnumber)
 
