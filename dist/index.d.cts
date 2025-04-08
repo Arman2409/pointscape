@@ -1,37 +1,7 @@
-declare const distance: (point1: Point, point2: Point) => number;
-
-declare const collision: (point1: Point, point2: Point, collisionDistance: number, callback?: Function) => boolean;
-
-declare const middle: (point1: Point, point2: Point) => Point;
-
-declare const angle: (point1: Point, point2: Point) => number;
-
-declare const move: (initialPoint: Point, xStep: number, yStep: number) => Point;
-
-declare const farest: (initialPoint: Point, points: Point[]) => Point | null;
-
-declare const collisionInArray: (initialPoint: Point, arr: Point[], radius: number) => Point[];
-
-declare const inLine: (point: Point, line: Line) => boolean;
-
-declare const getLine: (point1: Point, point2: Point) => Line;
-
-declare class Point {
+interface Point$1 {
     x: number;
     y: number;
-    constructor(x: number, y: number);
-    distanceTo?(other: Point): ReturnType<typeof distance>;
-    isCollidingWith?(other: Point, collisionDistance: number): ReturnType<typeof collision>;
-    isCollidingWithAny?(points: Point[], collisionDistance: number): ReturnType<typeof collisionInArray>;
-    middleTo?(other: Point): ReturnType<typeof middle>;
-    angleTo?(other: Point): ReturnType<typeof angle>;
-    move?(x: number, y: number): ReturnType<typeof move>;
-    nearestFromPoints?(points: Point[]): ReturnType<typeof move>;
-    farestFromPoints?(points: Point[]): ReturnType<typeof farest>;
-    isInLine?(line: Line): ReturnType<typeof inLine>;
-    buildLineWith?(point: Point): ReturnType<typeof getLine>;
 }
-
 type Coordinate = 'x' | "y";
 type Direction = "left" | "right" | "up" | "down";
 interface Bounds {
@@ -39,53 +9,71 @@ interface Bounds {
     max: number;
 }
 interface Line {
-    start: Point;
-    end: Point;
+    start: Point$1;
+    end: Point$1;
 }
 
-declare const pointWithoutCollision: (xBounds: Bounds, yBounds: Bounds, distanceBetweenPoints: number, others: Point[], currentTryCount?: number) => Point | string;
+declare const distance: (point1: Point$1, point2: Point$1) => number;
 
-declare const randomPoints: (xBounds: Bounds, yBounds: Bounds, quantity: number) => Point[];
+declare const collision: (point1: Point$1, point2: Point$1, collisionDistance: number, callback?: Function) => boolean;
 
-declare const area: (points: Point[]) => number;
+declare const middle: (point1: Point$1, point2: Point$1) => Point$1;
 
-declare const randomPointInDistance: (point: Point, distance: number) => Point;
+declare const pointWithoutCollision: (xBounds: Bounds, yBounds: Bounds, distanceBetweenPoints: number, others: Point$1[], currentTryCount?: number) => Point$1 | string;
 
-declare const nearest: (initialPoint: Point, points: Point[]) => Point;
+declare const collisionInArray: (initialPoint: Point$1, arr: Point$1[], radius: number) => Point$1[];
 
-declare const perimeter: (points: Point[]) => number;
+declare const angle: (point1: Point$1, point2: Point$1) => number;
 
-declare const positionInCircle: (centerPoint: Point, radius: number, angleInRadians: number) => Point;
+declare const randomPoints: (xBounds: Bounds, yBounds: Bounds, quantity: number) => Point$1[];
+
+declare const area: (points: Point$1[]) => number;
+
+declare const randomPointInDistance: (point: Point$1, distance: number) => Point$1;
+
+declare const nearest: (initialPoint: Point$1, points: Point$1[]) => Point$1;
+
+declare const perimeter: (points: Point$1[]) => number;
+
+declare const positionInCircle: (centerPoint: Point$1, radius: number, angleInRadians: number) => Point$1;
 
 declare const possibleConnections: (pointsCount: number) => number;
 
 declare const circleArea: (radius: number) => number;
 
-declare const center: (points: Point[]) => Point;
+declare const center: (points: Point$1[]) => Point$1;
 
-declare const randomPoint: (xBounds?: Bounds, yBounds?: Bounds) => Point;
+declare const farest: (initialPoint: Point$1, points: Point$1[]) => Point$1 | null;
 
-declare const scale: (scaleFactorX: number, scaleFactorY: number, points: Point[]) => {
+declare const randomPoint: (xBounds?: Bounds, yBounds?: Bounds) => Point$1;
+
+declare const move: (initialPoint: Point$1, xStep: number, yStep: number) => Point$1;
+
+declare const scale: (scaleFactorX: number, scaleFactorY: number, points: Point$1[]) => {
     x: number;
     y: number;
 }[];
+
+declare const inLine: (point: Point$1, line: Line) => boolean;
+
+declare const getLine: (point1: Point$1, point2: Point$1) => Line;
 
 declare const cross: (line1: Line, line2: Line) => boolean;
 
-declare const rotate: (centerPoint: Point, points: Point[], angleInRadians: number) => {
+declare const rotate: (centerPoint: Point$1, points: Point$1[], angleInRadians: number) => {
     x: number;
     y: number;
 }[];
 
-declare const sort: (points: Point[], coordinate?: Coordinate) => Point[];
+declare const sort: (points: Point$1[], coordinate?: Coordinate) => Point$1[];
 
-declare const square: (initialPoint: Point, size: number, direction?: Direction) => Point[];
+declare const square: (initialPoint: Point$1, size: number, direction?: Direction) => Point$1[];
 
-declare const rectangle: (initialPoint: Point, width: number, height: number, direction?: Direction) => Point[];
+declare const rectangle: (initialPoint: Point$1, width: number, height: number, direction?: Direction) => Point$1[];
 
-declare const triangle: (initialPoint: Point, size: number, direction?: Direction) => Point[];
+declare const triangle: (initialPoint: Point$1, size: number, direction?: Direction) => Point$1[];
 
-declare const pentagon: (centerPoint: Point, radius: number, angle?: number) => {
+declare const pentagon: (centerPoint: Point$1, radius: number, angle?: number) => {
     x: number;
     y: number;
 }[];
@@ -116,42 +104,58 @@ declare const removeDuplicates: (arr: unknown[]) => unknown[];
 
 declare const sample: (arr: unknown[], size?: number) => unknown;
 
+declare class Point implements Point$1 {
+    x: number;
+    y: number;
+    constructor(x: number, y: number);
+    distanceTo(other: Point): ReturnType<typeof distance>;
+    isCollidingWith(other: Point, collisionDistance: number): ReturnType<typeof collision>;
+    isCollidingWithAny(points: Point[], collisionDistance: number): ReturnType<typeof collisionInArray>;
+    middleTo(other: Point): ReturnType<typeof middle>;
+    angleTo(other: Point): ReturnType<typeof angle>;
+    move(x: number, y: number): ReturnType<typeof move>;
+    nearestFromPoints(points: Point[]): ReturnType<typeof move>;
+    farestFromPoints(points: Point[]): ReturnType<typeof farest>;
+    isInLine(line: Line): ReturnType<typeof inLine>;
+    buildLineWith(point: Point): ReturnType<typeof getLine>;
+}
+
 declare const _default: {
     Point: typeof Point;
-    distance: (point1: Point, point2: Point) => number;
-    middle: (point1: Point, point2: Point) => Point;
-    collision: (point1: Point, point2: Point, collisionDistance: number, callback?: Function) => boolean;
-    pointWithoutCollision: (xBounds: Bounds, yBounds: Bounds, distanceBetweenPoints: number, others: Point[], currentTryCount?: number) => Point | string;
-    collisionInArray: (initialPoint: Point, arr: Point[], radius: number) => Point[];
-    angle: (point1: Point, point2: Point) => number;
-    randomPoint: (xBounds?: Bounds, yBounds?: Bounds) => Point;
-    randomPoints: (xBounds: Bounds, yBounds: Bounds, quantity: number) => Point[];
-    area: (points: Point[]) => number;
+    distance: (point1: Point$1, point2: Point$1) => number;
+    middle: (point1: Point$1, point2: Point$1) => Point$1;
+    collision: (point1: Point$1, point2: Point$1, collisionDistance: number, callback?: Function) => boolean;
+    pointWithoutCollision: (xBounds: Bounds, yBounds: Bounds, distanceBetweenPoints: number, others: Point$1[], currentTryCount?: number) => Point$1 | string;
+    collisionInArray: (initialPoint: Point$1, arr: Point$1[], radius: number) => Point$1[];
+    angle: (point1: Point$1, point2: Point$1) => number;
+    randomPoint: (xBounds?: Bounds, yBounds?: Bounds) => Point$1;
+    randomPoints: (xBounds: Bounds, yBounds: Bounds, quantity: number) => Point$1[];
+    area: (points: Point$1[]) => number;
     circleArea: (radius: number) => number;
-    randomPointInDistance: (point: Point, distance: number) => Point;
-    nearest: (initialPoint: Point, points: Point[]) => Point;
-    farest: (initialPoint: Point, points: Point[]) => Point | null;
-    perimeter: (points: Point[]) => number;
-    positionInCircle: (centerPoint: Point, radius: number, angleInRadians: number) => Point;
+    randomPointInDistance: (point: Point$1, distance: number) => Point$1;
+    nearest: (initialPoint: Point$1, points: Point$1[]) => Point$1;
+    farest: (initialPoint: Point$1, points: Point$1[]) => Point$1 | null;
+    perimeter: (points: Point$1[]) => number;
+    positionInCircle: (centerPoint: Point$1, radius: number, angleInRadians: number) => Point$1;
     possibleConnections: (pointsCount: number) => number;
-    center: (points: Point[]) => Point;
-    inLine: (point: Point, line: Line) => boolean;
-    getLine: (point1: Point, point2: Point) => Line;
-    rotate: (centerPoint: Point, points: Point[], angleInRadians: number) => {
+    center: (points: Point$1[]) => Point$1;
+    inLine: (point: Point$1, line: Line) => boolean;
+    getLine: (point1: Point$1, point2: Point$1) => Line;
+    rotate: (centerPoint: Point$1, points: Point$1[], angleInRadians: number) => {
         x: number;
         y: number;
     }[];
-    sort: (points: Point[], coordinate?: Coordinate) => Point[];
-    move: (initialPoint: Point, xStep: number, yStep: number) => Point;
-    scale: (scaleFactorX: number, scaleFactorY: number, points: Point[]) => {
+    sort: (points: Point$1[], coordinate?: Coordinate) => Point$1[];
+    move: (initialPoint: Point$1, xStep: number, yStep: number) => Point$1;
+    scale: (scaleFactorX: number, scaleFactorY: number, points: Point$1[]) => {
         x: number;
         y: number;
     }[];
     cross: (line1: Line, line2: Line) => boolean;
-    square: (initialPoint: Point, size: number, direction?: Direction) => Point[];
-    rectangle: (initialPoint: Point, width: number, height: number, direction?: Direction) => Point[];
-    triangle: (initialPoint: Point, size: number, direction?: Direction) => Point[];
-    pentagon: (centerPoint: Point, radius: number, angle?: number) => {
+    square: (initialPoint: Point$1, size: number, direction?: Direction) => Point$1[];
+    rectangle: (initialPoint: Point$1, width: number, height: number, direction?: Direction) => Point$1[];
+    triangle: (initialPoint: Point$1, size: number, direction?: Direction) => Point$1[];
+    pentagon: (centerPoint: Point$1, radius: number, angle?: number) => {
         x: number;
         y: number;
     }[];

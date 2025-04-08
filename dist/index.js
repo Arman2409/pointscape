@@ -380,7 +380,6 @@ var steps2 = {
   down: [0, -1]
 };
 var rectangle = (initialPoint, width, height, direction = "right") => {
-  console.log({ width, height });
   const points = [initialPoint];
   let { x, y } = { ...initialPoint };
   for (let i = 0; i < 3; i++) {
