@@ -1,47 +1,77 @@
-Simplify point manipulation and interactions in your 2D projects with this versatile toolkit.Effortlessly calculate distances, areas, collision detection, and more with this collection of handy functions.
+**A collection of functions for working with points in a 2D coordinate system, along with additional utility functions.**
 
 ## How to use
 
 1. Installation
-```javascript
+```bash
  npm install pointscape
 ```
 
 2. Usage
-```javascript
+```typescript
  import pointscape from "pointscape";
 ```
 
 ## Examples
 
+Most of the functions are designed for working with points in a 2D coordinate system.
 ```typescript
  import { 
     distance,
-    triangle,
-    center, 
-    inRange,
-    chunk, 
-    randomBoolean } from "pointscape";
+    middle,
+    angle,
+    center,
+    perimeter
+    } from "pointscape";
  import type { Point } from "pointscape";  
  
  // Working with points
+
  const point1: Point = {x: 0, y: 0}, point2: Point = {x: 10, y: 10};
+
 
  const distanceBetweenPoints = distance(point1, point2); 
  // result: 14.142135623730951
 
 
- const pointsForTriangle = triangle(point1, 10);
- // result: [ { x: 0, y: 0 }, { x: -10, y: 0 }, { x: -5, y: 8.660254037844386 } ]
+ const middlePoint = middle(point1, point2);
+ // result: {x: 5, y: 5}
 
+
+ const angleBetweenPoints = angle(point1, point2);
+ // result: 0.7853981633974483
  
+
  const point3: Point = {x:0, y:10}, point4: Point = {x:10, y:0};
 
- const centralPoint = center(
+ const perimeterOfPoints = perimeter(
    [point1, point2, point3, point4 ]
  );
- // result: { x: 5, y: 5 }
+ // result: 48.2842712474619
 
+```
+
+The Point class can also be used for working with the points.
+```typescript
+ import { Point } from "pointscape";
+
+ const point1 = new Point(0, 0);
+ const point2 = new Point(1, 1);
+
+ const distance = point1.distanceTo(point2);
+ // result:  1.4142135623730951
+
+ const angle = point1.angleTo(point2);
+ // result:  0.7853981633974483
+ 
+``` 
+
+There are other utility functions as well.
+```typescript
+ import { 
+    inRange,
+    chunk, 
+    randomBoolean } from "pointscape";
 
  //  Helper functions for math 
 
@@ -61,22 +91,6 @@ Simplify point manipulation and interactions in your 2D projects with this versa
  // result: true or false
 
 ```
-
-#### Using the Point class
-```typescript
- import { Point } from "pointscape";
-
- const point1 = new Point(0, 0);
- const point2 = new Point(1, 1);
-
- const distance = point1.distanceTo(point2);
- // result:  1.4142135623730951
-
- const angle = point1.angleTo(point2);
- // result:  0.7853981633974483
- 
-``` 
-
 ## The list of available functions
 
 ### Categories
