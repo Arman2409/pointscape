@@ -81,7 +81,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 ### Categories
 
-- [Points]
+- [Points](#points)
     - [Geometry](#geometry)
     - [Positioning](#positioning)
     - [Relationships](#relationships)
@@ -190,6 +190,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 [uniqueId](#uniqueid)
 
 
+## Documentation for the functions 
 
 ### Points
 
