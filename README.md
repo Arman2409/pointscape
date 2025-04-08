@@ -62,7 +62,7 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 ```
 
-#### You can also use the Point class for working with the points
+#### Using the Point class
 ```typescript
  import { Point } from "pointscape";
 
@@ -79,52 +79,26 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 ## Functions
 
-#### Actions with points in XY coordinate system
-[distance](#distance)
+### Categories
+
+- [Points](#points)
+    - [Geometry](#geometry)
+    - [Positioning](#positioning)
+    - [Relationships](#relationships)
+- [Math](#math)
+- [Arrays](#arrays)
+- [Randomization](#randomization)
+
+
+#### Points {: #points}
+
+##### Geometry {: #geometry}
 
 [area](#area)
 
-[collision](#collision)
-
-[collisionInArray](#collisioninarray)
-
-[positionInCircle](#positionincircle)
-
-[angle](#angle)
-
-[middle](#middle)
-
-[nearest](#nearest)
-
 [perimeter](#perimeter)
 
-[pointWithoutCollision](#pointwithoutcollision)
-
-[randomPoint](#randompoint)
-
-[randomPointInDistance](#randompointindistance)
-
-[randomPoints](#randompoints)
-
-[possibleConnections](#possibleconnections)
-
-[circleArea](#circlearea)
-
 [center](#center)
-
-[farest](#farest)
-
-[rotate](#rotate)
-
-[sort](#sort)
-
-[scale](#scale)
-
-[inLine](#inline)
-
-[cross](#cross)
-
-[move](#move)
 
 [square](#square)
 
@@ -134,7 +108,55 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 [triangle](#triangle)
 
-#### Math
+[circleArea](#circlearea)
+
+[middle](#middle)
+
+
+##### Positioning {: #positioning}
+
+[distance](#distance)
+
+[positionInCircle](#positionincircle)
+
+[angle](#angle)
+
+[nearest](#nearest)
+
+[randomPoint](#randompoint)
+
+[randomPointInDistance](#randompointindistance)
+
+[randomPoints](#randompoints)
+
+[farest](#farest)
+
+[rotate](#rotate)
+
+[inLine](#inline)
+
+[cross](#cross)
+
+[move](#move)
+
+
+##### Relationships {: #relationships}
+
+[collision](#collision)
+
+[collisionInArray](#collisioninarray)
+
+[possibleConnections](#possibleconnections)
+
+[sort](#sort)
+
+[scale](#scale)
+
+[pointWithoutCollision](#pointwithoutcollision)
+
+
+#### Math {: #math}
+
 [degreesToRadians](#degreestodadians)
 
 [radiansToDegrees](#radianstodegrees)
@@ -145,7 +167,9 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 [average](#average)
 
-#### Arrays
+
+#### Arrays {: #arrays}
+
 [intersection](#intersection)
 
 [difference](#difference)
@@ -157,7 +181,8 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 [sample](#sample)
 
 
-#### Randomization
+#### Randomization {: #randomization}
+
 [randomNumber](#randomnumber)
 
 [randomBoolean](#randomboolean)
@@ -166,7 +191,8 @@ Simplify point manipulation and interactions in your 2D projects with this versa
 
 
 
-### Actions with points in XY coordinate system
+### Points
+
 * <b id="distance">distance</b>
 ```typescript
   interface Point {
