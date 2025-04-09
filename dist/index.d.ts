@@ -108,16 +108,16 @@ declare class Point implements Point$1 {
     x: number;
     y: number;
     constructor(x: number, y: number);
-    distanceTo(other: Point): ReturnType<typeof distance>;
-    isCollidingWith(other: Point, collisionDistance: number): ReturnType<typeof collision>;
-    isCollidingWithAny(points: Point[], collisionDistance: number): ReturnType<typeof collisionInArray>;
-    middleTo(other: Point): ReturnType<typeof middle>;
-    angleTo(other: Point): ReturnType<typeof angle>;
+    distanceTo(other: Point$1): ReturnType<typeof distance>;
+    isCollidingWith(other: Point$1, collisionDistance: number): ReturnType<typeof collision>;
+    isCollidingWithAny(points: Point$1[], collisionDistance: number): ReturnType<typeof collisionInArray>;
+    middleTo(other: Point$1): ReturnType<typeof middle>;
+    angleTo(other: Point$1): ReturnType<typeof angle>;
     move(x: number, y: number): ReturnType<typeof move>;
-    nearestFromPoints(points: Point[]): ReturnType<typeof move>;
-    farestFromPoints(points: Point[]): ReturnType<typeof farest>;
+    nearestFromPoints(points: Point$1[]): ReturnType<typeof move>;
+    farestFromPoints(points: Point$1[]): ReturnType<typeof farest>;
     isInLine(line: Line): ReturnType<typeof inLine>;
-    buildLineWith(point: Point): ReturnType<typeof getLine>;
+    buildLineWith(point: Point$1): ReturnType<typeof getLine>;
 }
 
 declare const _default: {
