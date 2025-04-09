@@ -13,30 +13,30 @@ import type { Line, Point as PointType } from '../types/global';
 export class Point implements PointType {
     constructor(public x: number, public y: number) { }
 
-    distanceTo(other: Point): ReturnType<typeof distance> {
+    distanceTo(other: PointType): ReturnType<typeof distance> {
         return distance(this, other);
     }
 
     isCollidingWith(
-        other: Point, 
+        other: PointType, 
         collisionDistance: number
     ): ReturnType<typeof collision> {
         return collision(this, other, collisionDistance);
     }
 
     isCollidingWithAny(
-        points: Point[], 
+        points: PointType[], 
         collisionDistance: number
     ): ReturnType<typeof collisionInArray> {
         return collisionInArray(this, points, collisionDistance);
     }
 
-    middleTo(other: Point): ReturnType<typeof middle> {
+    middleTo(other: PointType): ReturnType<typeof middle> {
         const mid = middle(this, other);
         return new Point(mid.x, mid.y);
     }
 
-    angleTo(other: Point): ReturnType<typeof angle> {
+    angleTo(other: PointType): ReturnType<typeof angle> {
         return angle(this, other);
     }
 
@@ -47,11 +47,11 @@ export class Point implements PointType {
         return move(this, x, y);
     }
 
-    nearestFromPoints(points: Point[]): ReturnType<typeof move> {
+    nearestFromPoints(points: PointType[]): ReturnType<typeof move> {
         return nearest(this, points);
     }
 
-    farestFromPoints(points: Point[]): ReturnType<typeof farest> {
+    farestFromPoints(points: PointType[]): ReturnType<typeof farest> {
         return farest(this, points);
     }
 
@@ -59,7 +59,7 @@ export class Point implements PointType {
         return inLine(this, line);
     }
 
-    buildLineWith(point: Point): ReturnType<typeof getLine> {
+    buildLineWith(point: PointType): ReturnType<typeof getLine> {
         return getLine(this, point);
     }
 }
