@@ -16,7 +16,7 @@ const square = (
 ) => {
 
     const points: Point[] = [initialPoint];
-    let { x, y } = { ...initialPoint };
+    let { x, y } = initialPoint;
 
     for (let i = 0; i < 3; i++) {
         const nextStep = steps[direction];

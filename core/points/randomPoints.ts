@@ -7,8 +7,8 @@ const randomPoints = (
     quantity: number,
 ): Point[] => {
 
-    const { min: minX, max: maxX } = { ...xBounds };
-    const { min: minY, max: maxY } = { ...yBounds };
+    const { min: minX, max: maxX } = xBounds;
+    const { min: minY, max: maxY } = yBounds;
 
     const points: Point[] = [];
     

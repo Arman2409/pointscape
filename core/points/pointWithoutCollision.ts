@@ -15,8 +15,8 @@ const pointWithoutCollision = (
         return "Couldn't get the point";
     }
 
-    const { min: minX, max: maxX } = { ...xBounds };
-    const { min: minY, max: maxY } = { ...yBounds };
+    const { min: minX, max: maxX } = xBounds;
+    const { min: minY, max: maxY } = yBounds;
 
     const initialPoint = randomPoint({ min: minX, max: maxX }, { min: minY, max: maxY });
 

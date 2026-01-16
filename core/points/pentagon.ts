@@ -8,7 +8,7 @@ const pentagon = (
 
     const points = [];
     const numberOfSides = 5;
-    const {x: centerX, y: centerY} = {...centerPoint};
+    const {x: centerX, y: centerY} = centerPoint;
     
     angle = angle % 360;
 

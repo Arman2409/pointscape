@@ -6,8 +6,8 @@ const angle = (
   point1: Point,
   point2: Point):number => {
     
-    const {x: startX, y: startY} = {...point1};
-    const {x: endX, y: endY} = {...point2};
+    const {x: startX, y: startY} = point1;
+    const {x: endX, y: endY} = point2;
 
    // Check for coincident points to avoid division by zero
    if (startX === endX && startY === endY) {

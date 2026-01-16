@@ -6,8 +6,8 @@ const randomPoint = (
     yBounds?: Bounds,
 ): Point => {
 
-    const { min: minX, max: maxX } = { ...xBounds };
-    const { min: minY, max: maxY } = { ...yBounds };
+    const { min: minX, max: maxX } = xBounds || {};
+    const { min: minY, max: maxY } = yBounds || {};
 
     return {
         x: maxX ? randomNumber(minX || 0, maxX) : Math.random() * 100,

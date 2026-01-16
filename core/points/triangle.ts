@@ -16,7 +16,7 @@ const triangle = (
     const nextStep = steps[direction];
 
     const points: Point[] = [initialPoint];
-    let {x, y} = {...initialPoint};
+    let {x, y} = initialPoint;
     
     for (let i = 0; i < 2; i++) {
         if (i === 0) {

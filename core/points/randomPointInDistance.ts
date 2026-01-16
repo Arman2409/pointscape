@@ -7,10 +7,9 @@ const randomPointInDistance = (
     const angle = Math.random() * 2 * Math.PI;
     const dx = distance * Math.cos(angle);
     const dy = distance * Math.sin(angle);
-    const { x, y } = { ...point }
     return {
-        x: x + dx,
-        y: y + dy
+        x: point.x + dx,
+        y: point.y + dy
     };
 }
 
