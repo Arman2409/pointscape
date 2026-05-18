@@ -22,4 +22,8 @@ describe("nearest", () => {
         
         expect(foundPoint).toBe(nearestPoint);
     })
+
+    it("should return null when the points array is empty", () => {
+        expect(nearest({ x: 0, y: 0 }, [])).toBeNull();
+    })
 })

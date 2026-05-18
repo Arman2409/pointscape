@@ -27,4 +27,15 @@ describe("collision", () => {
 
         expect(result).toBeFalsy();
     })
+
+    /** Corner case: axis-aligned box around the point would collide, true circle does not. */
+    it("should use circular (Euclidean) radius, not axis-aligned bounds", () => {
+        const collisionDistance = 10;
+        expect(
+            collision({ x: 0, y: 0 }, { x: 9, y: 9 }, collisionDistance),
+        ).toBe(false);
+        expect(
+            collision({ x: 0, y: 0 }, { x: 7, y: 7 }, collisionDistance),
+        ).toBe(true);
+    })
 })

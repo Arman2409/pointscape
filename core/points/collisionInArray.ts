@@ -1,4 +1,4 @@
-import { collision } from "../../index";
+import collision from "./collision";
 import type { Point } from "../../types/global";
 
 const collisionInArray = (

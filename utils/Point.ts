@@ -47,7 +47,7 @@ export class Point implements PointType {
         return move(this, x, y);
     }
 
-    nearestFromPoints(points: PointType[]): ReturnType<typeof move> {
+    nearestFromPoints(points: PointType[]): ReturnType<typeof nearest> {
         return nearest(this, points);
     }
 

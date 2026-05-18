@@ -1,5 +1,16 @@
 **A collection of functions for working with points in a 2D coordinate system, along with additional utility functions.**
 
+## What changed in the latest version (**2.0.0**)
+
+- **`collision`** — Now uses **true circular proximity** (Euclidean distance compared to `collisionDistance`). Previous versions used axis-aligned bounds and could give **different results near the diagonal** of what looked like a “radius.” This matches the README description (“closer than the given distance”). **Existing games may need to retune thresholds** if they depended on the old box-shaped check.
+- **`nearest`** — Returns **`null`** when the candidate array is **empty** (instead of `{}`). **Breaking TypeScript/JavaScript contract**: handle `null` where you previously assumed a point (including `Point.nearestFromPoints`).
+- **`collisionInArray`** — Same collision semantics as **`collision`**; internal import cleanup removes a barrel-file **circular dependency**.
+- **`collision`** optional callback is typed as **`() => void`**.
+
+See **[CHANGELOG.md](./CHANGELOG.md)** for full notes.
+
+---
+
 ## How to use
 
 1. Installation
@@ -63,7 +74,9 @@ The Point class can also be used for working with the points.
 
  const angle = point1.angleTo(point2);
  // result:  0.7853981633974483
- 
+
+ // nearestFromPoints follows the same rules as nearest(); empty input yields null.
+
 ``` 
 
 There are other utility functions as well.
@@ -230,17 +243,17 @@ Takes an array of points as argument, where each point is an object with x and y
 
 * <b id="collision">collision</b>
 ```typescript
-  (point1: Point, point2: Point, collisionDistance: number, [callback]: Function) => boolean
+  (point1: Point, point2: Point, collisionDistance: number, [callback]?: () => void) => boolean
 ```
 
-Returns a boolean indicating if the two points are closer than the given distance.
+Returns **`true`** if the **Euclidean distance** between the two points is less than or equal to **`collisionDistance`** (treat **`collisionDistance` as a non-negative radius for a circle** around each position). Optionally invokes **`callback`** when a collision is detected.
 
 * <b id="collisioninarray">collisionInArray</b>
 ```typescript
-  (point: Point, radius: number, points: Point[], [callback]: Function) => Point[]
+  (initialPoint: Point, points: Point[], radius: number) => Point[]
 ```
 
-Returns the points that are closer than the radius to the given point.
+Returns every point in **`points`** whose distance to **`initialPoint`** is within **`radius`**, using the same circular rule as [`collision`](#collision).
 
 * <b id="positionincircle">positionInCircle</b>
 ```typescript
@@ -265,10 +278,10 @@ Returns the midpoint between two points.
 
 * <b id="nearest">nearest</b>
 ```typescript
-  (point: Point, points: Point[]) => Point
+  (point: Point, points: Point[]) => Point | null
 ```
 
-Returns the nearest point to the given point from the array.
+Returns the nearest point to the given point from the array, or **`null`** if **`points`** is empty.
 
 * <b id="perimeter">perimeter</b>
 ```typescript
@@ -332,10 +345,10 @@ Returns the center of given points.
 
 * <b id="farest">farest</b>
 ```typescript
-  (point: Point, points: Point[]) => Point
+  (point: Point, points: Point[]) => Point | null
 ```
 
-Returns the farest point to the given point from the array.
+Returns the farthest point from the given point among the given array; **`null`** if the array is empty.
 
 * <b id="rotate">rotate</b>
 ```typescript

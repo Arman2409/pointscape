@@ -1,13 +1,21 @@
 {
   "name": "pointscape",
-  "version": "1.7.4",
+  "version": "2.0.0",
   "description": "Points manipulation,distance and angle calculation and more with 2D coordinate system",
   "scripts": {
-    "build": "npx tsup  index.ts --outDir dist --format cjs,esm --dts",
-    "release": "npm run build && rm .babelrc index.ts jest.config.js tsconfig.json; rm -rf core test types utils",
-    "test": "npx jest"
+    "build": "npx tsup index.ts --outDir dist --format cjs,esm --dts",
+    "test": "npx jest",
+    "prepack": "npm run build",
+    "publish:dry-run": "npm pack --dry-run"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
   "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
   "keywords": ["2d", "points", "algebra", "canvas", "html-game", "coordinates", "xy", "distance", "area", "perimeter", "collision", "angle", "random"],
   "author": "Arman Ghazaryan",
   "license": "MIT",
