@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pointscape — 2D geometry demos</title>
+  <style>
+    :root {
+      --bg:      #0f1117;
+      --surface: #1a1d27;
+      --border:  #2a2d3a;
+      --accent:  #6366f1;
+      --cyan:    #22d3ee;
+      --text:    #e2e8f0;
+      --muted:   #64748b;
+      --red:     #f87171;
+      --green:   #4ade80;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; min-height: 100vh; }
+
+    /* ── header ── */
+    header {
+      padding: 2rem 2rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .logo { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.5px; }
+    .logo em { color: var(--accent); font-style: normal; }
+    .tagline { color: var(--muted); font-size: 0.875rem; margin-top: 0.3rem; }
+    .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.4rem; }
+    .badges img { height: 20px; }
+
+    /* ── nav ── */
+    nav {
+      padding: 0.75rem 2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; gap: 1.5rem;
+    }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color .15s; }
+    nav a:hover { color: var(--text); }
+
+    /* ── main ── */
+    main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+    .section-label { color: var(--muted); font-size: 0.875rem; margin-bottom: 1.5rem; }
+
+    /* ── grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .card-head {
+      padding: 0.875rem 1rem 0.375rem;
+      display: flex; align-items: baseline; gap: 0.625rem;
+    }
+    .fn-name { font-family: monospace; font-size: 0.95rem; color: var(--accent); font-weight: 600; }
+    .fn-hint { color: var(--muted); font-size: 0.75rem; }
+    canvas { display: block; width: 100%; }
+    .card-info {
+      padding: 0.5rem 1rem 0.75rem;
+      font-family: monospace; font-size: 0.72rem; color: var(--muted);
+      min-height: 1.75rem; word-break: break-all;
+    }
+    .card-btn {
+      margin: 0 1rem 0.75rem;
+      padding: 0.3rem 0.75rem;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text); border-radius: 6px; cursor: pointer;
+      font-size: 0.8rem; transition: background .15s;
+      align-self: flex-start;
+    }
+    .card-btn:hover { background: var(--border); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">point<em>scape</em></div>
+    <div class="tagline">2D geometry utilities for JavaScript &amp; TypeScript</div>
+    <div class="badges">
+      <a href="https://www.npmjs.com/package/pointscape" target="_blank">
+        <img src="https://img.shields.io/npm/v/pointscape.svg" alt="npm version">
+      </a>
+      <a href="https://github.com/Arman2409/pointscape/actions" target="_blank">
+        <img src="https://github.com/Arman2409/pointscape/actions/workflows/ci.yml/badge.svg" alt="CI">
+      </a>
+      <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT">
+    </div>
+  </div>
+</header>
+
+<nav>
+  <a href="https://github.com/Arman2409/pointscape" target="_blank">GitHub</a>
+  <a href="https://www.npmjs.com/package/pointscape" target="_blank">npm</a>
+  <a href="https://github.com/Arman2409/pointscape#documentation-for-the-functions" target="_blank">Docs</a>
+</nav>
+
+<main>
+  <p class="section-label">Interactive demos — hover &amp; drag</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">collision()</span>
+        <span class="fn-hint">drag either dot</span>
+      </div>
+      <canvas id="c-collision" height="200"></canvas>
+      <div class="card-info" id="i-collision"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">lerp()</span>
+        <span class="fn-hint">linear interpolation</span>
+      </div>
+      <canvas id="c-lerp" height="200"></canvas>
+      <div class="card-info" id="i-lerp"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">nearest()</span>
+        <span class="fn-hint">move mouse over canvas</span>
+      </div>
+      <canvas id="c-nearest" height="200"></canvas>
+      <div class="card-info" id="i-nearest">hover to find nearest point</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">rotate()</span>
+        <span class="fn-hint">polygon rotating around center</span>
+      </div>
+      <canvas id="c-rotate" height="200"></canvas>
+      <div class="card-info" id="i-rotate"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">positionInCircle()</span>
+        <span class="fn-hint">points on a circle</span>
+      </div>
+      <canvas id="c-circle" height="200"></canvas>
+      <div class="card-info" id="i-circle"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">randomPoints()</span>
+        <span class="fn-hint">+ area()</span>
+      </div>
+      <canvas id="c-random" height="200"></canvas>
+      <button class="card-btn" id="btn-random">Regenerate</button>
+      <div class="card-info" id="i-random"></div>
+    </div>
+
+  </div>
+</main>
+
+<script type="module">
+import {
+  collision, distance, nearest, rotate,
+  positionInCircle, randomPoints, area
+} from 'https://cdn.jsdelivr.net/npm/pointscape@2.0.0/dist/index.js';
+
+// lerp ships in the next release; implemented inline here
+const lerp = (p1, p2, t) => ({
+  x: p1.x + (p2.x - p1.x) * t,
+  y: p1.y + (p2.y - p1.y) * t,
+});
+
+const DPR = window.devicePixelRatio || 1;
+const C = { accent: '#6366f1', cyan: '#22d3ee', red: '#f87171', green: '#4ade80', muted: '#64748b' };
+
+function initCanvas(id) {
+  const canvas = document.getElementById(id);
+  const w = canvas.parentElement.clientWidth;
+  const h = parseInt(canvas.getAttribute('height'));
+  canvas.width  = w * DPR;
+  canvas.height = h * DPR;
+  canvas.style.width  = w + 'px';
+  canvas.style.height = h + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(DPR, DPR);
+  return { canvas, ctx, w, h };
+}
+
+function circle(ctx, p, r, fill, stroke, strokeWidth = 1) {
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+  if (fill)   { ctx.fillStyle = fill;   ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = strokeWidth; ctx.stroke(); }
+}
+
+function info(id, text) {
+  document.getElementById(id).textContent = text;
+}
+
+// ─────────────────────────────────────────────
+// 1. collision — drag dots
+// ─────────────────────────────────────────────
+{
+  const { canvas, ctx, w, h } = initCanvas('c-collision');
+  const RADIUS = 55;
+  let p1 = { x: w * 0.33, y: h / 2 };
+  let p2 = { x: w * 0.67, y: h / 2 };
+  let dragging = null;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const hit  = collision(p1, p2, RADIUS);
+    const dist = distance(p1, p2);
+    const col1 = hit ? C.red : C.accent;
+    const col2 = hit ? C.red : C.cyan;
+
+    // dashed connector
+    ctx.beginPath();
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+    ctx.strokeStyle = (hit ? C.red : C.muted) + '88';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // radius rings
+    circle(ctx, p1, RADIUS, null, col1 + '30', 1);
+    circle(ctx, p2, RADIUS, null, col2 + '30', 1);
+
+    // dots
+    circle(ctx, p1, 8, col1, null);
+    circle(ctx, p2, 8, col2, null);
+
+    // distance label
+    const mx = (p1.x + p2.x) / 2;
+    const my = (p1.y + p2.y) / 2 - 12;
+    ctx.fillStyle = C.muted;
+    ctx.font = '11px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${dist.toFixed(1)}px`, mx, my);
+    ctx.textAlign = 'left';
+
+    info('i-collision', `collision(p1, p2, ${RADIUS}) → ${hit}  |  distance → ${dist.toFixed(1)}`);
+  }
+
+  function getXY(e) {
+    const r = canvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  canvas.addEventListener('mousedown', e => {
+    const m = getXY(e);
+    if (distance(m, p1) < 16) dragging = 'p1';
+    else if (distance(m, p2) < 16) dragging = 'p2';
+  });
+  canvas.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    canvas.style.cursor = 'grabbing';
+    const m = getXY(e);
+    if (dragging === 'p1') p1 = m; else p2 = m;
+    draw();
+  });
+  canvas.addEventListener('mouseleave', () => { canvas.style.cursor = 'default'; });
+  window.addEventListener('mouseup', () => { dragging = null; canvas.style.cursor = 'default'; });
+  canvas.style.cursor = 'grab';
+  draw();
+}
+
+// ─────────────────────────────────────────────
+// 2. lerp — animated interpolation
+// ─────────────────────────────────────────────
+{
+  const { ctx, w, h } = initCanvas('c-lerp');
+  const A = { x: 48,     y: h / 2 };
+  const B = { x: w - 48, y: h / 2 };
+  let t = 0, dir = 1;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const p = lerp(A, B, t);
+
+    // track
+    ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y);
+    ctx.strokeStyle = C.muted + '40'; ctx.lineWidth = 2; ctx.stroke();
+
+    // progress
+    ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(p.x, p.y);
+    ctx.strokeStyle = C.accent; ctx.lineWidth = 2; ctx.stroke();
+
+    // endpoint labels
+    ctx.fillStyle = C.muted; ctx.font = '12px monospace'; ctx.textAlign = 'center';
+    ctx.fillText('A', A.x, A.y - 16);
+    ctx.fillText('B', B.x, B.y - 16);
+    ctx.textAlign = 'left';
+
+    circle(ctx, A, 6, C.muted, null);
+    circle(ctx, B, 6, C.muted, null);
+    circle(ctx, p, 9, C.cyan,  null);
+
+    // t label below dot
+    ctx.fillStyle = C.cyan; ctx.font = '11px monospace'; ctx.textAlign = 'center';
+    ctx.fillText(`t = ${t.toFixed(2)}`, p.x, p.y + 22);
+    ctx.textAlign = 'left';
+
+    info('i-lerp', `lerp(A, B, ${t.toFixed(2)}) → {x: ${p.x.toFixed(1)}, y: ${p.y.toFixed(1)}}`);
+
+    t += 0.007 * dir;
+    if (t >= 1) { t = 1; dir = -1; }
+    if (t <= 0) { t = 0; dir =  1; }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ─────────────────────────────────────────────
+// 3. nearest — mouse interaction
+// ─────────────────────────────────────────────
+{
+  const { canvas, ctx, w, h } = initCanvas('c-nearest');
+  const pts = Array.from({ length: 20 }, () => ({
+    x: 20 + Math.random() * (w - 40),
+    y: 20 + Math.random() * (h - 40),
+  }));
+  let mouse = null;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const near = mouse ? nearest(mouse, pts) : null;
+
+    pts.forEach(p => {
+      const isNearest = near && p.x === near.x && p.y === near.y;
+      circle(ctx, p, isNearest ? 8 : 5, isNearest ? C.green : C.muted + '99', null);
+    });
+
+    if (mouse && near) {
+      ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(near.x, near.y);
+      ctx.strokeStyle = C.accent + '77'; ctx.lineWidth = 1.5;
+      ctx.setLineDash([5, 4]); ctx.stroke(); ctx.setLineDash([]);
+      circle(ctx, mouse, 5, C.cyan, null);
+      info('i-nearest', `nearest(cursor, pts) → {x:${near.x.toFixed(0)}, y:${near.y.toFixed(0)}}  dist: ${distance(mouse, near).toFixed(1)}`);
+    }
+  }
+
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+    draw();
+  });
+  canvas.addEventListener('mouseleave', () => {
+    mouse = null;
+    info('i-nearest', 'hover to find nearest point');
+    draw();
+  });
+  draw();
+}
+
+// ─────────────────────────────────────────────
+// 4. rotate — animated polygon
+// ─────────────────────────────────────────────
+{
+  const { ctx, w, h } = initCanvas('c-rotate');
+  const center = { x: w / 2, y: h / 2 };
+  const R = Math.min(w, h) * 0.33;
+  const N = 6;
+  const base = Array.from({ length: N }, (_, i) => ({
+    x: center.x + R * Math.cos((i / N) * Math.PI * 2 - Math.PI / 2),
+    y: center.y + R * Math.sin((i / N) * Math.PI * 2 - Math.PI / 2),
+  }));
+  let angle = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const pts = rotate(center, base, angle);
+
+    ctx.beginPath();
+    pts.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle   = C.accent + '18';
+    ctx.strokeStyle = C.accent + '99';
+    ctx.lineWidth   = 1.5;
+    ctx.fill(); ctx.stroke();
+
+    pts.forEach((p, i) => circle(ctx, p, 6, i === 0 ? C.cyan : C.accent, null));
+    circle(ctx, center, 3, C.muted, null);
+
+    const deg = ((angle * 180 / Math.PI) % 360 + 360) % 360;
+    ctx.fillStyle = C.muted; ctx.font = '11px monospace';
+    ctx.fillText(`${deg.toFixed(1)}°`, 10, h - 12);
+
+    info('i-rotate', `rotate(center, points, ${angle.toFixed(3)}) → ${N} points`);
+    angle += 0.012;
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ─────────────────────────────────────────────
+// 5. positionInCircle — spinning ring
+// ─────────────────────────────────────────────
+{
+  const { ctx, w, h } = initCanvas('c-circle');
+  const center = { x: w / 2, y: h / 2 };
+  const R = Math.min(w, h) * 0.36;
+  const N = 12;
+  let offset = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // guide ring
+    ctx.beginPath(); ctx.arc(center.x, center.y, R, 0, Math.PI * 2);
+    ctx.strokeStyle = C.muted + '28'; ctx.lineWidth = 1; ctx.stroke();
+
+    for (let i = 0; i < N; i++) {
+      const a = offset + (i / N) * Math.PI * 2;
+      const p = positionInCircle(center, R, a);
+      const hue = Math.round((i / N) * 300);
+      circle(ctx, p, 6, `hsl(${hue},65%,62%)`, null);
+    }
+    circle(ctx, center, 3, C.muted, null);
+
+    info('i-circle', `positionInCircle(center, ${R.toFixed(0)}, angle)  ×${N} points`);
+    offset += 0.018;
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ─────────────────────────────────────────────
+// 6. randomPoints + area
+// ─────────────────────────────────────────────
+{
+  const { ctx, w, h } = initCanvas('c-random');
+  const xB = { min: 30, max: w - 30 };
+  const yB = { min: 30, max: h - 30 };
+  let pts = [];
+
+  function centroid(ps) {
+    return { x: ps.reduce((s, p) => s + p.x, 0) / ps.length, y: ps.reduce((s, p) => s + p.y, 0) / ps.length };
+  }
+  function sortByAngle(ps) {
+    const c = centroid(ps);
+    return [...ps].sort((a, b) => Math.atan2(a.y - c.y, a.x - c.x) - Math.atan2(b.y - c.y, b.x - c.x));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    if (!pts.length) return;
+    const ordered = sortByAngle(pts);
+    const a = area(pts);
+
+    ctx.beginPath();
+    ordered.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle   = C.accent + '20';
+    ctx.strokeStyle = C.accent;
+    ctx.lineWidth   = 1.5;
+    ctx.fill(); ctx.stroke();
+
+    pts.forEach(p => circle(ctx, p, 6, C.cyan, null));
+
+    ctx.fillStyle = C.muted; ctx.font = '11px monospace';
+    ctx.fillText(`area: ${a.toFixed(1)}`, 10, h - 12);
+    info('i-random', `randomPoints(bounds, 6)  →  area: ${a.toFixed(1)}`);
+  }
+
+  function generate() {
+    pts = randomPoints(xB, yB, 6);
+    draw();
+  }
+
+  document.getElementById('btn-random').addEventListener('click', generate);
+  generate();
+}
+</script>
+</body>
+</html>
