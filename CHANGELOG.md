@@ -6,6 +6,14 @@ All notable changes to this project are documented in this file.
 
 ---
 
+## [2.1.1] — 2026-05-22
+
+### Fixes
+
+- **`tsconfig.json`** — added `"moduleResolution": "bundler"` to fix TypeScript module resolution for consumers using strict settings (`node16`, `nodenext`, `bundler`).
+
+---
+
 ## [2.1.0] — 2026-05-22
 
 ### Added
