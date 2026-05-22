@@ -4,6 +4,8 @@
 [![npm](https://img.shields.io/npm/v/pointscape.svg)](https://www.npmjs.com/package/pointscape)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
+**[Live demos →](https://arman2409.github.io/pointscape/)**
+
 ## Table of contents
 
 - [What's new](#whats-new-200)
