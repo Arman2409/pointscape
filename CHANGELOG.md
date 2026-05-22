@@ -2,12 +2,20 @@
 
 All notable changes to this project are documented in this file.
 
+## [Unreleased]
+
+- Tooling: GitHub Actions **CI** (test + production build); Dependabot updates; **`package-lock.json`** for **`npm ci`**; **`.nvmrc`** (+ **`engines`** `node >=18`); README overhaul (TOC, badges, install variants, tarball layout).
+
+---
+
 ## [2.0.0] — 2026-05-18
+
+This is a **major** release so that projects using **`^1.x`** are not surprised by type or collision behavior changes ([SemVer](https://semver.org/)).
 
 ### Breaking changes
 
-- **`nearest`** now returns **`Point | null`**. When the points array is empty, it returns **`null`** instead of an invalid `{}` object. Update call sites that assumed a plain `Point` (use `if (found)` or optional chaining).
-- **`collision`** behavior for the same numeric arguments can **change** versus 1.x: it now uses a **circular** radius (Euclidean distance). Games or tools that accidentally relied on the old axis-aligned “box” check may need to retune distances or switch to a dedicated AABB helper if you add one later.
+- **`nearest`** returns **`Point | null`**. Empty input returns **`null`** instead of `{}`. Handle `null` everywhere you used to assume a `Point` (including **`Point.nearestFromPoints`**).
+- **`collision`** and **`collisionInArray`** use **Euclidean (circular) radius**. The same numeric arguments can yield **different** `true`/`false` results than 1.x if you relied on the old axis-aligned **box** check; retune thresholds or add a dedicated AABB helper if you need that shape.
 
 ### Fixes
 
