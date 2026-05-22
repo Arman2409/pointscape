@@ -1,11 +1,27 @@
 **A collection of functions for working with points in a 2D coordinate system, along with additional utility functions.**
 
-## What changed in the latest version (**2.0.0**)
+[![CI](https://github.com/Arman2409/pointscape/actions/workflows/ci.yml/badge.svg)](https://github.com/Arman2409/pointscape/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/pointscape.svg)](https://www.npmjs.com/package/pointscape)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-- **`collision`** — Now uses **true circular proximity** (Euclidean distance compared to `collisionDistance`). Previous versions used axis-aligned bounds and could give **different results near the diagonal** of what looked like a “radius.” This matches the README description (“closer than the given distance”). **Existing games may need to retune thresholds** if they depended on the old box-shaped check.
-- **`nearest`** — Returns **`null`** when the candidate array is **empty** (instead of `{}`). **Breaking TypeScript/JavaScript contract**: handle `null` where you previously assumed a point (including `Point.nearestFromPoints`).
-- **`collisionInArray`** — Same collision semantics as **`collision`**; internal import cleanup removes a barrel-file **circular dependency**.
-- **`collision`** optional callback is typed as **`() => void`**.
+## Table of contents
+
+- [What's new](#whats-new-200)
+- [How to use](#how-to-use) — install, imports, develops, publishes
+- [Examples](#examples)
+- [Function reference](#documentation-for-the-functions)
+- [Changelog](./CHANGELOG.md)
+
+---
+
+## What's new (2.0.0)
+
+This release is **2.0.0** (not 1.8.x) on purpose: **`nearest`** now returns **`null`** for an empty list, and **`collision`** uses true **circular** distance. Both can require code or tuning changes, so **SemVer treats this as major**—users on **`^1.x`** stay on 1.x until they upgrade consciously.
+
+- **`collision`** — Euclidean radius vs the old axis-aligned bounds; **retune** if you depended on the box.
+- **`nearest`** — **`null`** when no candidates; **guard** before using the point.
+- **`collisionInArray`** — Same semantics as **`collision`**; barrel import cycle removed.
+- **`collision`** — Optional callback typed as **`() => void`**.
 
 See **[CHANGELOG.md](./CHANGELOG.md)** for full notes.
 
@@ -13,15 +29,68 @@ See **[CHANGELOG.md](./CHANGELOG.md)** for full notes.
 
 ## How to use
 
-1. Installation
+Use **Node 18+**. The repo pins **Node 20** for development (**[`.nvmrc`](./.nvmrc)** — `nvm use` recommended).
+
+### Install
+
+npm:
+
 ```bash
- npm install pointscape
+npm install pointscape
 ```
 
-2. Usage
-```typescript
- import pointscape from "pointscape";
+pnpm / Yarn:
+
+```bash
+pnpm add pointscape
+# or
+yarn add pointscape
 ```
+
+### What ships on npm
+
+The published tarball contains only **`dist/`** (ESM + CJS + types), **README**, **CHANGELOG**, and **LICENSE**—see [`package.json` → `files`](./package.json). Import ESM with `import` or CommonJS with `require` per your bundler; types are exposed through [`exports`](./package.json) for both.
+
+1. **Default import** — one object with every export (larger surface; fine for scripts).
+```typescript
+import pointscape from "pointscape";
+```
+
+2. **Named imports** (preferred for tree-shaking) — see [Types and imports](#types-and-imports-typescript) below.
+
+### Types and imports (TypeScript)
+
+Use **named imports** so bundlers can tree-shake unused functions:
+
+```typescript
+import { distance, collision, nearest, Point } from "pointscape";
+import type { Bounds, Line, PointType } from "pointscape";
+```
+
+Functions take any **`{ x: number; y: number }`**; you do **not** have to allocate a `Point` class instance. **`PointType`** matches instances of **`Point`** (the class exported from this package).
+
+### Developing
+
+Open a PR against the default branch; **CI** runs **`npm ci`**, **tests**, and **`npm run build`** on every push/PR (see **[`.github/workflows/ci.yml`](./.github/workflows/ci.yml)**).
+
+```bash
+git clone https://github.com/Arman2409/pointscape.git
+cd pointscape
+nvm use   # optional: picks Node from .nvmrc
+npm ci
+npm test
+npm run build
+```
+
+### Publishing on npm
+
+1. Bump **`version`** in `package.json` and update **`CHANGELOG.md`**.  
+2. **`npm login`** with an account that [**maintains** `pointscape**](https://www.npmjs.com/package/pointscape) on the public registry (`https://registry.npmjs.org/`).  
+3. **`npm publish`** — the **`prepack`** script rebuilds **`dist/`** first.
+
+Preview tarball contents locally: **`npm run publish:dry-run`**.
+
+See also [npm `files` publish guide](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#files) — only `dist/`, readme, changelog, and license are published.
 
 ## Examples
 
@@ -34,11 +103,11 @@ Most of the functions are designed for working with points in a 2D coordinate sy
     center,
     perimeter
     } from "pointscape";
- import type { Point } from "pointscape";  
  
- // Working with points
+ const point1 = { x: 0, y: 0 };
+ const point2 = { x: 10, y: 10 };
 
- const point1: Point = {x: 0, y: 0}, point2: Point = {x: 10, y: 10};
+ // Plain { x, y } objects work for all point APIs
 
 
  const distanceBetweenPoints = distance(point1, point2); 
@@ -53,7 +122,7 @@ Most of the functions are designed for working with points in a 2D coordinate sy
  // result: 0.7853981633974483
  
 
- const point3: Point = {x:0, y:10}, point4: Point = {x:10, y:0};
+ const point3 = { x: 0, y: 10 }, point4 = { x: 10, y: 0 };
 
  const perimeterOfPoints = perimeter(
    [point1, point2, point3, point4 ]
@@ -165,6 +234,8 @@ There are other utility functions as well.
 [cross](#cross)
 
 [move](#move)
+
+[lerp](#lerp)
 
 
 ##### Relationships
@@ -331,10 +402,10 @@ Returns the quantity of possible connections among given quantity of points.
 
 * <b id="circlearea">circleArea</b>
 ```typescript
-  (radius): number => number
+  (radius: number) => number
 ``` 
 
-Returns the area of the circle.
+Returns the area of the circle given its radius.
 
 * <b id="center">center</b>
 ```typescript
@@ -359,10 +430,10 @@ Returns the points rotated around the given point.
 
 * <b id="sort">sort</b>
 ```typescript
-  (points: Point, [coordinate]: "x" | "y") => Point[]
+  (points: Point[], coordinate?: "x" | "y") => Point[]
 ```
 
-Returns sorted array of the points.The coordinate parameter can be "x", "y", or none for sorting both for "x" and "y".
+**Mutates `points`** in place (`Array.sort`) and returns the same array reference. Omit **`coordinate`** to sort primarily by **`x`**; **`"y"`** sorts by **`y`**.
 
 * <b id="scale">scale</b>
 ```typescript
@@ -397,6 +468,13 @@ Returns boolean value indicating if two lines each defined  by two points inters
 
 Returns a point of with the new coordinates.
 
+* <b id="lerp">lerp</b>
+```typescript
+ (point1: Point, point2: Point, t: number) => Point
+```
+
+Returns the linearly interpolated point between **`point1`** and **`point2`** at parameter **`t`** (0 = `point1`, 1 = `point2`, 0.5 = midpoint). Values of `t` outside `[0, 1]` extrapolate beyond the two points.
+
 * <b id="square">square</b>
 ```typescript
  (point: Point, size: number, [direction]: "left" | "right" | "down" | "up" ) => Point[]
@@ -405,12 +483,12 @@ Returns a point of with the new coordinates.
 Returns an array of points  representing a shape of square.Takes  four parameters: starting coordinates (x and y), size of square side, and direction which should be one of the values "left", "right", "up",
 "down".
 
-* <b id="rectangle">rectangle(point, size, [direction])</b>
+* <b id="rectangle">rectangle(point, width, height, [direction])</b>
 ```typescript
- (point: Point, size: number, [direction]: "left" | "right" | "down" | "up" ) => Point[]
+ (point: Point, width: number, height: number, [direction]: "left" | "right" | "down" | "up" ) => Point[]
 ```
 
-Returns an array of points  representing a shape of rectangle.Takes  same parameters as [square](#square) function.
+Returns vertices of a rectangle starting at **`point`**, advancing **`width`** then **`height`** along the directional path (same directional convention as [square](#square)).
 
 * <b id="triangle">triangle(point, size, [direction])</b>
 ```typescript
@@ -419,12 +497,12 @@ Returns an array of points  representing a shape of rectangle.Takes  same parame
 
 Returns an array of points  representing a shape of triangle.Takes  same parameters as [square](#square) function.
 
-* <b id="pentagon">pentagon(point, size, [direction])</b>
+* <b id="pentagon">pentagon(center, radius, [angle])</b>
 ```typescript
- (point: Point, size: number, [direction]: "left" | "right" | "down" | "up" ) => Point[]
+ (centerPoint: Point, radius: number, angle?: number) => Point[]
 ```
 
-Returns an array of points  representing a shape of pentagon.Takes  four parameters: starting coordinates (x and y), size of pentagon side, and the angle of pentagon's rotation.
+Returns vertices of a pentagon around **`centerPoint`** with **`radius`** and rotation **`angle`** (degrees, default **`0`**).
 
 ### Math
 
@@ -449,7 +527,7 @@ Converts radians to degrees.
 
 Returns true if the given number is within the specified range.
 
-* <b id="roundtoprecision">roundToPrecision)</b>
+* <b id="roundtoprecision">roundToPrecision</b>
 ```typescript
  (number: number, precision: -100 | -10 | 0 | 10 | 100 | number) => number
 ```
@@ -465,7 +543,7 @@ Returns the average of all numbers in an array.
 
 ### Arrays
 
-* <b id="intersection">intersection(</b>
+* <b id="intersection">intersection</b>
 ```typescript
  (arr1: any[], arr2: any[]) => any[]
 ```

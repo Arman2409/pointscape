@@ -27,6 +27,7 @@ import square from "./core/points/square";
 import rectangle from "./core/points/rectangle";
 import triangle from "./core/points/triangle";
 import pentagon from "./core/points/pentagon";
+import lerp from "./core/points/lerp";
 
 // math 
 import inRange from "./core/math/inRange";
@@ -86,20 +87,21 @@ export {
     rectangle,
     triangle,
     pentagon,
+    lerp,
 
-    // randomization 
+    // randomization
     uniqueId,
     randomNumber,
     randomBoolean,
 
-    // math 
+    // math
     average,
     inRange,
     degreesToRadians,
     radiansToDegrees,
     roundToPrecision,
 
-    // arrays 
+    // arrays
     intersection,
     difference,
     chunk,
@@ -139,20 +141,21 @@ export default {
     rectangle,
     triangle,
     pentagon,
+    lerp,
 
-    // randomization 
+    // randomization
     uniqueId,
     randomNumber,
     randomBoolean,
 
-    // math 
+    // math
     average,
     inRange,
     degreesToRadians,
     radiansToDegrees,
     roundToPrecision,
 
-    // arrays 
+    // arrays
     intersection,
     difference,
     chunk,

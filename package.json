@@ -1,7 +1,7 @@
 {
   "name": "pointscape",
   "version": "2.0.0",
-  "description": "Points manipulation,distance and angle calculation and more with 2D coordinate system",
+  "description": "Points manipulation: distance & angle helpers, collisions, shapes, array & math utilities — 2D coordinate system",
   "scripts": {
     "build": "npx tsup index.ts --outDir dist --format cjs,esm --dts",
     "test": "npx jest",
@@ -20,8 +20,16 @@
   "author": "Arman Ghazaryan",
   "license": "MIT",
   "exports": {
-    "import": "./dist/index.js",
-    "require": "./dist/index.cjs"
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
   },
   "devDependencies": {
     "@types/jest": "^29.5.11",
@@ -32,9 +40,17 @@
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.3"
   },
+  "homepage": "https://github.com/Arman2409/pointscape#readme",
+  "bugs": {
+    "url": "https://github.com/Arman2409/pointscape/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Arman2409/pointscape"
+    "url": "git+https://github.com/Arman2409/pointscape.git"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
   },
   "type": "module"
 }
