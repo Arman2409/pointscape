@@ -3,7 +3,7 @@ import collision from "../core/points/collision";
 import middle from "../core/points/middle";
 import angle from "../core/points/angle";
 import move from "../core/points/move";
-import farest from "../core/points/farest";
+import farthest from "../core/points/farthest";
 import nearest from "../core/points/nearest";
 import collisionInArray from "../core/points/collisionInArray";
 import inLine from "../core/points/inLine";
@@ -81,8 +81,8 @@ export class Point implements PointType {
         return near ? new Point(near.x, near.y) : null;
     }
 
-    farestFromPoints(points: PointType[]): Point | null {
-        const far = farest(this, points);
+    farthestFromPoints(points: PointType[]): Point | null {
+        const far = farthest(this, points);
         return far ? new Point(far.x, far.y) : null;
     }
 

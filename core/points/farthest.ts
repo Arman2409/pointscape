@@ -1,18 +1,18 @@
 import distance from "./distance";
 import type { Point } from "../../types/global";
 
-const farest = (initialPoint: Point, points: Point[]) => {
+const farthest = (initialPoint: Point, points: Point[]) => {
     let maxDistance = 0;
-    let farestPoint: Point | null = null;
+    let farthestPoint: Point | null = null;
     for (const point of points) {
         const distanceBetween = distance(initialPoint, point);
         if (distanceBetween > maxDistance) {
             maxDistance = distanceBetween;
-            farestPoint = point;
+            farthestPoint = point;
         }
     }
 
-    return farestPoint;
+    return farthestPoint;
 };
 
-export default farest;
+export default farthest;

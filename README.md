@@ -153,7 +153,7 @@ a.rotateAround({ x: 0, y: 0 }, Math.PI); // Point(-10, -20)
 
 // Array-based methods — also return Point or Point | null
 a.nearestFromPoints([b, c]); // Point | null
-a.farestFromPoints([b, c]); // Point | null
+a.farthestFromPoints([b, c]); // Point | null
 ```
 
 Plain `{ x: number; y: number }` objects work for every function — you don't need to allocate a `Point` instance unless you want the method API.
@@ -197,6 +197,8 @@ const randomBool = randomBoolean();
 
 [area](#area)
 
+[triangleArea](#trianglearea)
+
 [perimeter](#perimeter)
 
 [center](#center)
@@ -229,7 +231,7 @@ const randomBool = randomBoolean();
 
 [randomPoints](#randompoints)
 
-[farest](#farest)
+[farthest](#farthest)
 
 [rotate](#rotate)
 
@@ -312,6 +314,14 @@ Returns the distance beetween two points, each point is an object with x and y p
 
 Returns the area enclosed by the given points.
 Takes an array of points as argument, where each point is an object with x and y properties.
+
+- <b id="trianglearea">triangleArea</b>
+
+```typescript
+(point1: Point, point2: Point, point3: Point) => number;
+```
+
+Returns the area of the triangle formed by three points.
 
 - <b id="collision">collision</b>
 
@@ -436,7 +446,7 @@ Returns the area of the circle given its radius.
 
 Returns the center of given points.
 
-- <b id="farest">farest</b>
+- <b id="farthest">farthest</b>
 
 ```typescript
 (point: Point, points: Point[]) => Point | null;

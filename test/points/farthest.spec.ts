@@ -1,17 +1,17 @@
-import { farest, randomPoint } from "../../index";
+import { farthest, randomPoint } from "../../index";
 import type { Point } from "../../types/global";
 
-describe("farest", () => {
-    it("should return the farest point", () => {
+describe("farthest", () => {
+    it("should return the farthest point", () => {
         const initialPoint = { x: 0, y: 0 };
         const points: Point[] = [];
-        const farestPoint = {
+        const farthestPoint = {
             x: 100,
             y: 100,
         };
         const randomPointsMin = 10;
         const randomPointsMax = 10;
-        points.push(farestPoint);
+        points.push(farthestPoint);
         for (let i = 0; i < 5; i++) {
             points.push(
                 randomPoint(
@@ -20,8 +20,12 @@ describe("farest", () => {
                 )
             );
         }
-        const foundPoint = farest(initialPoint, points);
+        const foundPoint = farthest(initialPoint, points);
 
-        expect(foundPoint).toBe(farestPoint);
+        expect(foundPoint).toBe(farthestPoint);
+    });
+
+    it("should return null when the points array is empty", () => {
+        expect(farthest({ x: 0, y: 0 }, [])).toBeNull();
     });
 });

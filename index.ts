@@ -7,6 +7,7 @@ import collisionInArray from "./core/points/collisionInArray";
 import angle from "./core/points/angle";
 import randomPoints from "./core/points/randomPoints";
 import area from "./core/points/area";
+import triangleArea from "./core/points/triangleArea";
 import randomPointInDistance from "./core/points/randomPointInDistance";
 import nearest from "./core/points/nearest";
 import perimeter from "./core/points/perimeter";
@@ -14,7 +15,7 @@ import positionInCircle from "./core/points/positionInCircle";
 import possibleConnections from "./core/points/possibleConnections";
 import circleArea from "./core/points/circleArea";
 import center from "./core/points/center";
-import farest from "./core/points/farest";
+import farthest from "./core/points/farthest";
 import randomPoint from "./core/points/randomPoint";
 import move from "./core/points/move";
 import scale from "./core/points/scale";
@@ -68,10 +69,11 @@ export {
     randomPoint,
     randomPoints,
     area,
+    triangleArea,
     circleArea,
     randomPointInDistance,
     nearest,
-    farest,
+    farthest,
     perimeter,
     positionInCircle,
     possibleConnections,
@@ -122,10 +124,11 @@ export default {
     randomPoint,
     randomPoints,
     area,
+    triangleArea,
     circleArea,
     randomPointInDistance,
     nearest,
-    farest,
+    farthest,
     perimeter,
     positionInCircle,
     possibleConnections,
