@@ -6,6 +6,22 @@ All notable changes to this project are documented in this file.
 
 ---
 
+## [2.2.0] — 2026-05-26
+
+### Breaking changes
+
+- **`farest` renamed to `farthest`** — the exported function and `Point.farestFromPoints` method are now `farthest` and `farthestFromPoints` respectively. Update all call sites.
+
+### Added
+
+- **`triangleArea(point1, point2, point3)`** — computes the area of a triangle from three points. Previously an internal helper used by `area()`; now part of the public API.
+
+### Tooling
+
+- **ESLint + Prettier** configured — `npm run lint`, `npm run lint:fix`, `npm run format`, `npm run format:check`.
+
+---
+
 ## [2.1.1] — 2026-05-22
 
 ### Fixes

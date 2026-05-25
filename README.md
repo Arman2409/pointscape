@@ -17,13 +17,12 @@
 
 ---
 
-## What's new (2.1.x)
+## What's new (2.2.0)
 
-- **`lerp(point1, point2, t)`** — linear interpolation between two points.
-- **`Point` class** — methods that return a point now return a `Point` instance (chainable). New methods: `lerp`, `rotateAround`, `equals`, `clone`, `toString`, `Point.from`. See [Point class](#point-class) below.
-- **Bug fixes** — `middle()` now returns absolute coordinates for non-origin inputs; `perimeter()` works correctly for polygons not anchored at the origin; `pentagon()` now applies the `angle` rotation argument.
+- **`farest` renamed to `farthest`** — update call sites and any use of `Point.farestFromPoints` → `Point.farthestFromPoints`.
+- **`triangleArea(point1, point2, point3)`** — now a public API function, not just an internal helper.
 
-**Upgrading from 1.x?** `nearest` returns **`null`** for an empty list and `collision` uses true circular (Euclidean) distance — retune thresholds if you relied on the old axis-aligned box check.
+**Upgrading from 2.1.x?** Replace all uses of `farest` with `farthest` and `farestFromPoints` with `farthestFromPoints`.
 
 See **[CHANGELOG.md](./CHANGELOG.md)** for full notes.
 
