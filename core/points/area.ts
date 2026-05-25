@@ -1,4 +1,4 @@
-import triangleArea from "../../utils/triangleArea";
+import triangleArea from "./triangleArea";
 import type { Point } from "../../types/global";
 
 const area = (points: Point[]): number => {

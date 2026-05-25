@@ -1,4 +1,4 @@
-import type { Point } from "../types/global";
+import type { Point } from "../../types/global";
 
 const triangleArea = (
     { x: x1, y: y1 }: Point,
