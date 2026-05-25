@@ -15,8 +15,8 @@ const middle = (
     const middleY = y2 >= y1 ? yDistance / 2 : -yDistance / 2;
     
     return {
-        x: middleX,
-        y: middleY
+        x: x1 + middleX,
+        y: y1 + middleY
     }
 }
 

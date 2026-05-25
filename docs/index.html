@@ -165,20 +165,78 @@
       <div class="card-info" id="i-random"></div>
     </div>
 
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">middle()</span>
+        <span class="fn-hint">drag either dot</span>
+      </div>
+      <canvas id="c-middle" height="200"></canvas>
+      <div class="card-info" id="i-middle"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">farest()</span>
+        <span class="fn-hint">move mouse over canvas</span>
+      </div>
+      <canvas id="c-farest" height="200"></canvas>
+      <div class="card-info" id="i-farest">hover to find farthest point</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">pentagon()</span>
+        <span class="fn-hint">rotating shape</span>
+      </div>
+      <canvas id="c-pentagon" height="200"></canvas>
+      <div class="card-info" id="i-pentagon"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">center()</span>
+        <span class="fn-hint">centroid of point cloud</span>
+      </div>
+      <canvas id="c-center" height="200"></canvas>
+      <button class="card-btn" id="btn-center">Regenerate</button>
+      <div class="card-info" id="i-center"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">cross()</span>
+        <span class="fn-hint">drag line endpoints</span>
+      </div>
+      <canvas id="c-cross" height="200"></canvas>
+      <div class="card-info" id="i-cross"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="fn-name">perimeter()</span>
+        <span class="fn-hint">drag vertices</span>
+      </div>
+      <canvas id="c-perimeter" height="200"></canvas>
+      <div class="card-info" id="i-perimeter"></div>
+    </div>
+
   </div>
 </main>
 
 <script type="module">
 import {
-  collision, distance, nearest, rotate,
-  positionInCircle, randomPoints, area
-} from 'https://cdn.jsdelivr.net/npm/pointscape@2.0.0/dist/index.js';
+  collision, distance, nearest, farest, rotate,
+  positionInCircle, randomPoints, area, lerp,
+  pentagon, center, cross
+} from 'https://cdn.jsdelivr.net/npm/pointscape@2.1.1/dist/index.js';
 
-// lerp ships in the next release; implemented inline here
-const lerp = (p1, p2, t) => ({
-  x: p1.x + (p2.x - p1.x) * t,
-  y: p1.y + (p2.y - p1.y) * t,
-});
+// middle() and perimeter() have off-by-origin bugs in @2.1.1; fixed locally, pending next publish
+const middle = (p1, p2) => ({ x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 });
+const perimeter = (pts) => {
+  let d = 0;
+  for (let i = 0; i < pts.length; i++) d += distance(pts[i], pts[(i + 1) % pts.length]);
+  return d;
+};
 
 const DPR = window.devicePixelRatio || 1;
 const C = { accent: '#6366f1', cyan: '#22d3ee', red: '#f87171', green: '#4ade80', muted: '#64748b' };
@@ -482,6 +540,288 @@ function info(id, text) {
 
   document.getElementById('btn-random').addEventListener('click', generate);
   generate();
+}
+
+// ─────────────────────────────────────────────
+// 7. middle — drag two dots
+// ─────────────────────────────────────────────
+{
+  const { canvas, ctx, w, h } = initCanvas('c-middle');
+  let p1 = { x: w * 0.25, y: h * 0.4 };
+  let p2 = { x: w * 0.75, y: h * 0.6 };
+  let dragging = null;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const mid = middle(p1, p2);
+
+    ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y);
+    ctx.strokeStyle = C.muted + '40'; ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 4]); ctx.stroke(); ctx.setLineDash([]);
+
+    circle(ctx, p1, 8, C.accent, null);
+    circle(ctx, p2, 8, C.cyan, null);
+    circle(ctx, mid, 7, C.green, C.green + '55', 2);
+
+    ctx.fillStyle = C.green; ctx.font = '11px monospace'; ctx.textAlign = 'center';
+    ctx.fillText('mid', mid.x, mid.y - 14);
+    ctx.textAlign = 'left';
+
+    info('i-middle', `middle(p1, p2) → {x: ${mid.x.toFixed(1)}, y: ${mid.y.toFixed(1)}}`);
+  }
+
+  function getXY(e) {
+    const r = canvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  canvas.addEventListener('mousedown', e => {
+    const m = getXY(e);
+    if (distance(m, p1) < 16) dragging = 'p1';
+    else if (distance(m, p2) < 16) dragging = 'p2';
+  });
+  canvas.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const m = getXY(e);
+    if (dragging === 'p1') p1 = m; else p2 = m;
+    draw();
+  });
+  canvas.addEventListener('mouseleave', () => { canvas.style.cursor = 'default'; });
+  window.addEventListener('mouseup', () => { dragging = null; canvas.style.cursor = 'default'; });
+  canvas.style.cursor = 'grab';
+  draw();
+}
+
+// ─────────────────────────────────────────────
+// 8. farest — mouse finds farthest point
+// ─────────────────────────────────────────────
+{
+  const { canvas, ctx, w, h } = initCanvas('c-farest');
+  const pts = Array.from({ length: 20 }, () => ({
+    x: 20 + Math.random() * (w - 40),
+    y: 20 + Math.random() * (h - 40),
+  }));
+  let mouse = null;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const far = mouse ? farest(mouse, pts) : null;
+
+    pts.forEach(p => {
+      const isFarthest = far && p.x === far.x && p.y === far.y;
+      circle(ctx, p, isFarthest ? 8 : 5, isFarthest ? C.red : C.muted + '99', null);
+    });
+
+    if (mouse && far) {
+      ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(far.x, far.y);
+      ctx.strokeStyle = C.red + '66'; ctx.lineWidth = 1.5;
+      ctx.setLineDash([5, 4]); ctx.stroke(); ctx.setLineDash([]);
+      circle(ctx, mouse, 5, C.cyan, null);
+      info('i-farest', `farest(cursor, pts) → {x:${far.x.toFixed(0)}, y:${far.y.toFixed(0)}}  dist: ${distance(mouse, far).toFixed(1)}`);
+    }
+  }
+
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+    draw();
+  });
+  canvas.addEventListener('mouseleave', () => {
+    mouse = null;
+    info('i-farest', 'hover to find farthest point');
+    draw();
+  });
+  draw();
+}
+
+// ─────────────────────────────────────────────
+// 9. pentagon — rotating shape
+// ─────────────────────────────────────────────
+{
+  const { ctx, w, h } = initCanvas('c-pentagon');
+  const ctr = { x: w / 2, y: h / 2 };
+  const R = Math.min(w, h) * 0.35;
+  let ang = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const pts = rotate(ctr, pentagon(ctr, R), ang);
+
+    ctx.beginPath();
+    pts.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+    ctx.closePath();
+    ctx.fillStyle = C.accent + '18';
+    ctx.strokeStyle = C.accent + '99';
+    ctx.lineWidth = 1.5;
+    ctx.fill(); ctx.stroke();
+
+    pts.forEach((p, i) => circle(ctx, p, 6, i === 0 ? C.cyan : C.accent, null));
+    circle(ctx, ctr, 3, C.muted, null);
+
+    const deg = ((ang * 180 / Math.PI) % 360 + 360) % 360;
+    ctx.fillStyle = C.muted; ctx.font = '11px monospace';
+    ctx.fillText(`${deg.toFixed(1)}°`, 10, h - 12);
+
+    info('i-pentagon', `pentagon(center, ${R.toFixed(0)}) → 5 points`);
+    ang += 0.010;
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ─────────────────────────────────────────────
+// 10. center — centroid of random cloud
+// ─────────────────────────────────────────────
+{
+  const { ctx, w, h } = initCanvas('c-center');
+  const xB = { min: 20, max: w - 20 };
+  const yB = { min: 20, max: h - 20 };
+  let pts = [];
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    if (!pts.length) return;
+    const ctr = center(pts);
+
+    pts.forEach(p => {
+      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(ctr.x, ctr.y);
+      ctx.strokeStyle = C.muted + '30'; ctx.lineWidth = 1; ctx.stroke();
+    });
+
+    pts.forEach(p => circle(ctx, p, 5, C.accent, null));
+    circle(ctx, ctr, 9, C.green, C.green + '44', 2);
+
+    ctx.fillStyle = C.green; ctx.font = '11px monospace'; ctx.textAlign = 'center';
+    ctx.fillText('center', ctr.x, ctr.y - 16);
+    ctx.textAlign = 'left';
+
+    info('i-center', `center(${pts.length} pts) → {x: ${ctr.x.toFixed(1)}, y: ${ctr.y.toFixed(1)}}`);
+  }
+
+  function generate() {
+    pts = randomPoints(xB, yB, 8);
+    draw();
+  }
+
+  document.getElementById('btn-center').addEventListener('click', generate);
+  generate();
+}
+
+// ─────────────────────────────────────────────
+// 11. cross — draggable line intersection
+// ─────────────────────────────────────────────
+{
+  const { canvas, ctx, w, h } = initCanvas('c-cross');
+  let line1 = { start: { x: w * 0.1, y: h * 0.3 }, end: { x: w * 0.65, y: h * 0.75 } };
+  let line2 = { start: { x: w * 0.35, y: h * 0.1 }, end: { x: w * 0.5,  y: h * 0.9 } };
+  let dragging = null;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const crosses = cross(line1, line2);
+    const c1 = crosses ? C.red : C.accent;
+    const c2 = crosses ? C.red : C.cyan;
+
+    function drawSeg(l, col) {
+      ctx.beginPath(); ctx.moveTo(l.start.x, l.start.y); ctx.lineTo(l.end.x, l.end.y);
+      ctx.strokeStyle = col + '99'; ctx.lineWidth = 2; ctx.stroke();
+      circle(ctx, l.start, 7, col, null);
+      circle(ctx, l.end,   7, col, null);
+    }
+    drawSeg(line1, c1);
+    drawSeg(line2, c2);
+
+    if (crosses) {
+      ctx.fillStyle = C.red; ctx.font = '12px monospace'; ctx.textAlign = 'center';
+      ctx.fillText('crossing!', w / 2, 18);
+      ctx.textAlign = 'left';
+    }
+
+    info('i-cross', `cross(line1, line2) → ${crosses}`);
+  }
+
+  function getXY(e) {
+    const r = canvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  canvas.addEventListener('mousedown', e => {
+    const m = getXY(e);
+    const T = 14;
+    if      (distance(m, line1.start) < T) dragging = { l: 'line1', k: 'start' };
+    else if (distance(m, line1.end)   < T) dragging = { l: 'line1', k: 'end'   };
+    else if (distance(m, line2.start) < T) dragging = { l: 'line2', k: 'start' };
+    else if (distance(m, line2.end)   < T) dragging = { l: 'line2', k: 'end'   };
+  });
+  canvas.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const m = getXY(e);
+    (dragging.l === 'line1' ? line1 : line2)[dragging.k] = m;
+    draw();
+  });
+  canvas.addEventListener('mouseleave', () => { canvas.style.cursor = 'default'; });
+  window.addEventListener('mouseup', () => { dragging = null; canvas.style.cursor = 'default'; });
+  canvas.style.cursor = 'grab';
+  draw();
+}
+
+// ─────────────────────────────────────────────
+// 12. perimeter — draggable polygon
+// ─────────────────────────────────────────────
+{
+  const { canvas, ctx, w, h } = initCanvas('c-perimeter');
+  let pts = [
+    { x: w * 0.25, y: h * 0.25 },
+    { x: w * 0.75, y: h * 0.25 },
+    { x: w * 0.75, y: h * 0.75 },
+    { x: w * 0.25, y: h * 0.75 },
+  ];
+  let dragging = null;
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const p = perimeter(pts);
+
+    ctx.beginPath();
+    pts.forEach((pt, i) => i === 0 ? ctx.moveTo(pt.x, pt.y) : ctx.lineTo(pt.x, pt.y));
+    ctx.closePath();
+    ctx.fillStyle = C.accent + '18';
+    ctx.strokeStyle = C.accent + '99';
+    ctx.lineWidth = 1.5;
+    ctx.fill(); ctx.stroke();
+
+    for (let i = 0; i < pts.length; i++) {
+      const a = pts[i], b = pts[(i + 1) % pts.length];
+      const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      ctx.fillStyle = C.muted; ctx.font = '10px monospace'; ctx.textAlign = 'center';
+      ctx.fillText(distance(a, b).toFixed(0), mx, my - 7);
+    }
+    ctx.textAlign = 'left';
+
+    pts.forEach((pt, i) => circle(ctx, pt, 7, i === dragging ? C.green : C.accent, null));
+
+    info('i-perimeter', `perimeter([4 pts]) → ${p.toFixed(1)}px`);
+  }
+
+  function getXY(e) {
+    const r = canvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  canvas.addEventListener('mousedown', e => {
+    const m = getXY(e);
+    const idx = pts.findIndex(pt => distance(m, pt) < 14);
+    dragging = idx === -1 ? null : idx;
+  });
+  canvas.addEventListener('mousemove', e => {
+    if (dragging === null) return;
+    pts[dragging] = getXY(e);
+    draw();
+  });
+  canvas.addEventListener('mouseleave', () => { canvas.style.cursor = 'default'; });
+  window.addEventListener('mouseup', () => { dragging = null; canvas.style.cursor = 'default'; });
+  canvas.style.cursor = 'grab';
+  draw();
 }
 </script>
 </body>

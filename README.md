@@ -8,22 +8,22 @@
 
 ## Table of contents
 
-- [What's new](#whats-new-200)
+- [What's new](#whats-new-21x)
 - [How to use](#how-to-use) — install, imports, develops, publishes
 - [Examples](#examples)
+- [Point class](#point-class)
 - [Function reference](#documentation-for-the-functions)
 - [Changelog](./CHANGELOG.md)
 
 ---
 
-## What's new (2.0.0)
+## What's new (2.1.x)
 
-This release is **2.0.0** (not 1.8.x) on purpose: **`nearest`** now returns **`null`** for an empty list, and **`collision`** uses true **circular** distance. Both can require code or tuning changes, so **SemVer treats this as major**—users on **`^1.x`** stay on 1.x until they upgrade consciously.
+- **`lerp(point1, point2, t)`** — linear interpolation between two points.
+- **`Point` class** — methods that return a point now return a `Point` instance (chainable). New methods: `lerp`, `rotateAround`, `equals`, `clone`, `toString`, `Point.from`. See [Point class](#point-class) below.
+- **Bug fixes** — `middle()` now returns absolute coordinates for non-origin inputs; `perimeter()` works correctly for polygons not anchored at the origin; `pentagon()` now applies the `angle` rotation argument.
 
-- **`collision`** — Euclidean radius vs the old axis-aligned bounds; **retune** if you depended on the box.
-- **`nearest`** — **`null`** when no candidates; **guard** before using the point.
-- **`collisionInArray`** — Same semantics as **`collision`**; barrel import cycle removed.
-- **`collision`** — Optional callback typed as **`() => void`**.
+**Upgrading from 1.x?** `nearest` returns **`null`** for an empty list and `collision` uses true circular (Euclidean) distance — retune thresholds if you relied on the old axis-aligned box check.
 
 See **[CHANGELOG.md](./CHANGELOG.md)** for full notes.
 
@@ -133,22 +133,40 @@ Most of the functions are designed for working with points in a 2D coordinate sy
 
 ```
 
-The Point class can also be used for working with the points.
+### Point class
+
+The `Point` class wraps any `{ x, y }` and exposes all geometric operations as chainable methods. Every method that returns a point returns a `Point` instance, so calls can be chained.
+
 ```typescript
- import { Point } from "pointscape";
+import { Point } from "pointscape";
 
- const point1 = new Point(0, 0);
- const point2 = new Point(1, 1);
+const a = new Point(10, 20);
+const b = new Point(50, 80);
 
- const distance = point1.distanceTo(point2);
- // result:  1.4142135623730951
+// Basic methods
+a.distanceTo(b);          // 72.11...
+a.angleTo(b);             // number in radians
+a.equals(b);              // false
+a.clone();                // Point(10, 20)
+a.toString();             // "Point(10, 20)"
 
- const angle = point1.angleTo(point2);
- // result:  0.7853981633974483
+// Factory — convert a plain { x, y } to a Point instance
+const c = Point.from({ x: 0, y: 0 });
 
- // nearestFromPoints follows the same rules as nearest(); empty input yields null.
+// Chainable — move() and lerp() return Point instances
+a.move(5, -5)             // Point(15, 15)
+ .lerp(b, 0.5)            // Point(32.5, 47.5)
+ .distanceTo(b);          // number
 
-``` 
+// Rotate a point around a center
+a.rotateAround({ x: 0, y: 0 }, Math.PI); // Point(-10, -20)
+
+// Array-based methods — also return Point or Point | null
+a.nearestFromPoints([b, c]);  // Point | null
+a.farestFromPoints([b, c]);   // Point | null
+```
+
+Plain `{ x: number; y: number }` objects work for every function — you don't need to allocate a `Point` instance unless you want the method API.
 
 There are other utility functions as well.
 ```typescript

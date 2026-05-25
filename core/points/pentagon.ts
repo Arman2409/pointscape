@@ -10,10 +10,10 @@ const pentagon = (
     const numberOfSides = 5;
     const {x: centerX, y: centerY} = centerPoint;
     
-    angle = angle % 360;
+    const angleRad = (angle % 360) * (Math.PI / 180);
 
     for (let i = 0; i < numberOfSides; i++) {
-        const currentAngle =  + (i * (2 * Math.PI)) / numberOfSides;
+        const currentAngle = angleRad + (i * (2 * Math.PI)) / numberOfSides;
         const x = centerX + radius * Math.cos(currentAngle);
         const y = centerY + radius * Math.sin(currentAngle);
         points.push({ x, y });

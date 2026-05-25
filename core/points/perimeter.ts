@@ -1,21 +1,11 @@
-import { distance } from "../../index";
+import distance from "./distance";
 import type { Point } from "../../types/global";
 
-const perimeter = (points: Point[]):number => {
+const perimeter = (points: Point[]): number => {
     let overallDistance = 0;
-    let lastPoint: Point = {x: 0, y: 0};
-    let i = 0;
-
-    for (const point of points) {
-        i += 1;
-        if (i === 1) continue;
-        if (i === points.length) {
-            overallDistance += distance(point, points[0]);
-        }
-        overallDistance += distance(lastPoint, point);
-        lastPoint = point;
+    for (let i = 0; i < points.length; i++) {
+        overallDistance += distance(points[i], points[(i + 1) % points.length]);
     }
-    
     return overallDistance;
 }
 
