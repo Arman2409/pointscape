@@ -1,19 +1,22 @@
-import distance from '../core/points/distance';
-import collision from '../core/points/collision';
-import middle from '../core/points/middle';
-import angle from '../core/points/angle';
-import move from '../core/points/move';
-import farest from '../core/points/farest';
-import nearest from '../core/points/nearest';
-import collisionInArray from '../core/points/collisionInArray';
-import inLine from '../core/points/inLine';
-import getLine from '../core/points/getLine';
-import lerpFn from '../core/points/lerp';
-import rotateFn from '../core/points/rotate';
-import type { Line, Point as PointType } from '../types/global';
+import distance from "../core/points/distance";
+import collision from "../core/points/collision";
+import middle from "../core/points/middle";
+import angle from "../core/points/angle";
+import move from "../core/points/move";
+import farest from "../core/points/farest";
+import nearest from "../core/points/nearest";
+import collisionInArray from "../core/points/collisionInArray";
+import inLine from "../core/points/inLine";
+import getLine from "../core/points/getLine";
+import lerpFn from "../core/points/lerp";
+import rotateFn from "../core/points/rotate";
+import type { Line, Point as PointType } from "../types/global";
 
 export class Point implements PointType {
-    constructor(public x: number, public y: number) { }
+    constructor(
+        public x: number,
+        public y: number
+    ) {}
 
     static from(point: PointType): Point {
         return new Point(point.x, point.y);

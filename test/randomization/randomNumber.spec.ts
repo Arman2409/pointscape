@@ -7,6 +7,6 @@ describe("randomNumber", () => {
         const number = randomNumber(minLimit, maxLimit);
 
         expect(number).toBeGreaterThanOrEqual(minLimit);
-        expect(number).toBeLessThanOrEqual(maxLimit);    
-    })
-})
+        expect(number).toBeLessThanOrEqual(maxLimit);
+    });
+});

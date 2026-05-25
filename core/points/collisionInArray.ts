@@ -4,7 +4,7 @@ import type { Point } from "../../types/global";
 const collisionInArray = (
     initialPoint: Point,
     arr: Point[],
-    radius: number,
+    radius: number
 ): Point[] => {
     const collisionsArr: Point[] = [];
 
@@ -14,8 +14,8 @@ const collisionInArray = (
             collisionsArr.push(point);
         });
     });
-    
+
     return collisionsArr;
-}
+};
 
 export default collisionInArray;

@@ -1,5 +1,5 @@
 import { scale } from "../../index";
-import type { Point } from '../../types/global';
+import type { Point } from "../../types/global";
 
 // Sample points for testing
 const points = [
@@ -17,15 +17,14 @@ const expectedScaledPoints = [
     { x: 6, y: 2 },
     { x: 10, y: 3 },
 ];
-test('scale function correctly scales points', () => {
-
+test("scale function correctly scales points", () => {
     // Apply scaling
     const scaledPoints = scale(scaleFactorX, scaleFactorY, points);
 
     // Assertions
     expect(scaledPoints.length).toBe(points.length);
 
-    scaledPoints.forEach(({x, y}: Point, index: number) => {
+    scaledPoints.forEach(({ x, y }: Point, index: number) => {
         expect(x).toBeCloseTo(expectedScaledPoints[index].x);
         expect(y).toBeCloseTo(expectedScaledPoints[index].y);
     });

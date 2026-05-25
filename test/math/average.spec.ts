@@ -6,7 +6,7 @@ const actualAverage = 2;
 describe("average", () => {
     it("should return the average number", () => {
         const result = average(numbersArr);
-        
+
         expect(result).toBe(actualAverage);
-    })
-})
+    });
+});

@@ -1,4 +1,4 @@
-// points 
+// points
 import distance from "./core/points/distance";
 import collision from "./core/points/collision";
 import middle from "./core/points/middle";
@@ -29,35 +29,35 @@ import triangle from "./core/points/triangle";
 import pentagon from "./core/points/pentagon";
 import lerp from "./core/points/lerp";
 
-// math 
+// math
 import inRange from "./core/math/inRange";
 import roundToPrecision from "./core/math/roundToPrecision";
 import degreesToRadians from "./core/math/degreesToRadians";
 import radiansToDegrees from "./core/math/radiansToDegrees";
 import average from "./core/math/average";
 
-// randomization 
+// randomization
 import uniqueId from "./core/randomization/uniqueId";
 import randomBoolean from "./core/randomization/randomBoolean";
 import randomNumber from "./core/randomization/randomNumber";
 
-// arrays 
+// arrays
 import intersection from "./core/arrays/intersection";
 import difference from "./core/arrays/difference";
 import chunk from "./core/arrays/chunk";
 import removeDuplicates from "./core/arrays/removeDuplicates";
 import sample from "./core/arrays/sample";
 
-// utils 
+// utils
 import Point from "./utils/Point";
 
 // types
 export type { Point as PointType }; // ✅ class instance type
 export type { Coordinate, Direction, Line, Bounds } from "./types/global";
 
-// named exports 
+// named exports
 export {
-    // points 
+    // points
     Point,
     distance,
     middle,
@@ -106,12 +106,12 @@ export {
     difference,
     chunk,
     removeDuplicates,
-    sample
-}
+    sample,
+};
 
-// default export 
+// default export
 export default {
-    // points 
+    // points
     Point,
     distance,
     middle,
@@ -160,7 +160,5 @@ export default {
     difference,
     chunk,
     removeDuplicates,
-    sample
-}
-
-
+    sample,
+};

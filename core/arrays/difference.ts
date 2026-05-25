@@ -1,7 +1,5 @@
-const difference = (
-    arr1: unknown[],
-    arr2: unknown[]): unknown[] => {
-    return arr1.filter(value => !arr2.includes(value));
-}
+const difference = (arr1: unknown[], arr2: unknown[]): unknown[] => {
+    return arr1.filter((value) => !arr2.includes(value));
+};
 
 export default difference;

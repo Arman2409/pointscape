@@ -1,10 +1,6 @@
 import type { Point } from "../../types/global";
 
-const middle = (
-    point1: Point,
-    point2: Point
-): Point => {
-
+const middle = (point1: Point, point2: Point): Point => {
     const { x: x1, y: y1 } = point1;
     const { x: x2, y: y2 } = point2;
 
@@ -13,11 +9,11 @@ const middle = (
 
     const middleX = x2 >= x1 ? xDistance / 2 : -xDistance / 2;
     const middleY = y2 >= y1 ? yDistance / 2 : -yDistance / 2;
-    
+
     return {
         x: x1 + middleX,
-        y: y1 + middleY
-    }
-}
+        y: y1 + middleY,
+    };
+};
 
 export default middle;

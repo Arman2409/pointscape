@@ -1,7 +1,7 @@
 import { getLine } from "../../index";
 
 // rectangle with area 1
-const point1 =  { x: 2, y: 0 };
+const point1 = { x: 2, y: 0 };
 const point2 = { x: 1, y: 1 };
 
 describe("getLine", () => {
@@ -10,5 +10,5 @@ describe("getLine", () => {
 
         expect(newLine.start).toBe(point1);
         expect(newLine.end).toBe(point2);
-    })
-})
+    });
+});

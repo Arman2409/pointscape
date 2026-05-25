@@ -21,6 +21,9 @@ describe("lerp", () => {
     });
 
     it("should work with negative coordinates", () => {
-        expect(lerp({ x: -10, y: -10 }, { x: 10, y: 10 }, 0.5)).toStrictEqual({ x: 0, y: 0 });
+        expect(lerp({ x: -10, y: -10 }, { x: 10, y: 10 }, 0.5)).toStrictEqual({
+            x: 0,
+            y: 0,
+        });
     });
 });

@@ -5,5 +5,5 @@ describe("radiansToDegrees", () => {
         const radians = radiansToDegrees(Math.PI / 2);
 
         expect(radians).toBe(90);
-    })
-})
+    });
+});

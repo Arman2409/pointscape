@@ -8,9 +8,8 @@ const pointWithoutCollision = (
     yBounds: Bounds,
     distanceBetweenPoints: number,
     others: Point[],
-    currentTryCount = maxTryCount,
+    currentTryCount = maxTryCount
 ): Point | string => {
-
     if (currentTryCount <= 1) {
         return "Couldn't get the point";
     }
@@ -18,14 +17,17 @@ const pointWithoutCollision = (
     const { min: minX, max: maxX } = xBounds;
     const { min: minY, max: maxY } = yBounds;
 
-    const initialPoint = randomPoint({ min: minX, max: maxX }, { min: minY, max: maxY });
+    const initialPoint = randomPoint(
+        { min: minX, max: maxX },
+        { min: minY, max: maxY }
+    );
 
     let hasCollides = false;
-    others.forEach(point => {
+    others.forEach((point) => {
         if (distance(initialPoint, point) < distanceBetweenPoints) {
             hasCollides = true;
         }
-    })
+    });
 
     if (hasCollides) {
         return pointWithoutCollision(
@@ -39,11 +41,11 @@ const pointWithoutCollision = (
             },
             distanceBetweenPoints,
             others,
-            currentTryCount - 1,
+            currentTryCount - 1
         );
     } else {
         return initialPoint;
     }
-}
+};
 
 export default pointWithoutCollision;

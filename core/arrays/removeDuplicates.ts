@@ -1,7 +1,5 @@
-const removeDuplicates = (
-    arr: unknown[]
-) => {
+const removeDuplicates = (arr: unknown[]) => {
     return [...new Set(arr)];
-}
+};
 
 export default removeDuplicates;

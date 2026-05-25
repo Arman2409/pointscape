@@ -8,5 +8,5 @@ describe("triangle", () => {
         const distance2 = distance(points[1], points[2]);
 
         expect(distance1).toBe(distance2);
-    })
-})
+    });
+});

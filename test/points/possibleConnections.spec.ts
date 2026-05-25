@@ -5,5 +5,5 @@ describe("possibleConnections", () => {
         const connectionsCount = possibleConnections(5);
 
         expect(connectionsCount).toBe(10);
-    })
-})
+    });
+});

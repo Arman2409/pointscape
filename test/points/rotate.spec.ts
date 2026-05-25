@@ -17,7 +17,7 @@ const expectedRotatedPoints = [
     { x: 1, y: 3 },
 ];
 
-test('rotate function correctly rotates points around the center', () => {
+test("rotate function correctly rotates points around the center", () => {
     // Rotation angle in radians
     const angleInRadians = Math.PI / 2;
 
@@ -27,7 +27,7 @@ test('rotate function correctly rotates points around the center', () => {
     // Assertions
     expect(rotatedPoints.length).toBe(points.length);
 
-    rotatedPoints.forEach(({x, y}, index) => {
+    rotatedPoints.forEach(({ x, y }, index) => {
         expect(x).toBeCloseTo(expectedRotatedPoints[index].x);
         expect(y).toBeCloseTo(expectedRotatedPoints[index].y);
     });

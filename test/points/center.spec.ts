@@ -14,5 +14,5 @@ describe("center", () => {
 
         expect(x).toBe(1);
         expect(y).toBe(1);
-    })
-})
+    });
+});

@@ -4,8 +4,8 @@ const steps = {
     left: [-1, 0],
     right: [1, 0],
     up: [0, 1],
-    down: [0, -1]
-}
+    down: [0, -1],
+};
 
 const triangle = (
     initialPoint: Point,
@@ -16,8 +16,8 @@ const triangle = (
     const nextStep = steps[direction];
 
     const points: Point[] = [initialPoint];
-    let {x, y} = initialPoint;
-    
+    let { x, y } = initialPoint;
+
     for (let i = 0; i < 2; i++) {
         if (i === 0) {
             x += nextStep[0] * size;
@@ -31,7 +31,5 @@ const triangle = (
 
     return points;
 };
-
-
 
 export default triangle;

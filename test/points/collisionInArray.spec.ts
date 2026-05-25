@@ -7,9 +7,9 @@ describe("collisionInArray", () => {
         const pointsArr = [
             {
                 x: distance / 2,
-                y: distance / 2
-            }
-        ]
+                y: distance / 2,
+            },
+        ];
         const foundPoints = collisionInArray(point, pointsArr, distance);
         if (foundPoints.length) {
             const { x: foundX, y: foundY } = foundPoints[0];
@@ -17,7 +17,6 @@ describe("collisionInArray", () => {
             expect(foundY).toBe(distance / 2);
             return;
         }
-        throw new Error("Collision not found")
-    })
-
-})
+        throw new Error("Collision not found");
+    });
+});

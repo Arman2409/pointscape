@@ -1,9 +1,6 @@
 import type { Line } from "../../types/global";
 
-const cross = (
-    line1: Line,
-    line2: Line,
-):boolean => {
+const cross = (line1: Line, line2: Line): boolean => {
     const line1Start = line1.start;
     const line1End = line1.end;
     const line2Start = line2.start;
@@ -28,13 +25,15 @@ const cross = (
     }
 
     // Calculate the signed areas of triangles formed by each point and the other line's endpoints
-    const area1 = (line2End.x - line1Start.x) * (line2Start.y - line1Start.y) -
-                  (line2Start.x - line1Start.x) * (line2End.y - line1Start.y);
-    const area2 = (line1End.x - line2Start.x) * (line1Start.y - line2Start.y) -
-                  (line1Start.x - line2Start.x) * (line1End.y - line2Start.y);
+    const area1 =
+        (line2End.x - line1Start.x) * (line2Start.y - line1Start.y) -
+        (line2Start.x - line1Start.x) * (line2End.y - line1Start.y);
+    const area2 =
+        (line1End.x - line2Start.x) * (line1Start.y - line2Start.y) -
+        (line1Start.x - line2Start.x) * (line1End.y - line2Start.y);
 
     // If the signed areas have different signs, the lines intersect
     return area1 * area2 < 0;
-}
+};
 
 export default cross;

@@ -1,7 +1,4 @@
-const chunk = (
-    array: unknown[],
-    perChunk: number
-) => {
+const chunk = (array: unknown[], perChunk: number) => {
     const chunks = [];
     for (let i = 0; i < array.length / perChunk; i++) {
         const startIndex = i * perChunk;
@@ -9,6 +6,6 @@ const chunk = (
         chunks.push(newChunk);
     }
     return chunks;
-}
+};
 
 export default chunk;

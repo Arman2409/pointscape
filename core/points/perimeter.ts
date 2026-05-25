@@ -7,6 +7,6 @@ const perimeter = (points: Point[]): number => {
         overallDistance += distance(points[i], points[(i + 1) % points.length]);
     }
     return overallDistance;
-}
+};
 
 export default perimeter;

@@ -1,18 +1,18 @@
 export interface Point {
-    x: number
-    y: number
+    x: number;
+    y: number;
 }
 
-export type Coordinate = 'x' | "y";
+export type Coordinate = "x" | "y";
 
 export type Direction = "left" | "right" | "up" | "down";
 
 export interface Bounds {
-    min: number
-    max: number
+    min: number;
+    max: number;
 }
 
 export interface Line {
-    start: Point
-    end: Point
+    start: Point;
+    end: Point;
 }
