@@ -12,6 +12,11 @@ All notable changes to this project are documented in this file.
 
 - **README table of contents** — function links in the category list now jump to their section (Geometry, Positioning, etc.) instead of individual API entries further down the page.
 
+### Tooling
+
+- **Source maps** — `tsup` build now emits `.map` files alongside ESM/CJS output for easier debugging in consumers.
+- **Removed erroneous `dependencies.pointscape`** — the package no longer depended on itself on npm (local scratch scripts use `./index` instead).
+
 ---
 
 ## [2.2.0] — 2026-05-26
