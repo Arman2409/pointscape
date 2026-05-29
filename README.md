@@ -8,7 +8,7 @@
 
 ## Table of contents
 
-- [What's new](#whats-new-21x)
+- [What's new](#whats-new-23x)
 - [How to use](#how-to-use) — install, imports, develops, publishes
 - [Examples](#examples)
 - [Point class](#point-class)
@@ -17,12 +17,12 @@
 
 ---
 
-## What's new (2.2.0)
+## What's new (2.3.0)
 
-- **`farest` renamed to `farthest`** — update call sites and any use of `Point.farestFromPoints` → `Point.farthestFromPoints`.
-- **`triangleArea(point1, point2, point3)`** — now a public API function, not just an internal helper.
+- **`scale` and `rotate` argument order** — points array comes first: `scale(points, factorX, factorY)` and `rotate(points, center, angle)`.
+- **Source maps** — published builds include `.map` files for easier debugging.
 
-**Upgrading from 2.1.x?** Replace all uses of `farest` with `farthest` and `farestFromPoints` with `farthestFromPoints`.
+**Upgrading from 2.2.x?** Swap argument order for `scale` and `rotate` (see [CHANGELOG](./CHANGELOG.md#230--2026-05-29)).
 
 See **[CHANGELOG.md](./CHANGELOG.md)** for full notes.
 
@@ -194,99 +194,99 @@ const randomBool = randomBoolean();
 
 ##### Geometry
 
-[area](#area)
+[area](#geometry)
 
-[triangleArea](#trianglearea)
+[triangleArea](#geometry)
 
-[perimeter](#perimeter)
+[perimeter](#geometry)
 
-[center](#center)
+[center](#geometry)
 
-[square](#square)
+[square](#geometry)
 
-[rectangle](#rectangle)
+[rectangle](#geometry)
 
-[pentagon](#pentagon)
+[pentagon](#geometry)
 
-[triangle](#triangle)
+[triangle](#geometry)
 
-[circleArea](#circlearea)
+[circleArea](#geometry)
 
-[middle](#middle)
+[middle](#geometry)
 
 ##### Positioning
 
-[distance](#distance)
+[distance](#positioning)
 
-[positionInCircle](#positionincircle)
+[positionInCircle](#positioning)
 
-[angle](#angle)
+[angle](#positioning)
 
-[nearest](#nearest)
+[nearest](#positioning)
 
-[randomPoint](#randompoint)
+[randomPoint](#positioning)
 
-[randomPointInDistance](#randompointindistance)
+[randomPointInDistance](#positioning)
 
-[randomPoints](#randompoints)
+[randomPoints](#positioning)
 
-[farthest](#farthest)
+[farthest](#positioning)
 
-[rotate](#rotate)
+[rotate](#positioning)
 
-[inLine](#inline)
+[inLine](#positioning)
 
-[cross](#cross)
+[cross](#positioning)
 
-[move](#move)
+[move](#positioning)
 
-[lerp](#lerp)
+[lerp](#positioning)
 
 ##### Relationships
 
-[collision](#collision)
+[collision](#relationships)
 
-[collisionInArray](#collisioninarray)
+[collisionInArray](#relationships)
 
-[possibleConnections](#possibleconnections)
+[possibleConnections](#relationships)
 
-[sort](#sort)
+[sort](#relationships)
 
-[scale](#scale)
+[scale](#relationships)
 
-[pointWithoutCollision](#pointwithoutcollision)
+[pointWithoutCollision](#relationships)
 
 #### Math
 
-[degreesToRadians](#degreestodadians)
+[degreesToRadians](#math)
 
-[radiansToDegrees](#radianstodegrees)
+[radiansToDegrees](#math)
 
-[inRange](#inrange)
+[inRange](#math)
 
-[roundToPrecision](#roundtoprecision)
+[roundToPrecision](#math)
 
-[average](#average)
+[average](#math)
 
 #### Arrays
 
-[intersection](#intersection)
+[intersection](#arrays)
 
-[difference](#difference)
+[difference](#arrays)
 
-[chunk](#chunk)
+[chunk](#arrays)
 
-[removeDuplicate](#removeDuplicates)
+[removeDuplicate](#arrays)
 
-[sample](#sample)
+[sample](#arrays)
 
 #### Randomization
 
-[randomNumber](#randomnumber)
+[randomNumber](#randomization)
 
-[randomBoolean](#randomboolean)
+[randomBoolean](#randomization)
 
-[uniqueId](#uniqueid)
+[uniqueId](#randomization)
 
 ## Function documentation
 

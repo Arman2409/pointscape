@@ -4,18 +4,22 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+---
+
+## [2.3.0] — 2026-05-29
+
 ### Breaking changes
 
 - **`scale` and `rotate` parameter order** — batch point transforms now take **`points` first**, consistent with `sort`, `center`, and `move` (single-point). Use `scale(points, scaleFactorX, scaleFactorY)` and `rotate(points, centerPoint, angleInRadians)` instead of the previous argument order.
 
 ### Fixed
 
-- **README table of contents** — function links in the category list now jump to their section (Geometry, Positioning, etc.) instead of individual API entries further down the page.
+- **README navigation** — “Function reference” in the table of contents links to the function list; category entries link to Geometry / Positioning / Relationships / Math / Arrays / Randomization sections.
 
 ### Tooling
 
-- **Source maps** — `tsup` build now emits `.map` files alongside ESM/CJS output for easier debugging in consumers.
-- **Removed erroneous `dependencies.pointscape`** — the package no longer depended on itself on npm (local scratch scripts use `./index` instead).
+- **Source maps** — `tsup` build emits `.map` files alongside ESM/CJS output for easier debugging in consumers.
+- **Removed erroneous `dependencies.pointscape`** — the package no longer listed itself as an npm dependency.
 
 ---
 
