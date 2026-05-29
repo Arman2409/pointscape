@@ -1,8 +1,8 @@
 import type { Point } from "../../types/global";
 
 const rotate = (
-    centerPoint: Point,
     points: Point[],
+    centerPoint: Point,
     angleInRadians: number
 ) => {
     const { x: centerX, y: centerY } = centerPoint;

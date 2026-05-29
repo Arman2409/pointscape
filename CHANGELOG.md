@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+### Breaking changes
+
+- **`scale` and `rotate` parameter order** — batch point transforms now take **`points` first**, consistent with `sort`, `center`, and `move` (single-point). Use `scale(points, scaleFactorX, scaleFactorY)` and `rotate(points, centerPoint, angleInRadians)` instead of the previous argument order.
+
+### Fixed
+
+- **README table of contents** — function links in the category list now jump to their section (Geometry, Positioning, etc.) instead of individual API entries further down the page.
+
 ---
 
 ## [2.2.0] — 2026-05-26

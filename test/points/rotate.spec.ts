@@ -22,7 +22,7 @@ test("rotate function correctly rotates points around the center", () => {
     const angleInRadians = Math.PI / 2;
 
     // Apply rotation
-    const rotatedPoints = rotate(centerPoint, points, angleInRadians);
+    const rotatedPoints = rotate(points, centerPoint, angleInRadians);
 
     // Assertions
     expect(rotatedPoints.length).toBe(points.length);

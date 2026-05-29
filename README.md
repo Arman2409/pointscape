@@ -12,7 +12,7 @@
 - [How to use](#how-to-use) — install, imports, develops, publishes
 - [Examples](#examples)
 - [Point class](#point-class)
-- [Function reference](#documentation-for-the-functions)
+- [Function reference](#the-list-of-available-functions)
 - [Changelog](./CHANGELOG.md)
 
 ---
@@ -180,7 +180,7 @@ const randomBool = randomBoolean();
 
 ## The list of available functions
 
-### Categories
+### Function Categories
 
 - [Points](#points)
     - [Geometry](#geometry)
@@ -288,7 +288,7 @@ const randomBool = randomBoolean();
 
 [uniqueId](#uniqueid)
 
-## Documentation for the functions
+## Function documentation
 
 ### Points
 
@@ -456,10 +456,10 @@ Returns the farthest point from the given point among the given array; **`null`*
 - <b id="rotate">rotate</b>
 
 ```typescript
-  (point: Point, points: Point[], angleInRadians: number) => Point[]
+  (points: Point[], centerPoint: Point, angleInRadians: number) => Point[]
 ```
 
-Returns the points rotated around the given point.
+Returns the points rotated around the given center point.
 
 - <b id="sort">sort</b>
 
@@ -472,7 +472,7 @@ Returns the points rotated around the given point.
 - <b id="scale">scale</b>
 
 ```typescript
-  (scaleFactorX: number, scaleFactorY: number, points: Point[]) => Point[]
+  (points: Point[], scaleFactorX: number, scaleFactorY: number) => Point[]
 ```
 
 Returns the scaled points.

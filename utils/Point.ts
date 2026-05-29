@@ -72,7 +72,7 @@ export class Point implements PointType {
     }
 
     rotateAround(center: PointType, angleRad: number): Point {
-        const pts = rotateFn(center, [this], angleRad);
+        const pts = rotateFn([this], center, angleRad);
         return new Point(pts[0].x, pts[0].y);
     }
 
