@@ -278,7 +278,7 @@
 
                 <div class="card">
                     <div class="card-head">
-                        <span class="fn-name">farest()</span>
+                        <span class="fn-name">farthest()</span>
                         <span class="fn-hint">move mouse over canvas</span>
                     </div>
                     <canvas id="c-farest" height="200"></canvas>
@@ -331,7 +331,7 @@
                 collision,
                 distance,
                 nearest,
-                farest,
+                farthest,
                 rotate,
                 positionInCircle,
                 randomPoints,
@@ -821,7 +821,7 @@
 
                 function draw() {
                     ctx.clearRect(0, 0, w, h);
-                    const far = mouse ? farest(mouse, pts) : null;
+                    const far = mouse ? farthest(mouse, pts) : null;
 
                     pts.forEach((p) => {
                         const isFarthest =
@@ -847,7 +847,7 @@
                         circle(ctx, mouse, 5, C.cyan, null);
                         info(
                             "i-farest",
-                            `farest(cursor, pts) → {x:${far.x.toFixed(0)}, y:${far.y.toFixed(0)}}  dist: ${distance(mouse, far).toFixed(1)}`
+                            `farthest(cursor, pts) → {x:${far.x.toFixed(0)}, y:${far.y.toFixed(0)}}  dist: ${distance(mouse, far).toFixed(1)}`
                         );
                     }
                 }
