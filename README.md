@@ -96,30 +96,160 @@ See also [npm `files` publish guide](https://docs.npmjs.com/cli/v10/configuring-
 
 ## Examples
 
-Most of the functions are designed for working with points in a 2D coordinate system.
+Most functions work with plain `{ x, y }` objects — no class allocation needed.
+
+### Point geometry
 
 ```typescript
 import { distance, middle, angle, center, perimeter } from "pointscape";
 
-const point1 = { x: 0, y: 0 };
-const point2 = { x: 10, y: 10 };
+const a = { x: 0, y: 0 };
+const b = { x: 10, y: 10 };
 
-// Plain { x, y } objects work for all point APIs
+distance(a, b);   // 14.142135623730951
+middle(a, b);     // { x: 5, y: 5 }
+angle(a, b);      // 0.7853981633974483  (π/4 radians)
 
-const distanceBetweenPoints = distance(point1, point2);
-// result: 14.142135623730951
+const points = [a, b, { x: 0, y: 10 }, { x: 10, y: 0 }];
+center(points);    // { x: 5, y: 5 }
+perimeter(points); // 48.2842712474619
+```
 
-const middlePoint = middle(point1, point2);
-// result: {x: 5, y: 5}
+### Area calculations
 
-const angleBetweenPoints = angle(point1, point2);
-// result: 0.7853981633974483
+```typescript
+import { area, triangleArea, circleArea } from "pointscape";
 
-const point3 = { x: 0, y: 10 },
-    point4 = { x: 10, y: 0 };
+// Polygon area — rectangle 4 × 3
+area([{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }]);
+// 12
 
-const perimeterOfPoints = perimeter([point1, point2, point3, point4]);
-// result: 48.2842712474619
+triangleArea({ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 3, y: 4 });
+// 12
+
+circleArea(5);
+// 78.53981633974483
+```
+
+### Collision detection
+
+```typescript
+import { collision, collisionInArray } from "pointscape";
+
+const player = { x: 0, y: 0 };
+const enemy  = { x: 3, y: 4 };  // exactly 5 units away
+
+collision(player, enemy, 5);  // true  — within radius
+collision(player, enemy, 4);  // false — outside radius
+
+// Optional callback fires on hit
+collision(player, enemy, 5, () => console.log("hit!"));
+
+// Batch: all targets within radius 3 of origin
+const targets = [{ x: 1, y: 0 }, { x: 5, y: 0 }, { x: 3, y: 0 }];
+collisionInArray({ x: 0, y: 0 }, targets, 3);
+// [{ x: 1, y: 0 }, { x: 3, y: 0 }]
+```
+
+### Nearest & farthest
+
+```typescript
+import { nearest, farthest } from "pointscape";
+
+const origin = { x: 0, y: 0 };
+const pts    = [{ x: 5, y: 0 }, { x: 1, y: 0 }, { x: 10, y: 0 }];
+
+nearest(origin, pts);   // { x: 1, y: 0 }
+farthest(origin, pts);  // { x: 10, y: 0 }
+nearest(origin, []);    // null
+```
+
+### Movement & interpolation
+
+```typescript
+import { move, lerp } from "pointscape";
+
+move({ x: 5, y: 5 }, 3, -2);
+// { x: 8, y: 3 }
+
+// 25 % of the way from A to B — useful for smooth animation
+lerp({ x: 0, y: 0 }, { x: 20, y: 40 }, 0.25);
+// { x: 5, y: 10 }
+
+// Midpoint (equivalent to middle())
+lerp({ x: 0, y: 0 }, { x: 20, y: 40 }, 0.5);
+// { x: 10, y: 20 }
+```
+
+### Rotation & scaling
+
+_Argument order changed in **2.3.0** — points array is always first._
+
+```typescript
+import { rotate, scale, degreesToRadians } from "pointscape";
+
+const box = [{ x: 10, y: 0 }, { x: 10, y: 10 }, { x: 0, y: 10 }, { x: 0, y: 0 }];
+
+// Rotate 90 ° around the origin
+rotate(box, { x: 0, y: 0 }, degreesToRadians(90));
+// Each vertex rotated — e.g. { x: 10, y: 0 } becomes { x: 0, y: 10 }
+
+// Double width, halve height
+scale(box, 2, 0.5);
+// [{ x: 20, y: 0 }, { x: 20, y: 5 }, { x: 0, y: 5 }, { x: 0, y: 0 }]
+```
+
+### Shape generators
+
+```typescript
+import { square, rectangle, triangle, pentagon } from "pointscape";
+
+// 4 vertices of a 10-unit square (clockwise from origin)
+square({ x: 0, y: 0 }, 10);
+// [{ x:0,y:0 }, { x:10,y:0 }, { x:10,y:-10 }, { x:0,y:-10 }]
+
+// Rectangle 10 wide × 5 tall
+rectangle({ x: 0, y: 0 }, 10, 5);
+// [{ x:0,y:0 }, { x:10,y:0 }, { x:10,y:-5 }, { x:0,y:-5 }]
+
+// Triangle vertices, size 10, default direction "left"
+triangle({ x: 0, y: 0 }, 10);
+
+// Pentagon centred at (50, 50) with radius 30
+pentagon({ x: 50, y: 50 }, 30);  // 5 evenly-spaced vertices
+```
+
+### Lines & circular positioning
+
+```typescript
+import { inLine, cross, positionInCircle } from "pointscape";
+
+// Is (5, 5) on the line from (0, 0) to (10, 10)?
+inLine({ x: 5, y: 5 }, { start: { x: 0, y: 0 }, end: { x: 10, y: 10 } });
+// true
+
+// Do two diagonals intersect?
+cross(
+    { start: { x: 0, y: 0 },  end: { x: 10, y: 10 } },
+    { start: { x: 0, y: 10 }, end: { x: 10, y: 0 } }
+);
+// true
+
+// Point on a circle of radius 10 at angle 0 (rightmost)
+positionInCircle({ x: 0, y: 0 }, 10, 0);
+// { x: 10, y: 0 }
+```
+
+### Sorting points
+
+```typescript
+import { sort } from "pointscape";
+
+const pts = [{ x: 3, y: 1 }, { x: 1, y: 3 }, { x: 2, y: 2 }];
+
+sort([...pts]);        // by x → [{ x:1,y:3 }, { x:2,y:2 }, { x:3,y:1 }]
+sort([...pts], "y");   // by y → [{ x:3,y:1 }, { x:2,y:2 }, { x:1,y:3 }]
+// Note: sort mutates the array in place.
 ```
 
 ### Point class
@@ -133,49 +263,71 @@ const a = new Point(10, 20);
 const b = new Point(50, 80);
 
 // Basic methods
-a.distanceTo(b); // 72.11...
-a.angleTo(b); // number in radians
-a.equals(b); // false
-a.clone(); // Point(10, 20)
-a.toString(); // "Point(10, 20)"
+a.distanceTo(b);  // 72.11...
+a.angleTo(b);     // number in radians
+a.equals(b);      // false
+a.clone();        // Point(10, 20)
+a.toString();     // "Point(10, 20)"
 
 // Factory — convert a plain { x, y } to a Point instance
 const c = Point.from({ x: 0, y: 0 });
 
 // Chainable — move() and lerp() return Point instances
-a.move(5, -5) // Point(15, 15)
-    .lerp(b, 0.5) // Point(32.5, 47.5)
+a.move(5, -5)       // Point(15, 15)
+    .lerp(b, 0.5)   // Point(32.5, 47.5)
     .distanceTo(b); // number
 
 // Rotate a point around a center
 a.rotateAround({ x: 0, y: 0 }, Math.PI); // Point(-10, -20)
 
-// Array-based methods — also return Point or Point | null
-a.nearestFromPoints([b, c]); // Point | null
+// Array-based methods — return Point or Point | null
+a.nearestFromPoints([b, c]);  // Point | null
 a.farthestFromPoints([b, c]); // Point | null
 ```
 
 Plain `{ x: number; y: number }` objects work for every function — you don't need to allocate a `Point` instance unless you want the method API.
 
-There are other utility functions as well.
+### Math utilities
 
 ```typescript
-import { inRange, chunk, randomBoolean } from "pointscape";
+import { degreesToRadians, radiansToDegrees, roundToPrecision, average, inRange } from "pointscape";
 
-//  Helper functions for math
+degreesToRadians(180);      // 3.141592653589793
+radiansToDegrees(Math.PI);  // 180
 
-const isInTheRange = inRange(1, 0, 10);
-// result: true
+roundToPrecision(3.14159, 2);  // 3.14
+roundToPrecision(3.14159, 0);  // 3
 
-// Helper functions for arrays
+average([10, 20, 30, 40]);  // 25
 
-const chunks = chunk([1, 1, 1, 1], 2);
-// result: [[1, 1], [1, 1]]
+inRange(5, 0, 10);   // true
+inRange(15, 0, 10);  // false
+```
 
-// Helper functions for randomization
+### Array utilities
 
-const randomBool = randomBoolean();
-// result: true or false
+```typescript
+import { intersection, difference, removeDuplicates, chunk, sample } from "pointscape";
+
+intersection([1, 2, 3, 4], [3, 4, 5, 6]);  // [3, 4]
+difference([1, 2, 3, 4], [3, 4, 5, 6]);    // [1, 2]
+removeDuplicates([1, 1, 2, 3, 3, 4]);      // [1, 2, 3, 4]
+chunk([1, 2, 3, 4, 5, 6], 2);              // [[1, 2], [3, 4], [5, 6]]
+
+sample([10, 20, 30, 40, 50]);     // one random element, e.g. 30
+sample([10, 20, 30, 40, 50], 3);  // 3 consecutive elements, e.g. [20, 30, 40]
+```
+
+### Randomization
+
+```typescript
+import { randomNumber, randomBoolean, uniqueId } from "pointscape";
+
+randomNumber(1, 10);   // random integer in [1, 10], e.g. 7
+randomBoolean();       // true or false
+
+uniqueId();                       // e.g. "110e8400-e29b-41d4-a716-446655440000"
+uniqueId(["id-1", "id-2"]);       // UUID guaranteed not to collide with the provided ids
 ```
 
 ## The list of available functions
