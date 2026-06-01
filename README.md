@@ -98,39 +98,6 @@ See also [npm `files` publish guide](https://docs.npmjs.com/cli/v10/configuring-
 
 Most functions work with plain `{ x, y }` objects — no class allocation needed.
 
-### Point geometry
-
-```typescript
-import { distance, middle, angle, center, perimeter } from "pointscape";
-
-const a = { x: 0, y: 0 };
-const b = { x: 10, y: 10 };
-
-distance(a, b);   // 14.142135623730951
-middle(a, b);     // { x: 5, y: 5 }
-angle(a, b);      // 0.7853981633974483  (π/4 radians)
-
-const points = [a, b, { x: 0, y: 10 }, { x: 10, y: 0 }];
-center(points);    // { x: 5, y: 5 }
-perimeter(points); // 48.2842712474619
-```
-
-### Area calculations
-
-```typescript
-import { area, triangleArea, circleArea } from "pointscape";
-
-// Polygon area — rectangle 4 × 3
-area([{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }]);
-// 12
-
-triangleArea({ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 3, y: 4 });
-// 12
-
-circleArea(5);
-// 78.53981633974483
-```
-
 ### Collision detection
 
 ```typescript
@@ -181,6 +148,23 @@ lerp({ x: 0, y: 0 }, { x: 20, y: 40 }, 0.5);
 // { x: 10, y: 20 }
 ```
 
+### Point geometry
+
+```typescript
+import { distance, middle, angle, center, perimeter } from "pointscape";
+
+const a = { x: 0, y: 0 };
+const b = { x: 10, y: 10 };
+
+distance(a, b);   // 14.142135623730951
+middle(a, b);     // { x: 5, y: 5 }
+angle(a, b);      // 0.7853981633974483  (π/4 radians)
+
+const points = [a, b, { x: 0, y: 10 }, { x: 10, y: 0 }];
+center(points);    // { x: 5, y: 5 }
+perimeter(points); // 48.2842712474619
+```
+
 ### Rotation & scaling
 
 _Argument order changed in **2.3.0** — points array is always first._
@@ -197,6 +181,22 @@ rotate(box, { x: 0, y: 0 }, degreesToRadians(90));
 // Double width, halve height
 scale(box, 2, 0.5);
 // [{ x: 20, y: 0 }, { x: 20, y: 5 }, { x: 0, y: 5 }, { x: 0, y: 0 }]
+```
+
+### Area calculations
+
+```typescript
+import { area, triangleArea, circleArea } from "pointscape";
+
+// Polygon area — rectangle 4 × 3
+area([{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }]);
+// 12
+
+triangleArea({ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 3, y: 4 });
+// 12
+
+circleArea(5);
+// 78.53981633974483
 ```
 
 ### Shape generators
@@ -217,39 +217,6 @@ triangle({ x: 0, y: 0 }, 10);
 
 // Pentagon centred at (50, 50) with radius 30
 pentagon({ x: 50, y: 50 }, 30);  // 5 evenly-spaced vertices
-```
-
-### Lines & circular positioning
-
-```typescript
-import { inLine, cross, positionInCircle } from "pointscape";
-
-// Is (5, 5) on the line from (0, 0) to (10, 10)?
-inLine({ x: 5, y: 5 }, { start: { x: 0, y: 0 }, end: { x: 10, y: 10 } });
-// true
-
-// Do two diagonals intersect?
-cross(
-    { start: { x: 0, y: 0 },  end: { x: 10, y: 10 } },
-    { start: { x: 0, y: 10 }, end: { x: 10, y: 0 } }
-);
-// true
-
-// Point on a circle of radius 10 at angle 0 (rightmost)
-positionInCircle({ x: 0, y: 0 }, 10, 0);
-// { x: 10, y: 0 }
-```
-
-### Sorting points
-
-```typescript
-import { sort } from "pointscape";
-
-const pts = [{ x: 3, y: 1 }, { x: 1, y: 3 }, { x: 2, y: 2 }];
-
-sort([...pts]);        // by x → [{ x:1,y:3 }, { x:2,y:2 }, { x:3,y:1 }]
-sort([...pts], "y");   // by y → [{ x:3,y:1 }, { x:2,y:2 }, { x:1,y:3 }]
-// Note: sort mutates the array in place.
 ```
 
 ### Point class
@@ -286,6 +253,39 @@ a.farthestFromPoints([b, c]); // Point | null
 ```
 
 Plain `{ x: number; y: number }` objects work for every function — you don't need to allocate a `Point` instance unless you want the method API.
+
+### Lines & circular positioning
+
+```typescript
+import { inLine, cross, positionInCircle } from "pointscape";
+
+// Is (5, 5) on the line from (0, 0) to (10, 10)?
+inLine({ x: 5, y: 5 }, { start: { x: 0, y: 0 }, end: { x: 10, y: 10 } });
+// true
+
+// Do two diagonals intersect?
+cross(
+    { start: { x: 0, y: 0 },  end: { x: 10, y: 10 } },
+    { start: { x: 0, y: 10 }, end: { x: 10, y: 0 } }
+);
+// true
+
+// Point on a circle of radius 10 at angle 0 (rightmost)
+positionInCircle({ x: 0, y: 0 }, 10, 0);
+// { x: 10, y: 0 }
+```
+
+### Sorting points
+
+```typescript
+import { sort } from "pointscape";
+
+const pts = [{ x: 3, y: 1 }, { x: 1, y: 3 }, { x: 2, y: 2 }];
+
+sort([...pts]);        // by x → [{ x:1,y:3 }, { x:2,y:2 }, { x:3,y:1 }]
+sort([...pts], "y");   // by y → [{ x:3,y:1 }, { x:2,y:2 }, { x:1,y:3 }]
+// Note: sort mutates the array in place.
+```
 
 ### Math utilities
 
