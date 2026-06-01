@@ -10,6 +10,7 @@
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "prepack": "npm run build",
+        "prepublishOnly": "node -e \"const fs=require('fs'),v=require('./package.json').version,f='./docs/index.html';fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/pointscape@[\\d.]+\\/dist\\/index\\.js/g,'pointscape@'+v+'/dist/index.js'))\"",
         "publish:dry-run": "npm pack --dry-run"
     },
     "files": [

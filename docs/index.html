@@ -340,19 +340,9 @@
                 pentagon,
                 center,
                 cross,
-            } from "https://cdn.jsdelivr.net/npm/pointscape@2.1.1/dist/index.js";
-
-            // middle() and perimeter() have off-by-origin bugs in @2.1.1; fixed locally, pending next publish
-            const middle = (p1, p2) => ({
-                x: (p1.x + p2.x) / 2,
-                y: (p1.y + p2.y) / 2,
-            });
-            const perimeter = (pts) => {
-                let d = 0;
-                for (let i = 0; i < pts.length; i++)
-                    d += distance(pts[i], pts[(i + 1) % pts.length]);
-                return d;
-            };
+                middle,
+                perimeter,
+            } from "https://cdn.jsdelivr.net/npm/pointscape@2.3.0/dist/index.js";
 
             const DPR = window.devicePixelRatio || 1;
             const C = {
