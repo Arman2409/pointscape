@@ -48,52 +48,6 @@ pnpm add pointscape
 yarn add pointscape
 ```
 
-### What ships on npm
-
-The published tarball contains only **`dist/`** (ESM + CJS + types), **README**, **CHANGELOG**, and **LICENSE**—see [`package.json` → `files`](./package.json). Import ESM with `import` or CommonJS with `require` per your bundler; types are exposed through [`exports`](./package.json) for both.
-
-1. **Default import** — one object with every export (larger surface; fine for scripts).
-
-```typescript
-import pointscape from "pointscape";
-```
-
-2. **Named imports** (preferred for tree-shaking) — see [Types and imports](#types-and-imports-typescript) below.
-
-### Types and imports (TypeScript)
-
-Use **named imports** so bundlers can tree-shake unused functions:
-
-```typescript
-import { distance, collision, nearest, Point } from "pointscape";
-import type { Bounds, Line, PointType } from "pointscape";
-```
-
-Functions take any **`{ x: number; y: number }`**; you do **not** have to allocate a `Point` class instance. **`PointType`** matches instances of **`Point`** (the class exported from this package).
-
-### Developing
-
-Open a PR against the default branch; **CI** runs **`npm ci`**, **tests**, and **`npm run build`** on every push/PR (see **[`.github/workflows/ci.yml`](./.github/workflows/ci.yml)**).
-
-```bash
-git clone https://github.com/Arman2409/pointscape.git
-cd pointscape
-nvm use   # optional: picks Node from .nvmrc
-npm ci
-npm test
-npm run build
-```
-
-### Publishing on npm
-
-1. Bump **`version`** in `package.json` and update **`CHANGELOG.md`**.
-2. **`npm login`** with an account that [**maintains** `pointscape\*\*](https://www.npmjs.com/package/pointscape) on the public registry (`https://registry.npmjs.org/`).
-3. **`npm publish`** — the **`prepack`** script rebuilds **`dist/`** first.
-
-Preview tarball contents locally: **`npm run publish:dry-run`**.
-
-See also [npm `files` publish guide](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#files) — only `dist/`, readme, changelog, and license are published.
-
 ## Examples
 
 Most functions work with plain `{ x, y }` objects — no class allocation needed.
@@ -808,3 +762,37 @@ Returns a random boolean value.
 ```
 
 Returns a unique ID that's different from the provided IDs, or a random ID if no other IDs are given.
+
+### Types and imports (TypeScript)
+
+Use **named imports** so bundlers can tree-shake unused functions:
+
+```typescript
+import { distance, collision, nearest, Point } from "pointscape";
+import type { Bounds, Line, PointType } from "pointscape";
+```
+
+Functions take any **`{ x: number; y: number }`**; you do **not** have to allocate a `Point` class instance. **`PointType`** matches instances of **`Point`** (the class exported from this package).
+
+### Developing
+
+Open a PR against the default branch; **CI** runs **`npm ci`**, **tests**, and **`npm run build`** on every push/PR (see **[`.github/workflows/ci.yml`](./.github/workflows/ci.yml)**).
+
+```bash
+git clone https://github.com/Arman2409/pointscape.git
+cd pointscape
+nvm use   # optional: picks Node from .nvmrc
+npm ci
+npm test
+npm run build
+```
+
+### Publishing on npm
+
+1. Bump **`version`** in `package.json` and update **`CHANGELOG.md`**.
+2. **`npm login`** with an account that [**maintains** `pointscape\*\*](https://www.npmjs.com/package/pointscape) on the public registry (`https://registry.npmjs.org/`).
+3. **`npm publish`** — the **`prepack`** script rebuilds **`dist/`** first.
+
+Preview tarball contents locally: **`npm run publish:dry-run`**.
+
+See also [npm `files` publish guide](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#files) — only `dist/`, readme, changelog, and license are published.
