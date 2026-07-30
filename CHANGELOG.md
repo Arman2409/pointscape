@@ -6,6 +6,27 @@ All notable changes to this project are documented in this file.
 
 ---
 
+## [2.4.0] — 2026-07-30
+
+This is a **major** release ([SemVer](https://semver.org/)): both changes below alter values or types that existing call sites may depend on.
+
+### Breaking changes
+
+- **`angle`** now returns the correct direction from `point1` to `point2` regardless of `point1`'s position. Previously it applied a spurious offset based on `point1`'s absolute position relative to the origin, so the same direction vector could return a different angle depending on where `point1` sat in space; only calls with `point1` at the origin happened to be unaffected. Any code compensating for the old offset will need to drop that workaround.
+- **`pointWithoutCollision`** returns **`Point | null`** instead of `Point | string`. Replace `typeof result === "string"` checks with `result === null` for the retry-exhausted case.
+
+### Fixed
+
+- **`angle`** (and **`Point.angleTo`**, which wraps it) — removed the quadrant-adjustment term that depended on `point1`'s absolute position instead of the direction between the two points. `angle` is now a direct `atan2(dy, dx)`, matching the documented behavior ("the angle formed by the connection of two points").
+
+### Improvements
+
+- **`chunk`, `intersection`, `difference`, `removeDuplicates`, `sample`** are now generic (`<T>`) instead of typed with `unknown[]`/`any[]`, so callers keep their element types through these functions.
+- **`uniqueId`** — simplified the collision check to `others.includes(newId)` instead of a manual `forEach` with a boolean flag.
+- **Test suite** — replaced several tautological tests (`toBeGreaterThanOrEqual(0)` on random inputs) with deterministic known-answer assertions for `distance`, `angle`, and `middle`, including a regression test for the `angle` fix above.
+
+---
+
 ## [2.3.0] — 2026-05-29
 
 ### Breaking changes
