@@ -8,7 +8,7 @@
 
 ## Table of contents
 
-- [What's new](#whats-new-23x)
+- [What's new](#whats-new-250)
 - [How to use](#how-to-use) — install, imports, develops, publishes
 - [Examples](#examples)
 - [Point class](#point-class)
@@ -18,12 +18,11 @@
 
 ---
 
-## What's new (2.3.0)
+## What's new (2.5.0)
 
-- **`scale` and `rotate` argument order** — points array comes first: `scale(points, factorX, factorY)` and `rotate(points, center, angle)`.
-- **Source maps** — published builds include `.map` files for easier debugging.
+- **New `vectors` domain** — `magnitude`, `normalize`, `dotProduct`, `crossProduct`, `add`, `subtract`, `multiply`, `project`, `reflect`, `perpendicular`, `fromAngle`, plus a chainable **`Vector`** class. See [Vector operations](#vector-operations).
 
-**Upgrading from 2.2.x?** Swap argument order for `scale` and `rotate` (see [CHANGELOG](./CHANGELOG.md#230--2026-05-29)).
+**Upgrading from 2.3.x?** Version 2.4.0 changed `angle`'s behavior for any `point1` not at the origin (it was returning incorrect results), and `pointWithoutCollision` now returns `Point | null` instead of `Point | string` — see [CHANGELOG](./CHANGELOG.md#240--2026-07-30).
 
 See **[CHANGELOG.md](./CHANGELOG.md)** for full notes.
 

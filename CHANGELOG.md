@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## [Unreleased]
+## [2.5.0] — 2026-07-30
 
 ### Added
 
@@ -12,7 +12,7 @@ All notable changes to this project are documented in this file.
 
 ## [2.4.0] — 2026-07-30
 
-This is a **major** release ([SemVer](https://semver.org/)): both changes below alter values or types that existing call sites may depend on.
+Both changes below alter values or types that existing call sites may depend on ([SemVer](https://semver.org/)).
 
 ### Breaking changes
 
