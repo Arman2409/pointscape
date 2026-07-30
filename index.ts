@@ -1,60 +1,60 @@
 // points
-import distance from "./core/points/distance";
-import collision from "./core/points/collision";
-import middle from "./core/points/middle";
-import pointWithoutCollision from "./core/points/pointWithoutCollision";
-import collisionInArray from "./core/points/collisionInArray";
-import angle from "./core/points/angle";
-import randomPoints from "./core/points/randomPoints";
-import area from "./core/points/area";
-import triangleArea from "./core/points/triangleArea";
-import randomPointInDistance from "./core/points/randomPointInDistance";
-import nearest from "./core/points/nearest";
-import perimeter from "./core/points/perimeter";
-import positionInCircle from "./core/points/positionInCircle";
-import possibleConnections from "./core/points/possibleConnections";
-import circleArea from "./core/points/circleArea";
-import center from "./core/points/center";
-import farthest from "./core/points/farthest";
-import randomPoint from "./core/points/randomPoint";
-import move from "./core/points/move";
-import scale from "./core/points/scale";
-import inLine from "./core/points/inLine";
-import getLine from "./core/points/getLine";
-import cross from "./core/points/cross";
-import rotate from "./core/points/rotate";
-import sort from "./core/points/sort";
-import square from "./core/points/square";
-import rectangle from "./core/points/rectangle";
-import triangle from "./core/points/triangle";
-import pentagon from "./core/points/pentagon";
-import lerp from "./core/points/lerp";
+import distance from "./src/core/points/distance";
+import collision from "./src/core/points/collision";
+import middle from "./src/core/points/middle";
+import pointWithoutCollision from "./src/core/points/pointWithoutCollision";
+import collisionInArray from "./src/core/points/collisionInArray";
+import angle from "./src/core/points/angle";
+import randomPoints from "./src/core/points/randomPoints";
+import area from "./src/core/points/area";
+import triangleArea from "./src/core/points/triangleArea";
+import randomPointInDistance from "./src/core/points/randomPointInDistance";
+import nearest from "./src/core/points/nearest";
+import perimeter from "./src/core/points/perimeter";
+import positionInCircle from "./src/core/points/positionInCircle";
+import possibleConnections from "./src/core/points/possibleConnections";
+import circleArea from "./src/core/points/circleArea";
+import center from "./src/core/points/center";
+import farthest from "./src/core/points/farthest";
+import randomPoint from "./src/core/points/randomPoint";
+import move from "./src/core/points/move";
+import scale from "./src/core/points/scale";
+import inLine from "./src/core/points/inLine";
+import getLine from "./src/core/points/getLine";
+import cross from "./src/core/points/cross";
+import rotate from "./src/core/points/rotate";
+import sort from "./src/core/points/sort";
+import square from "./src/core/points/square";
+import rectangle from "./src/core/points/rectangle";
+import triangle from "./src/core/points/triangle";
+import pentagon from "./src/core/points/pentagon";
+import lerp from "./src/core/points/lerp";
 
 // math
-import inRange from "./core/math/inRange";
-import roundToPrecision from "./core/math/roundToPrecision";
-import degreesToRadians from "./core/math/degreesToRadians";
-import radiansToDegrees from "./core/math/radiansToDegrees";
-import average from "./core/math/average";
+import inRange from "./src/core/math/inRange";
+import roundToPrecision from "./src/core/math/roundToPrecision";
+import degreesToRadians from "./src/core/math/degreesToRadians";
+import radiansToDegrees from "./src/core/math/radiansToDegrees";
+import average from "./src/core/math/average";
 
 // randomization
-import uniqueId from "./core/randomization/uniqueId";
-import randomBoolean from "./core/randomization/randomBoolean";
-import randomNumber from "./core/randomization/randomNumber";
+import uniqueId from "./src/core/randomization/uniqueId";
+import randomBoolean from "./src/core/randomization/randomBoolean";
+import randomNumber from "./src/core/randomization/randomNumber";
 
 // arrays
-import intersection from "./core/arrays/intersection";
-import difference from "./core/arrays/difference";
-import chunk from "./core/arrays/chunk";
-import removeDuplicates from "./core/arrays/removeDuplicates";
-import sample from "./core/arrays/sample";
+import intersection from "./src/core/arrays/intersection";
+import difference from "./src/core/arrays/difference";
+import chunk from "./src/core/arrays/chunk";
+import removeDuplicates from "./src/core/arrays/removeDuplicates";
+import sample from "./src/core/arrays/sample";
 
 // utils
-import Point from "./utils/Point";
+import Point from "./src/classes/Point";
 
 // types
 export type { Point as PointType }; // ✅ class instance type
-export type { Coordinate, Direction, Line, Bounds } from "./types/global";
+export type { Coordinate, Direction, Line, Bounds } from "./src/types/global";
 
 // named exports
 export {

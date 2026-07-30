@@ -1,4 +1,4 @@
-import { randomNumber } from "../../index";
+import randomNumber from "../randomization/randomNumber";
 import type { Bounds, Point } from "../../types/global";
 
 const randomPoint = (xBounds?: Bounds, yBounds?: Bounds): Point => {

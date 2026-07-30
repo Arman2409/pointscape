@@ -1,4 +1,5 @@
-import { distance, randomPoint } from "../../index";
+import distance from "./distance";
+import randomPoint from "./randomPoint";
 import type { Bounds, Point } from "../../types/global";
 
 const maxTryCount = 100;
