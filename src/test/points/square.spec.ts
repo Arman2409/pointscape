@@ -1,4 +1,4 @@
-import { square } from "../../index";
+import square from "../../core/points/square";
 
 const squarePoints = [
     { x: 0, y: 0 },

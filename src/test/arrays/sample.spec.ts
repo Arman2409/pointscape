@@ -1,4 +1,4 @@
-import { sample } from "../../index";
+import sample from "../../core/arrays/sample";
 
 const arr = [0, 1, 2, 3, 4, 5];
 const size = 2;

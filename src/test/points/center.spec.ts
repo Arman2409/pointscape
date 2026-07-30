@@ -1,4 +1,4 @@
-import { center } from "../../index";
+import center from "../../core/points/center";
 
 // points of a square with the center of 1,1
 const squarePoints = [

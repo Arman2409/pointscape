@@ -1,4 +1,4 @@
-import { difference } from "../../index";
+import difference from "../../core/arrays/difference";
 
 const arr1 = [0, 1, 2];
 const arr2 = [1, 2];

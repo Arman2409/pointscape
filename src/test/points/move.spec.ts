@@ -1,4 +1,4 @@
-import { move } from "../../index";
+import move from "../../core/points/move";
 
 const point = { x: 0, y: 0 };
 const xChange = 1;

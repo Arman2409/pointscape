@@ -1,4 +1,4 @@
-import { radiansToDegrees } from "../../index";
+import radiansToDegrees from "../../core/math/radiansToDegrees";
 
 describe("radiansToDegrees", () => {
     it("should return degrees", () => {

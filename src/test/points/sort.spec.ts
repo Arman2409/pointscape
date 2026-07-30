@@ -1,4 +1,4 @@
-import { sort } from "../../index";
+import sort from "../../core/points/sort";
 
 // Sample points for testing
 const points = [

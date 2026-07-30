@@ -1,4 +1,4 @@
-import { lerp } from "../../index";
+import lerp from "../../core/points/lerp";
 
 const p1 = { x: 0, y: 0 };
 const p2 = { x: 10, y: 20 };

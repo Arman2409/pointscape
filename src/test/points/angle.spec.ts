@@ -1,4 +1,4 @@
-import { angle } from "../../index";
+import angle from "../../core/points/angle";
 
 const pi = Math.PI;
 

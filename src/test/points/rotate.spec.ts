@@ -1,4 +1,4 @@
-import { rotate } from "../../index";
+import rotate from "../../core/points/rotate";
 
 // Sample points for testing
 const points = [

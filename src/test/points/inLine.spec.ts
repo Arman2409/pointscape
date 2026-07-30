@@ -1,4 +1,4 @@
-import { inLine } from "../../index";
+import inLine from "../../core/points/inLine";
 import { Line, Point } from "../../types/global";
 
 const inLinePoint: Point = { x: 1, y: 1 };

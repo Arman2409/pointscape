@@ -1,4 +1,4 @@
-import { pointWithoutCollision } from "../../index";
+import pointWithoutCollision from "../../core/points/pointWithoutCollision";
 import type { Point } from "../../types/global";
 
 describe("pointWithoutCollision", () => {

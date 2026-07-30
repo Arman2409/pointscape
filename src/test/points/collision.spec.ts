@@ -1,4 +1,5 @@
-import { collision, randomPoint } from "../../index";
+import collision from "../../core/points/collision";
+import randomPoint from "../../core/points/randomPoint";
 import type { Point } from "../../types/global";
 
 describe("collision", () => {

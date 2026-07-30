@@ -1,4 +1,4 @@
-import { randomNumber } from "../../index";
+import randomNumber from "../../core/randomization/randomNumber";
 
 describe("randomNumber", () => {
     it("should return random number in the range", () => {

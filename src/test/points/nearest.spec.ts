@@ -1,4 +1,5 @@
-import { nearest, randomPoint } from "../../index";
+import nearest from "../../core/points/nearest";
+import randomPoint from "../../core/points/randomPoint";
 import type { Point } from "../../types/global";
 
 describe("nearest", () => {

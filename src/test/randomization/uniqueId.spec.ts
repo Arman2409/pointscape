@@ -1,4 +1,4 @@
-import { uniqueId } from "../../index";
+import uniqueId from "../../core/randomization/uniqueId";
 
 describe("uniqueId", () => {
     it("should generate random id if other ids aren't provided", () => {

@@ -1,4 +1,4 @@
-import { circleArea } from "../../index";
+import circleArea from "../../core/points/circleArea";
 
 describe("circleArea", () => {
     it("should return 4 * Pi for 2", () => {

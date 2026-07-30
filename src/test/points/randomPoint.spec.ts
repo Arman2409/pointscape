@@ -1,4 +1,4 @@
-import { randomPoint } from "../../index";
+import randomPoint from "../../core/points/randomPoint";
 
 describe("randomNumber", () => {
     it("should return random points in given limits", () => {

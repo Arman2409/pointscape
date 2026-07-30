@@ -1,4 +1,4 @@
-import { getLine } from "../../index";
+import getLine from "../../core/points/getLine";
 
 // rectangle with area 1
 const point1 = { x: 2, y: 0 };

@@ -1,4 +1,4 @@
-import { perimeter } from "../../index";
+import perimeter from "../../core/points/perimeter";
 
 // square with perimeter 4
 export const squarePoints = [

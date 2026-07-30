@@ -1,4 +1,4 @@
-import { chunk } from "../../index";
+import chunk from "../../core/arrays/chunk";
 
 const arr = [1, 1, 1, 1];
 const chunkArr = [

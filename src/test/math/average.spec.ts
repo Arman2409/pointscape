@@ -1,4 +1,4 @@
-import { average } from "../../index";
+import average from "../../core/math/average";
 
 const numbersArr = [1, 2, 3];
 const actualAverage = 2;

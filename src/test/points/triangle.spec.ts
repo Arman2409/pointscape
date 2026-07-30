@@ -1,4 +1,5 @@
-import { distance, triangle } from "../../index";
+import distance from "../../core/points/distance";
+import triangle from "../../core/points/triangle";
 
 describe("triangle", () => {
     it("distance between returned points should be equal", () => {

@@ -1,4 +1,4 @@
-import { cross } from "../../index";
+import cross from "../../core/points/cross";
 
 const crossingLines = [
     { start: { x: 1, y: 0 }, end: { x: 1, y: 4 } },

@@ -1,4 +1,4 @@
-import { collisionInArray } from "../../index";
+import collisionInArray from "../../core/points/collisionInArray";
 
 describe("collisionInArray", () => {
     it("should return true if collides with other point", () => {

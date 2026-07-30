@@ -1,4 +1,4 @@
-import { triangleArea } from "../../index";
+import triangleArea from "../../core/points/triangleArea";
 
 describe("triangleArea", () => {
     it("should return the correct area of a right triangle", () => {

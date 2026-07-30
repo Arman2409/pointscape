@@ -1,4 +1,4 @@
-import { roundToPrecision } from "../../index";
+import roundToPrecision from "../../core/math/roundToPrecision";
 
 describe("roundToPrecision", () => {
     it("should return 1 if 0.9999 rounded to 10*-3", () => {

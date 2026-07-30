@@ -1,4 +1,4 @@
-import { rectangle } from "../../index";
+import rectangle from "../../core/points/rectangle";
 
 const rectanglePoints = [
     { x: 0, y: 0 },

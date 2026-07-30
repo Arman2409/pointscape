@@ -1,4 +1,5 @@
-import { distance, pentagon } from "../../index";
+import distance from "../../core/points/distance";
+import pentagon from "../../core/points/pentagon";
 
 describe("pentagon", () => {
     it("distance between returned points should be equal", () => {

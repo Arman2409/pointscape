@@ -1,4 +1,4 @@
-import { distance } from "../../index";
+import distance from "../../core/points/distance";
 
 describe("distance", () => {
     it("should return 5 for a 3-4-5 triangle", () => {

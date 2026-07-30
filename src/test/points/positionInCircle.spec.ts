@@ -1,4 +1,4 @@
-import { positionInCircle } from "../../index";
+import positionInCircle from "../../core/points/positionInCircle";
 
 describe("positionInCircle", () => {
     it("expect to give another x and same y for 90 degree", () => {

@@ -1,4 +1,4 @@
-import { removeDuplicates } from "../../index";
+import removeDuplicates from "../../core/arrays/removeDuplicates";
 
 const arrWithDuplicates = [0, 1, 2, 2, 3, "item", "item"];
 const arrWithoutDuplicates = [0, 1, 2, 3, "item"];

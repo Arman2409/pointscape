@@ -1,4 +1,4 @@
-import { area } from "../../index";
+import area from "../../core/points/area";
 import type { Point } from "../../types/global";
 
 // rectangle with area 1

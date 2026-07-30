@@ -1,4 +1,4 @@
-import { intersection } from "../../index";
+import intersection from "../../core/arrays/intersection";
 
 const arr1 = [0, 1, 2];
 const arr2 = [0, 3, 4];

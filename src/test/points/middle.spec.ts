@@ -1,4 +1,4 @@
-import { middle } from "../../index";
+import middle from "../../core/points/middle";
 
 describe("middle", () => {
     it("should return the exact midpoint between two points", () => {

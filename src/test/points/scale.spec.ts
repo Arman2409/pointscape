@@ -1,4 +1,4 @@
-import { scale } from "../../index";
+import scale from "../../core/points/scale";
 import type { Point } from "../../types/global";
 
 // Sample points for testing

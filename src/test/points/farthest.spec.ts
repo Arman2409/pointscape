@@ -1,4 +1,5 @@
-import { farthest, randomPoint } from "../../index";
+import farthest from "../../core/points/farthest";
+import randomPoint from "../../core/points/randomPoint";
 import type { Point } from "../../types/global";
 
 describe("farthest", () => {
