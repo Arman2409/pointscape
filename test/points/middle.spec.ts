@@ -1,20 +1,23 @@
-import { middle, randomPoint } from "../../index";
-import type { Point } from "../../types/global";
+import { middle } from "../../index";
 
 describe("middle", () => {
-    it("should  return the middle point", () => {
-        const distance = 10;
-        const initialPoint = { x: 0, y: 0 };
-        const { x: destX, y: destY }: Point = randomPoint(
-            { min: 0, max: 0 },
-            { min: distance, max: distance }
-        );
-        const { x: middleX, y: middleY }: Point = middle(initialPoint, {
-            x: destX,
-            y: destY,
+    it("should return the exact midpoint between two points", () => {
+        expect(middle({ x: 0, y: 0 }, { x: 10, y: 10 })).toStrictEqual({
+            x: 5,
+            y: 5,
         });
+    });
 
-        expect(middleX).toBeLessThan(destX);
-        expect(middleY).toBeLessThan(destY);
+    it("should work regardless of argument order", () => {
+        const a = { x: 0, y: 0 };
+        const b = { x: 10, y: 10 };
+        expect(middle(a, b)).toStrictEqual(middle(b, a));
+    });
+
+    it("should work with negative coordinates", () => {
+        expect(middle({ x: -10, y: -10 }, { x: 10, y: 10 })).toStrictEqual({
+            x: 0,
+            y: 0,
+        });
     });
 });

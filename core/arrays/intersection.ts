@@ -1,4 +1,4 @@
-const intersection = (arr1: unknown[], arr2: unknown[]) => {
+const intersection = <T>(arr1: T[], arr2: T[]): T[] => {
     return arr1.filter((value) => arr2.includes(value));
 };
 

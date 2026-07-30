@@ -1,6 +1,6 @@
 import randomNumber from "../randomization/randomNumber";
 
-const sample = (arr: unknown[], size: number = 1) => {
+const sample = <T>(arr: T[], size: number = 1): T | T[] => {
     if (size > arr.length)
         throw new Error("Sample size is larger than the array length");
     if (size <= 0) throw new Error("Size must be a positive integer");

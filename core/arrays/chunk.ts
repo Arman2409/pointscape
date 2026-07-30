@@ -1,5 +1,5 @@
-const chunk = (array: unknown[], perChunk: number) => {
-    const chunks = [];
+const chunk = <T>(array: T[], perChunk: number): T[][] => {
+    const chunks: T[][] = [];
     for (let i = 0; i < array.length / perChunk; i++) {
         const startIndex = i * perChunk;
         const newChunk = array.slice(startIndex, startIndex + perChunk);

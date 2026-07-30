@@ -498,10 +498,10 @@ interface Bounds {
 }
 
 (xBounds: Bounds, yBounds: Bounds, distance: number, points: Point[]) =>
-    Point | string;
+    Point | null;
 ```
 
-Returns a point that doesn't collide with any of the given points within the specified distance, if such a point exists, otherwise returns error string.
+Returns a point that doesn't collide with any of the given points within the specified distance, or `null` if no such point could be found within the retry budget.
 
 - <b id="randompoint">randomPoint</b>
 
@@ -700,7 +700,7 @@ Returns the average of all numbers in an array.
 - <b id="intersection">intersection</b>
 
 ```typescript
- (arr1: any[], arr2: any[]) => any[]
+ <T>(arr1: T[], arr2: T[]) => T[]
 ```
 
 Returns the array of intersection of two arrays.
@@ -708,7 +708,7 @@ Returns the array of intersection of two arrays.
 - <b id="difference">difference</b>
 
 ```typescript
- (arr1: any[], arr2: any[]) => any[]
+ <T>(arr1: T[], arr2: T[]) => T[]
 ```
 
 Returns the array of difference of two arrays.
@@ -716,7 +716,7 @@ Returns the array of difference of two arrays.
 - <b id="chunk">chunk</b>
 
 ```typescript
- (arr: any[], perArr: number) => any[][]
+ <T>(arr: T[], perArr: number) => T[][]
 ```
 
 Returns an array splited into chunks based on elements count per chunk.
@@ -724,7 +724,7 @@ Returns an array splited into chunks based on elements count per chunk.
 - <b id="removeDuplicates">removeDuplicates(arr)</b>
 
 ```typescript
- (arr: any[]) => any[]
+ <T>(arr: T[]) => T[]
 ```
 
 Returns the array without duplicates.
@@ -732,7 +732,7 @@ Returns the array without duplicates.
 - <b id="sample">sample</b>
 
 ```typescript
-  (arr: any[], [size]: number[]) => any[]
+  <T>(arr: T[], size?: number) => T | T[]
 ```
 
 Returns a random sample from an array with optional size argument for sampling length. If not specified, it returns only one element.

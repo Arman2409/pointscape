@@ -9,9 +9,9 @@ const pointWithoutCollision = (
     distanceBetweenPoints: number,
     others: Point[],
     currentTryCount = maxTryCount
-): Point | string => {
+): Point | null => {
     if (currentTryCount <= 1) {
-        return "Couldn't get the point";
+        return null;
     }
 
     const { min: minX, max: maxX } = xBounds;
@@ -22,12 +22,9 @@ const pointWithoutCollision = (
         { min: minY, max: maxY }
     );
 
-    let hasCollides = false;
-    others.forEach((point) => {
-        if (distance(initialPoint, point) < distanceBetweenPoints) {
-            hasCollides = true;
-        }
-    });
+    const hasCollides = others.some(
+        (point) => distance(initialPoint, point) < distanceBetweenPoints
+    );
 
     if (hasCollides) {
         return pointWithoutCollision(
