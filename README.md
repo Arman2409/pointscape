@@ -12,6 +12,7 @@
 - [How to use](#how-to-use) — install, imports, develops, publishes
 - [Examples](#examples)
 - [Point class](#point-class)
+- [Vector class](#vector-class)
 - [Function reference](#the-list-of-available-functions)
 - [Changelog](./CHANGELOG.md)
 
@@ -58,16 +59,20 @@ Most functions work with plain `{ x, y }` objects — no class allocation needed
 import { collision, collisionInArray } from "pointscape";
 
 const player = { x: 0, y: 0 };
-const enemy  = { x: 3, y: 4 };  // exactly 5 units away
+const enemy = { x: 3, y: 4 }; // exactly 5 units away
 
-collision(player, enemy, 5);  // true  — within radius
-collision(player, enemy, 4);  // false — outside radius
+collision(player, enemy, 5); // true  — within radius
+collision(player, enemy, 4); // false — outside radius
 
 // Optional callback fires on hit
 collision(player, enemy, 5, () => console.log("hit!"));
 
 // Batch: all targets within radius 3 of origin
-const targets = [{ x: 1, y: 0 }, { x: 5, y: 0 }, { x: 3, y: 0 }];
+const targets = [
+    { x: 1, y: 0 },
+    { x: 5, y: 0 },
+    { x: 3, y: 0 },
+];
 collisionInArray({ x: 0, y: 0 }, targets, 3);
 // [{ x: 1, y: 0 }, { x: 3, y: 0 }]
 ```
@@ -78,11 +83,15 @@ collisionInArray({ x: 0, y: 0 }, targets, 3);
 import { nearest, farthest } from "pointscape";
 
 const origin = { x: 0, y: 0 };
-const pts    = [{ x: 5, y: 0 }, { x: 1, y: 0 }, { x: 10, y: 0 }];
+const pts = [
+    { x: 5, y: 0 },
+    { x: 1, y: 0 },
+    { x: 10, y: 0 },
+];
 
-nearest(origin, pts);   // { x: 1, y: 0 }
-farthest(origin, pts);  // { x: 10, y: 0 }
-nearest(origin, []);    // null
+nearest(origin, pts); // { x: 1, y: 0 }
+farthest(origin, pts); // { x: 10, y: 0 }
+nearest(origin, []); // null
 ```
 
 ### Movement & interpolation
@@ -110,12 +119,12 @@ import { distance, middle, angle, center, perimeter } from "pointscape";
 const a = { x: 0, y: 0 };
 const b = { x: 10, y: 10 };
 
-distance(a, b);   // 14.142135623730951
-middle(a, b);     // { x: 5, y: 5 }
-angle(a, b);      // 0.7853981633974483  (π/4 radians)
+distance(a, b); // 14.142135623730951
+middle(a, b); // { x: 5, y: 5 }
+angle(a, b); // 0.7853981633974483  (π/4 radians)
 
 const points = [a, b, { x: 0, y: 10 }, { x: 10, y: 0 }];
-center(points);    // { x: 5, y: 5 }
+center(points); // { x: 5, y: 5 }
 perimeter(points); // 48.2842712474619
 ```
 
@@ -126,7 +135,12 @@ _Argument order changed in **2.3.0** — points array is always first._
 ```typescript
 import { rotate, scale, degreesToRadians } from "pointscape";
 
-const box = [{ x: 10, y: 0 }, { x: 10, y: 10 }, { x: 0, y: 10 }, { x: 0, y: 0 }];
+const box = [
+    { x: 10, y: 0 },
+    { x: 10, y: 10 },
+    { x: 0, y: 10 },
+    { x: 0, y: 0 },
+];
 
 // Rotate 90 ° around the origin
 rotate(box, { x: 0, y: 0 }, degreesToRadians(90));
@@ -143,7 +157,12 @@ scale(box, 2, 0.5);
 import { area, triangleArea, circleArea } from "pointscape";
 
 // Polygon area — rectangle 4 × 3
-area([{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }]);
+area([
+    { x: 0, y: 0 },
+    { x: 4, y: 0 },
+    { x: 4, y: 3 },
+    { x: 0, y: 3 },
+]);
 // 12
 
 triangleArea({ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 3, y: 4 });
@@ -170,7 +189,7 @@ rectangle({ x: 0, y: 0 }, 10, 5);
 triangle({ x: 0, y: 0 }, 10);
 
 // Pentagon centred at (50, 50) with radius 30
-pentagon({ x: 50, y: 50 }, 30);  // 5 evenly-spaced vertices
+pentagon({ x: 50, y: 50 }, 30); // 5 evenly-spaced vertices
 ```
 
 ### Point class
@@ -184,29 +203,99 @@ const a = new Point(10, 20);
 const b = new Point(50, 80);
 
 // Basic methods
-a.distanceTo(b);  // 72.11...
-a.angleTo(b);     // number in radians
-a.equals(b);      // false
-a.clone();        // Point(10, 20)
-a.toString();     // "Point(10, 20)"
+a.distanceTo(b); // 72.11...
+a.angleTo(b); // number in radians
+a.equals(b); // false
+a.clone(); // Point(10, 20)
+a.toString(); // "Point(10, 20)"
 
 // Factory — convert a plain { x, y } to a Point instance
 const c = Point.from({ x: 0, y: 0 });
 
 // Chainable — move() and lerp() return Point instances
-a.move(5, -5)       // Point(15, 15)
-    .lerp(b, 0.5)   // Point(32.5, 47.5)
+a.move(5, -5) // Point(15, 15)
+    .lerp(b, 0.5) // Point(32.5, 47.5)
     .distanceTo(b); // number
 
 // Rotate a point around a center
 a.rotateAround({ x: 0, y: 0 }, Math.PI); // Point(-10, -20)
 
 // Array-based methods — return Point or Point | null
-a.nearestFromPoints([b, c]);  // Point | null
+a.nearestFromPoints([b, c]); // Point | null
 a.farthestFromPoints([b, c]); // Point | null
 ```
 
 Plain `{ x: number; y: number }` objects work for every function — you don't need to allocate a `Point` instance unless you want the method API.
+
+### Vector operations
+
+`Point` and `Vector` share the same `{ x, y }` shape, but `Vector` represents a direction + magnitude (velocity, displacement, a surface normal) rather than a position — that's why it gets its own arithmetic.
+
+```typescript
+import {
+    magnitude,
+    normalize,
+    dotProduct,
+    crossProduct,
+    add,
+    subtract,
+    multiply,
+    project,
+    reflect,
+    perpendicular,
+    fromAngle,
+} from "pointscape";
+
+const velocity = { x: 3, y: 4 };
+
+magnitude(velocity); // 5
+normalize(velocity); // { x: 0.6, y: 0.8 }
+
+add({ x: 1, y: 2 }, { x: 3, y: 4 }); // { x: 4, y: 6 }
+subtract({ x: 5, y: 7 }, { x: 2, y: 3 }); // { x: 3, y: 4 }
+multiply(velocity, 2); // { x: 6, y: 8 }
+
+dotProduct({ x: 1, y: 0 }, { x: 0, y: 1 }); // 0 — perpendicular vectors
+crossProduct({ x: 2, y: 3 }, { x: 4, y: 5 }); // -2
+
+// The displacement between two points is just a subtraction
+const target = { x: 10, y: 10 };
+const origin = { x: 0, y: 0 };
+const heading = subtract(target, origin); // { x: 10, y: 10 }
+
+// Bounce a velocity off a surface with the given unit normal
+reflect({ x: 1, y: -1 }, { x: 0, y: 1 }); // { x: 1, y: 1 }
+
+// Build a velocity vector from a heading angle + speed
+fromAngle(Math.PI / 2, 5); // { x: ~0, y: 5 }
+
+perpendicular({ x: 1, y: 0 }); // { x: 0, y: 1 } — 90° counter-clockwise
+project({ x: 3, y: 4 }, { x: 1, y: 0 }); // { x: 3, y: 0 }
+```
+
+### Vector class
+
+The `Vector` class mirrors `Point`, but exposes arithmetic operations as chainable methods.
+
+```typescript
+import { Vector } from "pointscape";
+
+const a = new Vector(3, 4);
+const b = new Vector(1, 0);
+
+a.magnitude(); // 5
+a.normalize(); // Vector(0.6, 0.8)
+a.dot(b); // 3
+a.cross(b); // -4
+a.equals(b); // false
+
+// Chainable — arithmetic methods return Vector instances
+a.add(b).multiply(2).magnitude(); // number
+
+// Factories
+Vector.from({ x: 0, y: 0 });
+Vector.fromAngle(Math.PI / 2, 5); // Vector(~0, 5)
+```
 
 ### Lines & circular positioning
 
@@ -219,7 +308,7 @@ inLine({ x: 5, y: 5 }, { start: { x: 0, y: 0 }, end: { x: 10, y: 10 } });
 
 // Do two diagonals intersect?
 cross(
-    { start: { x: 0, y: 0 },  end: { x: 10, y: 10 } },
+    { start: { x: 0, y: 0 }, end: { x: 10, y: 10 } },
     { start: { x: 0, y: 10 }, end: { x: 10, y: 0 } }
 );
 // true
@@ -234,42 +323,58 @@ positionInCircle({ x: 0, y: 0 }, 10, 0);
 ```typescript
 import { sort } from "pointscape";
 
-const pts = [{ x: 3, y: 1 }, { x: 1, y: 3 }, { x: 2, y: 2 }];
+const pts = [
+    { x: 3, y: 1 },
+    { x: 1, y: 3 },
+    { x: 2, y: 2 },
+];
 
-sort([...pts]);        // by x → [{ x:1,y:3 }, { x:2,y:2 }, { x:3,y:1 }]
-sort([...pts], "y");   // by y → [{ x:3,y:1 }, { x:2,y:2 }, { x:1,y:3 }]
+sort([...pts]); // by x → [{ x:1,y:3 }, { x:2,y:2 }, { x:3,y:1 }]
+sort([...pts], "y"); // by y → [{ x:3,y:1 }, { x:2,y:2 }, { x:1,y:3 }]
 // Note: sort mutates the array in place.
 ```
 
 ### Math utilities
 
 ```typescript
-import { degreesToRadians, radiansToDegrees, roundToPrecision, average, inRange } from "pointscape";
+import {
+    degreesToRadians,
+    radiansToDegrees,
+    roundToPrecision,
+    average,
+    inRange,
+} from "pointscape";
 
-degreesToRadians(180);      // 3.141592653589793
-radiansToDegrees(Math.PI);  // 180
+degreesToRadians(180); // 3.141592653589793
+radiansToDegrees(Math.PI); // 180
 
-roundToPrecision(3.14159, 2);  // 3.14
-roundToPrecision(3.14159, 0);  // 3
+roundToPrecision(3.14159, 2); // 3.14
+roundToPrecision(3.14159, 0); // 3
 
-average([10, 20, 30, 40]);  // 25
+average([10, 20, 30, 40]); // 25
 
-inRange(5, 0, 10);   // true
-inRange(15, 0, 10);  // false
+inRange(5, 0, 10); // true
+inRange(15, 0, 10); // false
 ```
 
 ### Array utilities
 
 ```typescript
-import { intersection, difference, removeDuplicates, chunk, sample } from "pointscape";
+import {
+    intersection,
+    difference,
+    removeDuplicates,
+    chunk,
+    sample,
+} from "pointscape";
 
-intersection([1, 2, 3, 4], [3, 4, 5, 6]);  // [3, 4]
-difference([1, 2, 3, 4], [3, 4, 5, 6]);    // [1, 2]
-removeDuplicates([1, 1, 2, 3, 3, 4]);      // [1, 2, 3, 4]
-chunk([1, 2, 3, 4, 5, 6], 2);              // [[1, 2], [3, 4], [5, 6]]
+intersection([1, 2, 3, 4], [3, 4, 5, 6]); // [3, 4]
+difference([1, 2, 3, 4], [3, 4, 5, 6]); // [1, 2]
+removeDuplicates([1, 1, 2, 3, 3, 4]); // [1, 2, 3, 4]
+chunk([1, 2, 3, 4, 5, 6], 2); // [[1, 2], [3, 4], [5, 6]]
 
-sample([10, 20, 30, 40, 50]);     // one random element, e.g. 30
-sample([10, 20, 30, 40, 50], 3);  // 3 consecutive elements, e.g. [20, 30, 40]
+sample([10, 20, 30, 40, 50]); // one random element, e.g. 30
+sample([10, 20, 30, 40, 50], 3); // 3 consecutive elements, e.g. [20, 30, 40]
 ```
 
 ### Randomization
@@ -277,11 +382,11 @@ sample([10, 20, 30, 40, 50], 3);  // 3 consecutive elements, e.g. [20, 30, 40]
 ```typescript
 import { randomNumber, randomBoolean, uniqueId } from "pointscape";
 
-randomNumber(1, 10);   // random integer in [1, 10], e.g. 7
-randomBoolean();       // true or false
+randomNumber(1, 10); // random integer in [1, 10], e.g. 7
+randomBoolean(); // true or false
 
-uniqueId();                       // e.g. "110e8400-e29b-41d4-a716-446655440000"
-uniqueId(["id-1", "id-2"]);       // UUID guaranteed not to collide with the provided ids
+uniqueId(); // e.g. "110e8400-e29b-41d4-a716-446655440000"
+uniqueId(["id-1", "id-2"]); // UUID guaranteed not to collide with the provided ids
 ```
 
 ## The list of available functions
@@ -292,6 +397,7 @@ uniqueId(["id-1", "id-2"]);       // UUID guaranteed not to collide with the pro
     - [Geometry](#geometry)
     - [Positioning](#positioning)
     - [Relationships](#relationships)
+- [Vectors](#vectors)
 - [Math](#math)
 - [Arrays](#arrays)
 - [Randomization](#randomization)
@@ -361,6 +467,30 @@ uniqueId(["id-1", "id-2"]);       // UUID guaranteed not to collide with the pro
 [scale](#relationships)
 
 [pointWithoutCollision](#relationships)
+
+#### Vectors
+
+[magnitude](#vectors)
+
+[normalize](#vectors)
+
+[dotProduct](#vectors)
+
+[crossProduct](#vectors)
+
+[add](#vectors)
+
+[subtract](#vectors)
+
+[multiply](#vectors)
+
+[project](#vectors)
+
+[reflect](#vectors)
+
+[perpendicular](#vectors)
+
+[fromAngle](#vectors)
 
 #### Math
 
@@ -653,6 +783,98 @@ Returns an array of points representing a shape of triangle.Takes same parameter
 
 Returns vertices of a pentagon around **`centerPoint`** with **`radius`** and rotation **`angle`** (degrees, default **`0`**).
 
+### Vectors
+
+`Point` and `Vector` are structurally identical (`{ x, y }`); `Vector` represents a direction + magnitude rather than a position. Use [`subtract`](#subtract) to get the displacement vector between two points.
+
+- <b id="magnitude">magnitude</b>
+
+```typescript
+(v: Vector) => number;
+```
+
+Returns the length of the vector.
+
+- <b id="normalize">normalize</b>
+
+```typescript
+(v: Vector) => Vector;
+```
+
+Returns a unit vector (length 1) in the same direction. Returns `{ x: 0, y: 0 }` for the zero vector.
+
+- <b id="dotproduct">dotProduct</b>
+
+```typescript
+(v1: Vector, v2: Vector) => number;
+```
+
+Returns the dot product of two vectors. Zero when the vectors are perpendicular.
+
+- <b id="crossproduct">crossProduct</b>
+
+```typescript
+(v1: Vector, v2: Vector) => number;
+```
+
+Returns the scalar (2D) cross product — the signed area of the parallelogram formed by the two vectors.
+
+- <b id="add">add</b>
+
+```typescript
+(v1: Vector, v2: Vector) => Vector;
+```
+
+Returns the component-wise sum of two vectors.
+
+- <b id="subtract">subtract</b>
+
+```typescript
+(v1: Vector, v2: Vector) => Vector;
+```
+
+Returns the component-wise difference of two vectors. Also how you get the displacement vector from `v2` to `v1` when passing two points.
+
+- <b id="multiply">multiply</b>
+
+```typescript
+(v: Vector, scalar: number) => Vector;
+```
+
+Scales a vector by a scalar.
+
+- <b id="project">project</b>
+
+```typescript
+(v: Vector, onto: Vector) => Vector;
+```
+
+Returns the component of `v` parallel to `onto`. Returns `{ x: 0, y: 0 }` if `onto` is the zero vector.
+
+- <b id="reflect">reflect</b>
+
+```typescript
+(v: Vector, normal: Vector) => Vector;
+```
+
+Reflects `v` off a surface with the given **unit** `normal`.
+
+- <b id="perpendicular">perpendicular</b>
+
+```typescript
+(v: Vector) => Vector;
+```
+
+Rotates the vector 90° counter-clockwise.
+
+- <b id="fromangle">fromAngle</b>
+
+```typescript
+(angleInRadians: number, magnitude?: number) => Vector;
+```
+
+Builds a vector from an angle (radians) and magnitude (default `1`).
+
 ### Math
 
 - <b id="degreestoradians">degreesToRadians</b>
@@ -768,11 +990,11 @@ Returns a unique ID that's different from the provided IDs, or a random ID if no
 Use **named imports** so bundlers can tree-shake unused functions:
 
 ```typescript
-import { distance, collision, nearest, Point } from "pointscape";
-import type { Bounds, Line, PointType } from "pointscape";
+import { distance, collision, nearest, Point, Vector } from "pointscape";
+import type { Bounds, Line, PointType, VectorType } from "pointscape";
 ```
 
-Functions take any **`{ x: number; y: number }`**; you do **not** have to allocate a `Point` class instance. **`PointType`** matches instances of **`Point`** (the class exported from this package).
+Functions take any **`{ x: number; y: number }`**; you do **not** have to allocate a `Point` or `Vector` class instance. **`PointType`**/**`VectorType`** match instances of **`Point`**/**`Vector`** (the classes exported from this package) — the underlying `Point`/`Vector` types are structurally identical, but kept distinct to signal position vs. direction+magnitude.
 
 ### Developing
 

@@ -30,6 +30,19 @@ import triangle from "./src/core/points/triangle";
 import pentagon from "./src/core/points/pentagon";
 import lerp from "./src/core/points/lerp";
 
+// vectors
+import magnitude from "./src/core/vectors/magnitude";
+import normalize from "./src/core/vectors/normalize";
+import dotProduct from "./src/core/vectors/dotProduct";
+import crossProduct from "./src/core/vectors/crossProduct";
+import add from "./src/core/vectors/add";
+import subtract from "./src/core/vectors/subtract";
+import multiply from "./src/core/vectors/multiply";
+import project from "./src/core/vectors/project";
+import reflect from "./src/core/vectors/reflect";
+import perpendicular from "./src/core/vectors/perpendicular";
+import fromAngle from "./src/core/vectors/fromAngle";
+
 // math
 import inRange from "./src/core/math/inRange";
 import roundToPrecision from "./src/core/math/roundToPrecision";
@@ -51,9 +64,11 @@ import sample from "./src/core/arrays/sample";
 
 // utils
 import Point from "./src/classes/Point";
+import Vector from "./src/classes/Vector";
 
 // types
 export type { Point as PointType }; // ✅ class instance type
+export type { Vector as VectorType }; // ✅ class instance type
 export type { Coordinate, Direction, Line, Bounds } from "./src/types/global";
 
 // named exports
@@ -90,6 +105,20 @@ export {
     triangle,
     pentagon,
     lerp,
+
+    // vectors
+    Vector,
+    magnitude,
+    normalize,
+    dotProduct,
+    crossProduct,
+    add,
+    subtract,
+    multiply,
+    project,
+    reflect,
+    perpendicular,
+    fromAngle,
 
     // randomization
     uniqueId,
@@ -145,6 +174,20 @@ export default {
     triangle,
     pentagon,
     lerp,
+
+    // vectors
+    Vector,
+    magnitude,
+    normalize,
+    dotProduct,
+    crossProduct,
+    add,
+    subtract,
+    multiply,
+    project,
+    reflect,
+    perpendicular,
+    fromAngle,
 
     // randomization
     uniqueId,

@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **New `vectors` domain** — `magnitude`, `normalize`, `dotProduct`, `crossProduct`, `add`, `subtract`, `multiply`, `project`, `reflect`, `perpendicular`, and `fromAngle`, plus a chainable **`Vector`** class mirroring `Point`. A new `Vector` type is exported alongside the existing `Point` type — structurally identical (`{ x, y }`), kept distinct to signal direction+magnitude vs. position. See the [README](./README.md#vector-operations) for usage.
+
 ---
 
 ## [2.4.0] — 2026-07-30

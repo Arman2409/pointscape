@@ -3,6 +3,9 @@ export interface Point {
     y: number;
 }
 
+/** Structurally identical to `Point` — a direction + magnitude rather than a position. */
+export type Vector = Point;
+
 export type Coordinate = "x" | "y";
 
 export type Direction = "left" | "right" | "up" | "down";
